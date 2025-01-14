@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\beritaController;
 use App\Http\Controllers\KartuKeluargaController;
 use App\Http\Controllers\pendudukController;
 use Illuminate\Support\Facades\Route;
@@ -12,3 +13,4 @@ Route::get('/', function () {
 
 Route::resource('kartukeluarga',KartuKeluargaController::class);
 Route::resource('penduduk',pendudukController::class);
+Route::resource('berita',beritaController::class);

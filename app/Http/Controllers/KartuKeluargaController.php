@@ -42,6 +42,7 @@ class KartuKeluargaController extends Controller
 
         $datapenduduk = [
             'nama_lengkap'=>$request->NamaLengkap,
+            'nik'=>$request->nik
         ];
 
 

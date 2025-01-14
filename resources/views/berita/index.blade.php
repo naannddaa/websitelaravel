@@ -13,41 +13,42 @@
                 
                 <!-- TOMBOL TAMBAH DATA -->
                 <div class="pb-3" style="text-align:right;">
-                    <a href='' class="btn btn-primary">+ Tambah Data </a> </div>
+                    <a href='{{ url('berita/create') }}' class="btn btn-primary">+ Tambah Data </a> </div>
 
 
           
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="col-md-1">No</th>
-                            <th class="col-md-3">Nomer Kartu Keluarga</th>
-                            <th class="col-md-3"> NIK</th>
-                            <th class="col-md-4">Nama Lengkap</th>
-                            <th class="col-md-2">Alamat</th>
-                            <th class="col-md-2">RT</th>
-                            <th class="col-md-2">RW</th>
-                            <th class="col-md-2">Aksi</th>
+                            <th class="col-md-01">No</th>
+                            <th class="col-md-2">Judul</th>
+                            <th class="col-md-14">Gambar</th>
+                            <th class="col-md-6">Deskripsi</th>
+                            <th class="col-md-1">Tanggal</th>
+                            <th class="col-md-1">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i = $databerita->firstItem() ?>
+                        @foreach ($databerita as $item)
                         <tr>
-                            <td>1</td>
-                            <td>35234568900222</td>
-                            <td>35000000000022</td>
-                            <td>Nanda ayu astarika</td>
-                            <td>Purworejo</td>
-                            <td>02</td>
-                            <td>01</td>
+                            <td>{{ $i }}</td>
+                            <td>{{ $item->judul }}</td>
+                            <td>{{ $item->image }}</td>
+                            <td>{{ $item->deskripsi }}</td>
+                            <td>{{ $item->tanggal }}</td>
                             <td>
                                 <a href='' class="btn btn-warning btn-sm">Edit</a>
                                 <a href='' class="btn btn-danger btn-sm">Del</a>
                             </td>
                         </tr>
+                        <?php $i++ ?>
+                        @endforeach
                     </tbody>
-                </table>     
+                </table>  
+                {{ $databerita->links() }}
+                
           </div>
           <!-- AKHIR DATA -->
                       
         @endsection
-  
