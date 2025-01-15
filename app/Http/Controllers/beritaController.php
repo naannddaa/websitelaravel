@@ -6,12 +6,23 @@ use Illuminate\Http\Request;
 
 class BeritaController extends Controller
 {
-    public function index()
-    {
-        // Mendapatkan data berita dan menampilkan 10 per halaman, diurutkan berdasarkan tanggal terbaru
-        $databerita = master_berita::orderBy('tanggal', 'desc')->paginate(10);
-        return view('berita.index', compact('databerita'));
+    public function index(Request $request)
+{
+    $katakunci = $request->katakunci;
+    $jumlahbaris = 10;
+
+    if (strlen($katakunci)) {
+        $databerita = master_berita::where('id_berita', 'like', "%$katakunci%")
+            ->orWhere('judul', 'like', "%$katakunci%")
+            ->orWhere('deskripsi', 'like', "%$katakunci%")
+            ->paginate($jumlahbaris);
+    } else {
+        $databerita = master_berita::orderBy('tanggal', 'desc')->paginate($jumlahbaris);
     }
+
+    return view('berita.index')->with('databerita', $databerita);
+}
+
 
     public function create()
     {

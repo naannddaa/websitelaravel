@@ -7,8 +7,10 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <!-- FORM PENCARIAN -->
                 <div class="pb-3">
-                  <form class="d-flex" action="" method="get">
-                      <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Masukkan kata kunci" aria-label="Search">
+                  <form class="d-flex" action="{{ url('berita') }}" method="get">
+                      <input class="form-control me-1" type="search" name="katakunci" value="{{
+                        Request::get('katakunci') }}" placeholder="Masukkan kata kunci" 
+                        aria-label="Search">
                       <button class="btn btn-secondary" type="submit">Cari</button>
                   </form>
                 </div>
