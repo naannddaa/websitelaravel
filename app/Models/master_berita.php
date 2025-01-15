@@ -11,4 +11,5 @@ class master_berita extends Model
     protected $fillable = ['id_berita', 'judul', 'tanggal', 'deskripsi', 'image'];
     protected $table ='master_berita';
     public $timestamps = false;
+    
 }

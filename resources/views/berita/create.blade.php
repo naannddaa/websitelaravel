@@ -9,7 +9,7 @@
         <div class="mb-3 row">
             <label for="idberita" class="col-sm-2 col-form-label">ID Berita</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='idberita' id="idberita" required>
+                <input type="text" class="form-control" name='idberita' id="idberita" readonly value="{{$idBerita}}" required>
             </div>
         </div>
         <div class="mb-3 row">
@@ -25,12 +25,13 @@
             </div>
         </div>
 
-        <div class="mb-3 row">
-            <label for="image" class="col-sm-2 col-form-label">Gambar</label>
-            <div class="col-sm-10">
-                <input type="file" class="form-control" name='image' id="image" required>
-            </div>
-        </div>
+<div class="mb-3 row">
+    <label for="image" class="col-sm-2 col-form-label">Gambar</label>
+    <div class="col-sm-10">
+        <input type="file" class="form-control" name="image" id="image" accept="image/*" required>
+    </div>
+</div>
+
         
         <div class="mb-3 row">
             <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
