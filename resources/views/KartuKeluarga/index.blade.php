@@ -13,7 +13,7 @@
                 
                 <!-- TOMBOL TAMBAH DATA -->
                 <div class="pb-3" style="text-align:right;">
-                    <a href='' class="btn btn-primary">+ Tambah Data </a> </div>
+                    <a href='' class="btn btn-primary">ikonn Tambah Data </a> </div>
 
 
           
