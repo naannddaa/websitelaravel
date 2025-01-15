@@ -73,7 +73,50 @@ class BeritaController extends Controller
         ];
 
         master_berita::create($databerita);
-
         return redirect('berita')->with('success', 'Data Berhasil Disimpan');
     }
+
+    public function edit($id)
+    {
+         $databerita = master_berita::where('id_berita',$id)->first();
+         return view('berita.edit')->with('databerita', $databerita);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required|max:255',
+            'deskripsi' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'tanggal' => 'required|date'
+        ]);
+
+        // Mengolah dan menyimpan file gambar jika ada
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName); // Menyimpan gambar di folder public/images
+        } else {
+            $imageName = null; // Jika tidak ada gambar, set ke null
+        }
+
+        // Simpan data ke database
+        $databerita = [
+            'id_berita' => $request->id_berita,  // Pastikan id_berita diisi dari form
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'image' => $imageName, // Menyimpan nama file gambar
+            'tanggal' => $request->tanggal,
+            'waktu' => now()
+        ];
+        master_berita::where('id_berita',$id)->update($databerita);
+        return redirect('berita')->with('success', 'Data Berhasil Diedit');
+    }
+
+    public function destroy($id)
+    {
+        master_berita::where('id_berita', $id)->delete();
+        return redirect()->to('berita')->with('success', 'Data Berhasil Dihapus');
+    }
+
 }

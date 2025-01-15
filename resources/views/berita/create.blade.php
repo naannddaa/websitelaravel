@@ -6,6 +6,9 @@
  <form action='{{ url('berita') }}' method='post'>
     @csrf
     <div class="my-3 p-3 bg-body rounded shadow-sm">
+         {{-- tombol kembali start--}}
+         <a href='{{ url('berita') }}' class="btn btn-secondary"><<</a>
+         {{-- tombol kembali end--}}
         <div class="mb-3 row">
             <label for="idberita" class="col-sm-2 col-form-label">ID Berita</label>
             <div class="col-sm-10">

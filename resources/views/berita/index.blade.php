@@ -39,9 +39,17 @@
                             <td>{{ $item->image }}</td>
                             <td>{{ $item->deskripsi }}</td>
                             <td>{{ $item->tanggal }}</td>
+                           
                             <td>
-                                <a href='' class="btn btn-warning btn-sm">Edit</a>
-                                <a href='' class="btn btn-danger btn-sm">Del</a>
+                                <a href='{{ url('berita/'.$item->id_berita.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
+                                <form onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini?')"
+                                class='d-inline' action="{{ url('berita/'.$item->id_berita) }}"
+                                    method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Del</button>
+                                </form>
+                               
                             </td>
                         </tr>
                         <?php $i++ ?>
