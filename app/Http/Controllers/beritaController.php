@@ -37,7 +37,8 @@ class beritaController extends Controller
         ];
 
         master_berita::create($databerita);
-        return redirect()->to('berita')->with('success','Data Berhasil Ditambahkan');
+        // return redirect()->to('berita')->with('success', 'Task Created Successfully!');
+        return redirect('berita')->with('success', 'Data Berhasil Disimpan');
 
     }
 

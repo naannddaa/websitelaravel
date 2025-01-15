@@ -1,6 +1,6 @@
 @extends('layout.template')
+
 @section('konten')
-  
 
 <!-- START FORM -->
  <form action='{{ url('berita') }}' method='post'>
@@ -42,7 +42,10 @@
             <label for="jurusan" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
         </div>
+        @include('sweetalert::alert')
     </div>
+
 </form>
     <!-- AKHIR FORM -->
     @endsection
+
