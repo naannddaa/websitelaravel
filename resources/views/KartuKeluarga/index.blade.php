@@ -13,21 +13,20 @@
                 
                 <!-- TOMBOL TAMBAH DATA -->
                 <div class="pb-3" style="text-align:right;">
-                    <a href='' class="btn btn-primary">ikonn Tambah Data </a> </div>
-
+                    <a href='{{ url('berita/create') }}' class="btn btn-primary">+ Tambah Data </a> </div>
 
           
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="col-md-1">No</th>
-                            <th class="col-md-3">Nomer Kartu Keluarga</th>
-                            <th class="col-md-3"> NIK</th>
-                            <th class="col-md-4">Nama Lengkap</th>
+                            <th class="col-md-13">No</th>
+                            <th class="col-md-2">Nomer Kartu Keluarga</th>
+                            <th class="col-md-2">NIK</th>
+                            <th class="col-md-2">Nama Lengkap</th>
                             <th class="col-md-2">Alamat</th>
-                            <th class="col-md-2">RT</th>
-                            <th class="col-md-2">RW</th>
-                            <th class="col-md-2">Aksi</th>
+                            <th class="col-md-1">RT</th>
+                            <th class="col-md-1">RW</th>
+                            <th class="col-md-8">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
