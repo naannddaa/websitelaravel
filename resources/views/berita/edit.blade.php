@@ -33,11 +33,14 @@
         <div class="mb-3 row">
             <label for="image" class="col-sm-2 col-form-label">Gambar</label>
             <div class="col-sm-10">
+                {{-- Tampilkan gambar lama jika ada --}}
                 @if($databerita->image)
-                    <img src="{{ asset('images/' . $databerita->image) }}" alt="Gambar Berita" class="img-fluid mb-3" style="max-width: 200px; max-height: 200px;">
-                @else
-                    <p class="text-muted">Tidak ada gambar</p>
+                    <img src="{{ asset('images/' . $databerita->image) }}" alt="Gambar Berita" id="oldImage" class="img-fluid mb-3" style="max-width: 200px; max-height: 200px;">
                 @endif
+
+                {{-- Tempat untuk gambar baru --}}
+                <img src="" id="showImage" class="img-fluid mt-3 mb-4" style="max-width: 200px; max-height: 200px; display: none;">
+
                 <input type="file" class="form-control" name="image" id="image" accept="image/*">
             </div>
         </div>
@@ -62,5 +65,21 @@
     </div>
 </form>
 <!-- AKHIR FORM -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#image').change(function(e) {
+            // Hapus gambar lama jika ada
+            $('#oldImage').remove();
+
+            // Tampilkan gambar baru yang dipilih
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#showImage').attr('src', e.target.result).show();
+            };
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
 
 @endsection

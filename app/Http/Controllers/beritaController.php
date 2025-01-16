@@ -51,7 +51,7 @@ class BeritaController extends Controller
     {
         $request->validate([
             'id_berita' => 'required',
-            'judul' => 'required|max:255',
+            'judul' => 'required',
             'deskripsi' => 'required',
             'image' => 'required|file|image|max:5000',
             'tanggal' => 'required|date',
@@ -87,7 +87,7 @@ class BeritaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required|max:255',
+            'judul' => 'required',
             'deskripsi' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'tanggal' => 'required|date',
