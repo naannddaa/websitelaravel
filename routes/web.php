@@ -2,19 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\KartuKeluargaController;
-use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\kartukeluargaController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 // Route untuk Kartu Keluarga
-Route::resource('kartukeluarga', KartuKeluargaController::class);
-
-// Route untuk Penduduk
-Route::resource('penduduk', PendudukController::class);
-
+Route::resource('kartukeluarga', kartukeluargaController::class);
 // Route untuk Berita
 Route::resource('berita', BeritaController::class);
 Route::get('upload/berita', [BeritaController::class, 'index'])->name('berita.index');

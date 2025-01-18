@@ -1,10 +1,10 @@
 @extends('layout.template')
-
 @section('konten')
 
 <div class="my-3 p-3 bg-body rounded shadow-sm">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+    <h2 class="text-start mb-4">Berita</h2>
+
     <!-- FORM PENCARIAN -->
     <div class="pb-3">
         <form class="d-flex" action="{{ url('berita') }}" method="get">

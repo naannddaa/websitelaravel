@@ -12,7 +12,7 @@
         <div class="mb-3 row">
             <label for="id_berita" class="col-sm-2 col-form-label">ID Berita</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='id_berita' id="id_berita" readonly value="{{$idBerita}}" required>
+                <input type="text" class="form-control" name='id_berita' id="id_berita" value="{{$idBerita}}" required disabled readonly>
             </div>
         </div>
         <div class="mb-3 row">
@@ -24,7 +24,8 @@
         <div class="mb-3 row">
             <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='deskripsi' id="deskripsi" required>
+                {{-- <input type="text" class="form-control" name='deskripsi' id="deskripsi" required> --}}
+                <textarea type="text" class="form-control" name='deskripsi' id="deskripsi" required ></textarea>
             </div>
         </div>
 
@@ -35,8 +36,6 @@
         <img src="" id="showImage" class="img-fluid" width="200px">
     </div>
 </div>
-
-        
         <div class="mb-3 row">
             <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
             <div class="col-sm-10">

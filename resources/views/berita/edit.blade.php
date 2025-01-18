@@ -37,10 +37,8 @@
                 @if($databerita->image)
                     <img src="{{ asset('images/' . $databerita->image) }}" alt="Gambar Berita" id="oldImage" class="img-fluid mb-3" style="max-width: 200px; max-height: 200px;">
                 @endif
-
                 {{-- Tempat untuk gambar baru --}}
                 <img src="" id="showImage" class="img-fluid mt-3 mb-4" style="max-width: 200px; max-height: 200px; display: none;">
-
                 <input type="file" class="form-control" name="image" id="image" accept="image/*">
             </div>
         </div>

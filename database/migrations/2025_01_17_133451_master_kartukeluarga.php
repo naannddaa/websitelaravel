@@ -14,18 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_kartukeluarga', function (Blueprint $table) {
-            $table->char('no_kk');
-            $table->unique('no_kk');
-           $table->string('alamat');
-           $table->string('rt');
-           $table->string('rw');
-           $table->string('desa');
-           $table->string('kecamatan');
-           $table->string('kode_pos');
-           $table->string('kabupaten');
-           $table->string('provinsi');
-           $table->string('tanggaldibuat');
-
+            $table->Sring('no_kk');
+            $table->Sring('alamat');
+            $table->Sring('rt');
+            $table->Sring('rw');
+            $table->Sring('desa');
+            $table->Sring('kecamatan');
+            $table->Sring('kode_pos');
+            $table->Sring('kabupaten');
+            $table->Sring('provinsi');
+            $table->Sring('tanggal_dibuat');
         });
     }
 
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_kartukeluarga');
+        //
     }
 };
