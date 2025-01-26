@@ -1,7 +1,7 @@
-@extends('layout.main')
+@extends('admin.layout.main')
 @section('konten')
 
-<div class="my-3 p-3 bg-body rounded shadow-sm">
+<div class="container-scroller">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <h2 class="text-start mb-4">Berita</h2>
 
@@ -25,7 +25,7 @@
                 <th class="col-md-1">No</th>
                 <th class="col-md-2">Judul</th>
                 <th class="col-md-2">Gambar</th>
-                <th class="col-md-5">Deskripsi</th>
+                {{-- <th class="col-md-5">Deskripsi</th> --}}
                 <th class="col-md-1">Tanggal</th>
                 <th class="col-md-1">Aksi</th>
             </tr>
@@ -40,7 +40,7 @@
                     <!-- Menampilkan Gambar -->
                     <img src="{{ asset('images/'.$item->image) }}" width="150px" alt="Gambar Berita">
                 </td>
-                <td>{{ $item->deskripsi }}</td>
+                {{-- <td>{{ $item->deskripsi }}</td> --}}
                 <td>{{ $item->tanggal }}</td>
                 <td>
                     <a href="{{ url('berita/'.$item->id_berita.'/edit') }}" class="btn btn-warning btn-sm">Edit</a>

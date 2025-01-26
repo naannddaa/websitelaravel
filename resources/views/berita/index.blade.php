@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('admin.layout.main')
 @section('konten')
 
 <div class="my-3 p-3 bg-body rounded shadow-sm">

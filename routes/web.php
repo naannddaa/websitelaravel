@@ -12,7 +12,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 // Route untuk Kartu Keluarga
 Route::resource('kartukeluarga', kartukeluargaController::class);
 // Route untuk Berita
-Route::resource('berita', BeritaController::class);
+Route::resource('admin/berita', BeritaController::class);
 Route::get('upload/berita', [BeritaController::class, 'index'])->name('berita.index');
 Route::get('upload/berita/create', [BeritaController::class, 'create'])->name('berita.create');
 Route::post('upload/berita/create', [BeritaController::class, 'store'])->name('berita.store');
