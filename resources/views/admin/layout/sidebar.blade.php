@@ -7,9 +7,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
+            <a class="nav-link" data-toggle="collapse" href="/master_kartukeluarga" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout far fa-address-card"></i>
+              <span class="menu-title">Master Kk</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
@@ -102,3 +102,4 @@
           </li>
         </ul>
       </nav>
+      

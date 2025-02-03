@@ -23,7 +23,7 @@ class BeritaController extends Controller
             $databerita = master_berita::orderBy('id_berita', 'desc')->paginate($jumlahbaris);
         }
 
-        return view('berita.index', compact('databerita'));
+        return view('admin.berita.index', compact('databerita'));
     }
 
     public function create()
@@ -44,7 +44,7 @@ class BeritaController extends Controller
         $formattedIncrement = str_pad($newIncrement, 3, '0', STR_PAD_LEFT);
         $idBerita = $prefix . $formattedIncrement;
 
-        return view('berita.create', compact('idBerita'));
+        return view('admin.berita.create', compact('idBerita'));
     }
 
     public function store(Request $request)
@@ -81,7 +81,7 @@ class BeritaController extends Controller
     public function edit($id)
     {
         $databerita = master_berita::where('id_berita', $id)->first();
-        return view('berita.edit', compact('databerita'));
+        return view('admin.berita.edit', compact('databerita'));
     }
 
     public function update(Request $request, $id)

@@ -9,7 +9,7 @@ class master_kartukeluarga extends Model
 {
     use HasFactory;
 
-    protected $table = 'master_kartukeluarga';
+    protected $table = 'master_kartukeluargas';
     protected $primaryKey = 'no_kk'; // Definisikan no_kk sebagai primary key
     public $incrementing = false; // Karena no_kk bukan auto-increment
     protected $keyType = 'string'; // Jika no_kk bertipe string

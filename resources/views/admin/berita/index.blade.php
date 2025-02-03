@@ -23,9 +23,9 @@
         <thead>
             <tr>
                 <th class="col-md-1">No</th>
-                <th class="col-md-2">Judul</th>
+                <th class="col-md-1">Judul</th>
                 <th class="col-md-2">Gambar</th>
-                {{-- <th class="col-md-5">Deskripsi</th> --}}
+                <th class="col-md-2">Deskripsi</th>
                 <th class="col-md-1">Tanggal</th>
                 <th class="col-md-1">Aksi</th>
             </tr>
@@ -40,7 +40,7 @@
                     <!-- Menampilkan Gambar -->
                     <img src="{{ asset('images/'.$item->image) }}" width="150px" alt="Gambar Berita">
                 </td>
-                {{-- <td>{{ $item->deskripsi }}</td> --}}
+                <td>{{ $item->deskripsi }}</td>
                 <td>{{ $item->tanggal }}</td>
                 <td>
                     <a href="{{ url('berita/'.$item->id_berita.'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
@@ -54,9 +54,8 @@
             <?php $i++ ?>
             @endforeach
         </tbody>
-    </table>  
     {{ $databerita->links() }}
-    
+</table>  
     @include('sweetalert::alert')
 
 </div>    
