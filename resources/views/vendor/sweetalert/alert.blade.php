@@ -34,10 +34,10 @@
             });
 
             @if (Session::has('alert.config'))
-                // Sweet Alert with a 2-second timer
+               
                 Swal.fire({
                     ...{!! Session::pull('alert.config') !!},
-                    timer: 3000, // Timer in milliseconds (2 seconds)
+                    timer: 2000, // Timer in milliseconds (2 seconds)
                     timerProgressBar: true // Display progress bar
                 });
             @endif

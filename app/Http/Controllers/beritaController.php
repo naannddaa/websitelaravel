@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\master_berita;
 use Illuminate\Http\Request;
 
-class BeritaController extends Controller
+class beritaController extends Controller
 {
     public $filename;
+    public $idBerita;
 
     public function index(Request $request)
     {
@@ -30,8 +31,8 @@ class BeritaController extends Controller
     {
         // Generate ID Berita dengan format B[bulan]-001
         $currentDate = now();
-        $bulan = $currentDate->format('m');
-        $prefix = "B{$bulan}-";
+        $tahun = $currentDate->format('Y');
+        $prefix = "B{$tahun}-";
 
         $lastBerita = master_berita::where('id_berita', 'like', "$prefix%")
             ->orderBy('id_berita', 'desc')
@@ -41,7 +42,7 @@ class BeritaController extends Controller
             ? (int)substr($lastBerita->id_berita, strlen($prefix)) + 1
             : 1;
 
-        $formattedIncrement = str_pad($newIncrement, 3, '0', STR_PAD_LEFT);
+        $formattedIncrement = str_pad($newIncrement, 4, '000', STR_PAD_LEFT);
         $idBerita = $prefix . $formattedIncrement;
 
         return view('admin.berita.create', compact('idBerita'));
@@ -75,7 +76,7 @@ class BeritaController extends Controller
         ];
 
         master_berita::create($databerita);
-        return redirect('berita')->with('success', 'Data Berhasil Disimpan');
+        return redirect('admin/berita')->with('success', 'Data Berhasil Disimpan');
     }
 
     public function edit($id)
@@ -108,7 +109,7 @@ class BeritaController extends Controller
         ];
 
         master_berita::where('id_berita', $id)->update($databerita);
-        return redirect('berita')->with('success', 'Data Berhasil Diedit');
+        return redirect('admin/berita')->with('success', 'Data Berhasil Diedit');
     }
 
     public function destroy($id)
@@ -122,6 +123,6 @@ class BeritaController extends Controller
         }
 
         master_berita::where('id_berita', $id)->delete();
-        return redirect('berita')->with('success', 'Data Berhasil Dihapus');
+        return redirect('admin/berita')->with('success', 'Data Berhasil Dihapus');
     }
 }

@@ -24,6 +24,7 @@ Route::post('upload/berita/create', [BeritaController::class, 'store'])->name('a
 Route::get('upload/berita/{id}/edit', [BeritaController::class, 'edit'])->name('admin.berita.edit');
 Route::put('upload/berita/{id}', [BeritaController::class, 'update'])->name('admin.berita.update');
 Route::delete('upload/berita/{id}', [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
+<<<<<<< HEAD
 //MASTER KARTU KELUARGA
 Route::get('/master_kartukeluarga',[master_kartukeluargaController::class,'index']);
 Route::get('/master_kartukeluarga/tambah',[master_kartukeluargaController::class,'tambah']);
@@ -50,3 +51,5 @@ Route::post('/forgot_password', [forgot_passwordController::class, 'sendResetLin
 Route::get('/halaman_utama',[halaman_utamaController::class,'index']);
 
 
+=======
+>>>>>>> 23721c69c360580164e493b08009a6e881bfae5c

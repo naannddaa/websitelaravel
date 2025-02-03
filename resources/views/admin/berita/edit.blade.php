@@ -3,12 +3,12 @@
 @section('konten')
 
 <!-- START FORM -->
-<form action="{{ url('berita/' . $databerita->id_berita) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ url('admin/berita/' . $databerita->id_berita) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         {{-- Tombol kembali --}}
-        <a href="{{ url('berita') }}" class="btn btn-secondary">&laquo; Kembali</a>
+        <a href="{{ url('admin/berita') }}" class="btn btn-secondary">&laquo; Kembali</a>
 
         {{-- Field ID Berita (Hidden) --}}
         <input type="hidden" name="id_berita" value="{{ $databerita->id_berita }}">
@@ -64,18 +64,22 @@
 </form>
 <!-- AKHIR FORM -->
 
+{{-- JQUERY untuk preview gambar --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#image').change(function(e) {
-            // Hapus gambar lama jika ada
-            $('#oldImage').remove();
-
-            // Tampilkan gambar baru yang dipilih
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#showImage').attr('src', e.target.result).show();
-            };
-            reader.readAsDataURL(this.files[0]);
+            var file = e.target.files[0]; // Ambil file gambar yang dipilih
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    $('#oldImage').remove(); // Hapus gambar lama
+                    $('#showImage').attr('src', event.target.result).show(); // Tampilkan gambar baru
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $('#showImage').hide(); // Sembunyikan gambar baru jika tidak ada file dipilih
+            }
         });
     });
 </script>
