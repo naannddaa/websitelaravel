@@ -29,13 +29,9 @@
         <thead>
             <tr>
                 <th class="col-md-1">No</th>
-                <th class="col-md-1">Judul</th>
+                <th class="col-md-2">Judul</th>
                 <th class="col-md-2">Gambar</th>
-<<<<<<< HEAD
-                <th class="col-md-2">Deskripsi</th>
-=======
                 <th class="col-md-4">Deskripsi</th>
->>>>>>> 23721c69c360580164e493b08009a6e881bfae5c
                 <th class="col-md-1">Tanggal</th>
                 <th class="col-md-1">Aksi</th>
             </tr>
