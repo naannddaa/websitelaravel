@@ -2,7 +2,9 @@
 @section('konten')
 
 <div class="container-scroller">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" 
+    integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <h2 class="text-start mb-4">Berita</h2>
     <h4 class="text-start mb-4">Sediakan Berita Lokal Untuk Masyarakat</h4>
 
@@ -27,9 +29,13 @@
         <thead>
             <tr>
                 <th class="col-md-1">No</th>
-                <th class="col-md-2">Judul</th>
+                <th class="col-md-1">Judul</th>
                 <th class="col-md-2">Gambar</th>
+<<<<<<< HEAD
+                <th class="col-md-2">Deskripsi</th>
+=======
                 <th class="col-md-4">Deskripsi</th>
+>>>>>>> 23721c69c360580164e493b08009a6e881bfae5c
                 <th class="col-md-1">Tanggal</th>
                 <th class="col-md-1">Aksi</th>
             </tr>
