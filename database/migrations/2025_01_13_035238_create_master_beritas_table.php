@@ -11,10 +11,12 @@ return new class extends Migration
     {
         Schema::create('master_beritas', function (Blueprint $table) {
             $table->string('id_berita');
+            $table->primary('id_berita');
             $table->string('judul');
             $table->string('tanggal');
             $table->string('deskripsi');
             $table->string('image');
+            $table->timestamps();
         });
     }
 
