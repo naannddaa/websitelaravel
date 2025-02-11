@@ -9,7 +9,7 @@ class master_berita extends Model
 {
     use HasFactory;
     protected $fillable = ['id_berita', 'judul', 'tanggal', 'deskripsi', 'image'];
-    protected $table ='master_berita';
+    protected $table ='master_beritas';
     public $timestamps = false;
     
 }

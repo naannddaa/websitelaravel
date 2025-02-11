@@ -1,21 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\kartukeluargaController;
+use App\Http\Controllers\beritaController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\forgot_passwordController;
-use App\Http\Controllers\halaman_utamaController;
-use App\Http\Controllers\landing_pageController;
-use App\Http\Controllers\loginController;
 use App\Http\Controllers\master_kartukeluargaController;
+use App\Http\Controllers\master_pendudukController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// Route untuk Kartu Keluarga
-Route::resource('kartukeluarga', kartukeluargaController::class);
 // Route untuk Berita
 Route::resource('admin/berita', BeritaController::class);
 Route::get('upload/berita', [BeritaController::class, 'index'])->name('admin.berita.index');
@@ -31,23 +25,11 @@ Route::post('/master_kartukeluarga/masuk',[master_kartukeluargaController::class
 Route::get('/master_kartukeluarga/{no_kk}/edit',[master_kartukeluargaController::class,'edit']);
 Route::put('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'update']);
 Route::get('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'delete']);
-//LANDING PAGE
-Route::get('/landing_page',[landing_pageController::class,'index']);
-//LOGIN
-Route::get('/login', [loginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [loginController::class, 'login']);
-Route::post('/logout', [loginController::class, 'logout'])->name('logout');
-// RUTE YANG DIAKSES OLEH USER YANG SUDAH LOGIN
-Route::middleware('auth')->group(function () {
-    Route::get('/landing_page', function () {
-        return view('landing_page');
-    })->name('landing_page');
-});
-//FORGOT PASSWORD
-Route::get('/forgot_password', [forgot_passwordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/forgot_password', [forgot_passwordController::class, 'sendResetLinkEmail'])->name('password.email');
-//HALAMAN UTAMA
-Route::get('/halaman_utama',[halaman_utamaController::class,'index']);
-
-
+// MASTER PENDUDUK
+Route::get('/master_penduduk', [master_pendudukController::class, 'index']);
+Route::get('/master_penduduk/tambah', [master_pendudukController::class, 'tambah']);
+Route::post('/master_penduduk/masuk', [master_pendudukController::class, 'masuk']);
+Route::get('/master_penduduk/{nik}/edit', [master_pendudukController::class, 'edit']);
+Route::put('/master_penduduk/{nik}', [master_pendudukController::class, 'update']);
+Route::get('/master_penduduk/{nik}', [master_pendudukController::class, 'delete']);
 
