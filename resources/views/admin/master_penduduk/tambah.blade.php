@@ -120,10 +120,6 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">kewarganegaraan</label>
-<<<<<<< HEAD
-                   
-=======
->>>>>>> cf20f72312a78abd9d6eb0a2c9ac4272e881ab4e
                     <select class="form-select" name="kewarganegaraan" id="kewarganegaraan" >
                         <option value="WNA">WNA</option>
                         <option value="WNI">WNI</option>
@@ -198,11 +194,9 @@
         const nokitapInput = document.getElementById('no_kitap');
 
         function toggleNokitap() {
-<<<<<<< HEAD
             if (kewarganegaraanSelect.value === 'WNA') {
-=======
+
             if (kewarganegaraanSelect.value === 'WNI') {
->>>>>>> cf20f72312a78abd9d6eb0a2c9ac4272e881ab4e
                 nokitapInput.value = ''; // Kosongkan input
                 nokitapInput.disabled = true; // Nonaktifkan input
             } else {
