@@ -194,6 +194,8 @@
         const nokitapInput = document.getElementById('no_kitap');
 
         function toggleNokitap() {
+            if (kewarganegaraanSelect.value === 'WNA') {
+
             if (kewarganegaraanSelect.value === 'WNI') {
                 nokitapInput.value = ''; // Kosongkan input
                 nokitapInput.disabled = true; // Nonaktifkan input

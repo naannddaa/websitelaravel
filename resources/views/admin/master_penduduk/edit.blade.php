@@ -116,6 +116,11 @@
                         <option value="WNI">WNI</option>
                        
                     </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="no_kitab">No kitap</label>
+                    <input type="text" class="form-control" name="no_kitap" id="no_kitap" value="{{ $master_penduduk->no_kitap }}" >
+
                     <div class="col-md-6">
                         <label class="form-label" for="no_kitab">No kitap</label>
                         <input type="text" class="form-control" name="no_kitap" id="no_kitap" value="{{ $master_penduduk->no_kitap }}" >
@@ -126,7 +131,7 @@
                         <input type="text" class="form-control" name="no_paspor" value="{{ $master_penduduk->no_paspor }}" required>
                     </div>
                     
-                    <div class="col-md-6">
+                                        <div class="col-md-6">
                         <label class="form-label">Status Perkawinan</label>
                         <select class="form-select" name="status_perkawinan" required>
                             <option value="Belum Kawin">Belum Kawin</option>
@@ -178,6 +183,8 @@
         const nokitapInput = document.getElementById('no_kitap');
 
         function toggleNokitap() {
+            if (kewarganegaraanSelect.value === 'WNA') {
+
             if (kewarganegaraanSelect.value === 'WNI') {
                 nokitapInput.value = ''; // Kosongkan input
                 nokitapInput.disabled = true; // Nonaktifkan input
