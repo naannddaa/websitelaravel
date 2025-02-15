@@ -72,7 +72,7 @@ class beritaController extends Controller
             'deskripsi' => $request->deskripsi,
             'image' => $this->filename,
             'tanggal' => $request->tanggal,
-            'waktu' => now(),
+            'created_at' => now(),
         ];
 
         master_berita::create($databerita);
@@ -105,7 +105,7 @@ class beritaController extends Controller
             'deskripsi' => $request->deskripsi,
             'image' => $this->filename ?? $request->image_lama,
             'tanggal' => $request->tanggal,
-            'waktu' => now(),
+            'updated_at' => now(),
         ];
 
         master_berita::where('id_berita', $id)->update($databerita);

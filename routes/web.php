@@ -25,6 +25,10 @@ Route::post('/master_kartukeluarga/masuk',[master_kartukeluargaController::class
 Route::get('/master_kartukeluarga/{no_kk}/edit',[master_kartukeluargaController::class,'edit']);
 Route::put('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'update']);
 Route::get('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'delete']);
+Route::get('/get-data-kk/{no_kk}', [master_kartukeluargaController::class, 'getDataKK']);
+Route::get('/master_kartukeluarga/{no_kk}/edit',[master_kartukeluargaController::class,'edit']);
+Route::put('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'update']);
+
 // MASTER PENDUDUK
 Route::get('/master_penduduk', [master_pendudukController::class, 'index']);
 Route::get('/master_penduduk/tambah', [master_pendudukController::class, 'tambah']);

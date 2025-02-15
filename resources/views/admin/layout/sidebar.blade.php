@@ -8,12 +8,8 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="/master_kartukeluarga" aria-expanded="false" aria-controls="ui-basic">
-<<<<<<< HEAD
               <i class="icon-layout far fa-address-card"></i>
-=======
-              <i class="icon-layout menu-icon"></i>
->>>>>>> cf20f72312a78abd9d6eb0a2c9ac4272e881ab4e
-              <span class="menu-title">Master Kk</span>
+              <span class="menu-title">Master Kartu Keluarga</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
@@ -99,11 +95,10 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="berita">
+            <a class="nav-link" href="admin/berita">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Berita</span>
             </a>
           </li>
         </ul>
       </nav>
-      
