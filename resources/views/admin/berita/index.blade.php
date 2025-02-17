@@ -8,7 +8,7 @@
 
     <!-- Border Box -->
     <div class="container-scroller">
-        <div class="p-4 border rounded shadow bg-white">
+        <div class="p-4 rounded shadow bg-white">
 
             <h2 class="text-start mb-4">Berita</h2>
             <h4 class="text-start mb-4">Sediakan Berita Lokal Untuk Masyarakat</h4>
