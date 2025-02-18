@@ -16,10 +16,13 @@ class master_pendudukController extends Controller
         if (!empty($keyword)) {
             $query->where('no_kk', 'LIKE', '%' . $keyword . '%')
                   ->orWhere('nik', 'LIKE', '%' . $keyword . '%')
-                  ->orWhere('nama_lengkap', 'LIKE', '%' . $keyword . '%');                  
+                  ->orWhere('nama_lengkap', 'LIKE', '%' . $keyword . '%');
         }
 
+        // $master_penduduk = $query->paginate(5);
         $master_penduduk = $query->paginate(5);
+
+
         return view('admin.master_penduduk.index', compact('master_penduduk'));
     }
 
@@ -32,13 +35,13 @@ class master_pendudukController extends Controller
     // Memasukkan data baru ke dalam master$master_pendudukase
     public function masuk(Request $request)
     {
-      
+
         $request->validate([
             'no_kk' => 'required|string|max:255',
             // field lainnya
         ]);
-    
-     
+
+
         master_penduduk::create($request->except('_token', 'submit'));
         return redirect('master_penduduk')->with('success', 'Data berhasil ditambahkan');
     }
@@ -57,7 +60,7 @@ class master_pendudukController extends Controller
             'nama_lengkap' => 'required|string',
             'no_kk' => 'required',
         ]);
-      
+
         $master_penduduk = master_penduduk::where('nik', $nik)->firstOrFail();
         $master_penduduk->update($request->except('_token',  'submit','_method'));
 

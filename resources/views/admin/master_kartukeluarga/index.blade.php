@@ -57,8 +57,9 @@
     <div class="pb-3" style="text-align:right;">
         <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >+ Tambah Data</a>
         </div>
+
+
 {{-- start modal --}}
-<!-- Button trigger modal -->
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -68,7 +69,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
         {{-- start field --}}
         <form action="/master_kartukeluarga/masuk" method="POST">
             @csrf
@@ -88,7 +88,6 @@
             <label class="form-label">Alamat</label>
             <input type="text" class="form-control" name="alamat" required>
         </div>
-
         <div class="mb-3 row">
             <div class="col">
                 <label class="form-label">RT</label>
@@ -139,6 +138,90 @@
 {{-- end modal dan tambah data --}}
 
 
+
+{{-- start edit --}}
+{{-- start modal --}}
+  <!-- Modal -->
+  <div class="modal fade" id="modaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Kepala Keluarga</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        {{-- start field --}}
+        <form action="/master_kartukeluarga/masuk" method="POST">
+            @csrf
+        <div class="col-12">
+            <label class="form-label">Nomor Kartu Keluarga</label>
+            <input type="text" class="form-control" name="no_kk"  required>
+        </div>
+        <div class="col-12">
+            <label class="form-label">NIK</label>
+            <input type="text" class="form-control" name="nik" required>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Nama Kepala Keluarga</label>
+            <input type="text" class="form-control" name="nama_lengkap"  required>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Alamat</label>
+            <input type="text" class="form-control" name="alamat" required>
+        </div>
+        <div class="mb-3 row">
+            <div class="col">
+                <label class="form-label">RT</label>
+              <input type="text" class="form-control" name="rt" required>
+            </div>
+            <div class="col">
+                <label class="form-label">RW</label>
+              <input type="text" class="form-control" name="rw" required>
+            </div>
+            <div class="col">
+                <label class="form-label">Kode Pos</label>
+                <input type="text" class="form-control" name="kode_pos"  required>
+            </div>
+        </div>
+        <div class="row g-5">
+        <div class="col">
+            <label class="form-label">Desa</label>
+            <input type="text" class="form-control" name="desa" required>
+        </div>
+        <div class="col">
+            <label class="form-label">Kecamatan</label>
+            <input type="text" class="form-control" name="kecamatan" required>
+        </div>
+    </div>
+    <div class="row g-5">
+        <div class="col">
+            <label class="form-label">Kabupaten</label>
+            <input type="text" class="form-control" name="kabupaten"  required>
+        </div>
+        <div class="col">
+            <label class="form-label">Provinsi</label>
+            <input type="text" class="form-control" name="provinsi" required>
+        </div>
+    </div>
+        <div class="col-12">
+            <label class="form-label">Tanggal Dibuat</label>
+            <input type="date" class="form-control" name="tanggal_dibuat" required>
+        </div>
+        {{-- end field --}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{-- end edit --}}
+
+
+
+
+
 {{-- start display data --}}
         <div class="table-responsive">
           <table class="table">
@@ -164,9 +247,13 @@
                 <td>{{$a->rt}}</td>
                 <td>
                   <!-- Tombol Edit -->
-                  <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" class="btn btn-warning btn-sm left" title="Edit Data">
+                  {{-- <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" class="btn btn-warning btn-sm left" title="Edit Data">
+                    <i class="bi bi-pencil-square"></i>
+                  </a> --}}
+                  <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" data-bs-target="#modaledit" class="btn btn-warning btn-sm left" title="Edit Data">
                     <i class="bi bi-pencil-square"></i>
                   </a>
+
 
                   <!-- Tombol Hapus -->
                   <a href="#" data-id="{{$a->no_kk}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
@@ -189,8 +276,6 @@
 
       </div>
     </div>
-
-
     <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>

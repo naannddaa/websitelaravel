@@ -21,7 +21,7 @@ class master_kartukeluargaController extends Controller
               ->orWhere('master_penduduks.nama_lengkap', 'LIKE', '%' . $keyword . '%');
         }
 
-        $master_kartukeluarga = $query->paginate(10);
+        $master_kartukeluarga = $query->paginate();
 
 
         return view('admin.master_kartukeluarga.index', compact('master_kartukeluarga'));
