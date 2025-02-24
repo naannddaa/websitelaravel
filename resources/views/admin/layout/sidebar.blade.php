@@ -68,19 +68,24 @@
               </ul>
             </div>
           </li>
+{{-- start nav master akun --}}
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
+            <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#master-akun"
+                aria-expanded="false" aria-controls="master-akun">
+                <i class="icon-head menu-icon"></i>
+                <span>Master Akun</span>
+                <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-              </ul>
-            </div>
-          </li>
+            <ul id="master-akun" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <li class="nav-item">
+                    <a href="/akunrw" class="nav-link">Akun RW</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Akun RT</a>
+                </li>
+            </ul>
+        </li>
+{{-- end nav master akun --}}
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
               <i class="icon-ban menu-icon"></i>

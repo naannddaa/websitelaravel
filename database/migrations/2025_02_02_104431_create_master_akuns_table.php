@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('master_akuns', function (Blueprint $table) {
-            $table->primary('id_akun'); 
-            $table->integer('id_akun'); 
+        Schema::create('master_akun', function (Blueprint $table) {
+            $table->primary('id_akun');
+            $table->integer('id_akun');
             $table->string('nik');
             $table->string('no_hp');
             $table->string('email');
             $table->string('foto_profil');
             $table->integer('level');
             $table->string('password');
-            $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
+            $table->foreign('nik')->references('nik')->on('master_penduduk')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_akuns');
+        Schema::dropIfExists('master_akun');
     }
 };

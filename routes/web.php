@@ -5,6 +5,8 @@ use App\Http\Controllers\beritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\master_kartukeluargaController;
 use App\Http\Controllers\master_pendudukController;
+use App\Http\Controllers\masterAkunController;
+use App\Http\Controllers\masterAkunRwController;
 use App\Models\master_kartukeluarga;
 
 Route::get('/', function () {
@@ -38,4 +40,10 @@ Route::post('/master_penduduk/masuk', [master_pendudukController::class, 'masuk'
 Route::get('/master_penduduk/{nik}/edit', [master_pendudukController::class, 'edit']);
 Route::put('/master_penduduk/{nik}', [master_pendudukController::class, 'update']);
 Route::get('/master_penduduk/{nik}', [master_pendudukController::class, 'delete']);
+
+
+// MASTER AKUN
+//akun rw
+
+Route::resource('akunrw', masterAkunRwController::class);
 
