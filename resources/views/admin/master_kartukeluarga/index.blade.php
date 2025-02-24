@@ -6,10 +6,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 {{-- modal --}}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 {{-- end modal --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -88,8 +92,10 @@
             <label class="form-label">Alamat</label>
             <input type="text" class="form-control" name="alamat" required>
         </div>
-        <div class="mb-3 row">
-            <div class="col">
+
+        <div class="col-12">
+            <div class="mb-3 row">
+                <div class="col">
                 <label class="form-label">RT</label>
               <input type="text" class="form-control" name="rt" required>
             </div>
@@ -102,8 +108,12 @@
                 <input type="text" class="form-control" name="kode_pos"  required>
             </div>
         </div>
-        <div class="row g-5">
-        <div class="col">
+    </div>
+
+
+    <div class="col-12">
+        <div class="mb-3 row">
+            <div class="col">
             <label class="form-label">Desa</label>
             <input type="text" class="form-control" name="desa" required>
         </div>
@@ -112,7 +122,10 @@
             <input type="text" class="form-control" name="kecamatan" required>
         </div>
     </div>
-    <div class="row g-5">
+</div>
+
+<div class="col-12">
+    <div class="mb-3 row">
         <div class="col">
             <label class="form-label">Kabupaten</label>
             <input type="text" class="form-control" name="kabupaten"  required>
@@ -122,100 +135,192 @@
             <input type="text" class="form-control" name="provinsi" required>
         </div>
     </div>
+</div>
         <div class="col-12">
             <label class="form-label">Tanggal Dibuat</label>
             <input type="date" class="form-control" name="tanggal_dibuat" required>
         </div>
         {{-- end field --}}
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
           <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
+
       </div>
     </div>
+
   </div>
 {{-- end modal dan tambah data --}}
 
-
-
 {{-- start edit --}}
-{{-- start modal --}}
-  <!-- Modal -->
-  <div class="modal fade" id="modaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Kepala Keluarga</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        {{-- start field --}}
-        <form action="/master_kartukeluarga/masuk" method="POST">
-            @csrf
-        <div class="col-12">
-            <label class="form-label">Nomor Kartu Keluarga</label>
-            <input type="text" class="form-control" name="no_kk"  required>
-        </div>
-        <div class="col-12">
-            <label class="form-label">NIK</label>
-            <input type="text" class="form-control" name="nik" required>
-        </div>
-        <div class="col-12">
-            <label class="form-label">Nama Kepala Keluarga</label>
-            <input type="text" class="form-control" name="nama_lengkap"  required>
-        </div>
-        <div class="col-12">
-            <label class="form-label">Alamat</label>
-            <input type="text" class="form-control" name="alamat" required>
-        </div>
-        <div class="mb-3 row">
-            <div class="col">
-                <label class="form-label">RT</label>
-              <input type="text" class="form-control" name="rt" required>
-            </div>
-            <div class="col">
-                <label class="form-label">RW</label>
-              <input type="text" class="form-control" name="rw" required>
-            </div>
-            <div class="col">
-                <label class="form-label">Kode Pos</label>
-                <input type="text" class="form-control" name="kode_pos"  required>
-            </div>
-        </div>
-        <div class="row g-5">
-        <div class="col">
-            <label class="form-label">Desa</label>
-            <input type="text" class="form-control" name="desa" required>
-        </div>
-        <div class="col">
-            <label class="form-label">Kecamatan</label>
-            <input type="text" class="form-control" name="kecamatan" required>
-        </div>
-    </div>
-    <div class="row g-5">
-        <div class="col">
-            <label class="form-label">Kabupaten</label>
-            <input type="text" class="form-control" name="kabupaten"  required>
-        </div>
-        <div class="col">
-            <label class="form-label">Provinsi</label>
-            <input type="text" class="form-control" name="provinsi" required>
+    {{-- <body class="bg-light">
+        <div class="container">
+            <h2 class="mb-4">Data Kepala Keluarga</h2> --}}
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="table-primary">
+                    <tr>
+                        <th>No</th>
+                        <th>No Kartu Keluarga</th>
+                        <th>Nama Kepala Keluarga</th>
+                        <th>Alamat</th>
+                        <th>RW</th>
+                        <th>RT</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($master_kartukeluarga as $a)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$a->no_kk}}</td>
+                        <td>{{$a->nama_lengkap}}</td>
+                        <td>{{$a->alamat}}</td>
+                        <td>{{$a->rw}}</td>
+                        <td>{{$a->rt}}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm editButton"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEdit"
+                                        data-id="{{$a->id}}"
+                                        data-no_kk="{{$a->no_kk}}"
+                                        data-nik="{{$a->nik}}"
+                                        data-nama_lengkap="{{$a->nama_lengkap}}"
+                                        data-alamat="{{$a->alamat}}"
+                                        data-rt="{{$a->rt}}"
+                                        data-rw="{{$a->rw}}"
+                                        data-kode_pos="{{$a->kode_pos}}"
+                                        data-desa="{{$a->desa}}"
+                                        data-kecamatan="{{$a->kecamatan}}"
+                                        data-kabupaten="{{$a->kabupaten}}"
+                                        data-provinsi="{{$a->provinsi}}"
+                                        data-tanggal_dibuat="{{$a->tanggal_dibuat}}">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                          <!-- Tombol Hapus -->
+                          <a href="#" data-id="{{$a->no_kk}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
+                            <i class="bi bi-trash-fill"></i>
+                          </a>
+
+                          <!-- Tombol Tambah -->
+                          <a href='{{ url('/master_penduduk')}}' class="btn btn-success btn-sm right" title="Tambah Data">
+                            <i class="bi bi-person-add"></i>
+                          </a>
+                      </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-        <div class="col-12">
-            <label class="form-label">Tanggal Dibuat</label>
-            <input type="date" class="form-control" name="tanggal_dibuat" required>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Data Kepala Keluarga</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" action="/master_kartukeluarga/update" method="POST">
+                        @csrf
+                        <input type="hidden" id="id" name="id">
+                        <div class="mb-3">
+                            <label class="form-label">Nomor Kartu Keluarga</label>
+                            <input type="text" class="form-control" id="no_kk" name="no_kk" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kepala Keluarga</label>
+                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" required>
+                        </div>
+
+                        <div class="mb-3 ">
+                            <div class="mb-3 row">
+                                <div class="col">
+                                    <label class="form-label">RT</label>
+                                    <input type="text" class="form-control" id="rt" name="rt" required>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">RW</label>
+                                    <input type="text" class="form-control" id="rw" name="rw" required>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Kode Pos</label>
+                                    <input type="text" class="form-control" id="kode_pos" name="kode_pos" required>
+                                </div>
+                            </div>
+                        </div>
+
+                       <div class="mb-3 ">
+                            <div class="mb-3 row">
+                                <div class="col">
+                            <label class="form-label">Desa</label>
+                            <input type="text" class="form-control" id="desa" required>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Kecamatan</label>
+                            <input type="text" class="form-control" id="kecamatan" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 ">
+                    <div class="mb-3 row">
+                        <div class="col">
+                            <label class="form-label">Kabupaten</label>
+                            <input type="text" class="form-control" id="kabupaten"  required>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Provinsi</label>
+                            <input type="text" class="form-control" id="provinsi" required>
+                        </div>
+                    </div>
+                </div>
+                    <div class="mb-3">
+                            <label class="form-label">Tanggal Dibuat</label>
+                            <input type="date" class="form-control" id="tanggal_dibuat" required>
+                        </div>
+                        {{-- end field --}}
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        {{-- end field --}}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-      </div>
     </div>
-  </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.editButton').on('click', function() {
+                let data = $(this).data();
+                $('#id').val(data.id);
+                $('#no_kk').val(data.no_kk);
+                $('#nama_lengkap').val(data.nama_lengkap);
+                $('#alamat').val(data.alamat);
+                $('#rt').val(data.rt);
+                $('#rw').val(data.rw);
+                $('#kode_pos').val(data.kode_pos);
+                $('#desa').val(data.desa);
+                $('#kecamatan').val(data.kecamatan);
+                $('#kabupaten').val(data.kabupaten);
+                $('#provinsi').val(data.provinsi);
+                $('#tanggal_dibuat').val(data.tanggal_dibuat);
+            });
+        });
+    </script>
+
+</body>
 {{-- end edit --}}
 
 
@@ -223,7 +328,7 @@
 
 
 {{-- start display data --}}
-        <div class="table-responsive">
+        {{-- <div class="table-responsive">
           <table class="table">
             <thead class="table-primary">
               <tr>
@@ -244,19 +349,36 @@
                 <td>{{$a->nama_lengkap}}</td>
                 <td>{{$a->alamat}}</td>
                 <td>{{$a->rw}}</td>
-                <td>{{$a->rt}}</td>
-                <td>
+                <td>{{$a->rt}}</td> --}}
+
                   <!-- Tombol Edit -->
                   {{-- <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" class="btn btn-warning btn-sm left" title="Edit Data">
                     <i class="bi bi-pencil-square"></i>
                   </a> --}}
-                  <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" data-bs-target="#modaledit" class="btn btn-warning btn-sm left" title="Edit Data">
+                  {{-- <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" data-bs-target="#modaledit" class="btn btn-warning btn-sm left" title="Edit Data">
                     <i class="bi bi-pencil-square"></i>
-                  </a>
-
-
+                  </a> --}}
+                  {{-- <td>
+                    <button class="btn btn-warning btn-sm editButton"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalEdit"
+                                data-id="{{$a->id}}"
+                                data-no_kk="{{$a->no_kk}}"
+                                data-nik="{{$a->nik}}"
+                                data-nama_lengkap="{{$a->nama_lengkap}}"
+                                data-alamat="{{$a->alamat}}"
+                                data-rt="{{$a->rt}}"
+                                data-rw="{{$a->rw}}"
+                                data-kode_pos="{{$a->kode_pos}}"
+                                data-desa="{{$a->desa}}"
+                                data-kecamatan="{{$a->kecamatan}}"
+                                data-kabupaten="{{$a->kabupaten}}"
+                                data-provinsi="{{$a->provinsi}}"
+                                data-tanggal_dibuat="{{$a->tanggal_dibuat}}">
+                                <i class="bi bi-pencil-square"></i>
+                            </button> --}}
                   <!-- Tombol Hapus -->
-                  <a href="#" data-id="{{$a->no_kk}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
+                  {{-- <a href="#" data-id="{{$a->no_kk}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
                     <i class="bi bi-trash-fill"></i>
                   </a>
 
@@ -265,17 +387,16 @@
                     <i class="bi bi-person-add"></i>
                   </a>
               </td>
-
-              </tr>
-              @endforeach
+              </tr> --}}
+              {{-- @endforeach --}}
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
 {{-- end display data --}}
 
 
-      </div>
-    </div>
     <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
