@@ -3,8 +3,7 @@
 @include('sweetalert::alert')
 <!doctype html>
 <html lang="en">
-  
-  </head>
+
   <body class="bg-light">
     <div class="container-scroller">
       <div class="table-container">
@@ -163,7 +162,7 @@
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
                           <!-- Tombol Hapus -->
-                          <a href="#" data-id="{{$a->no_kk}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
+                          <a href="{{ route('kartukeluarga.delete',$a->no_kk) }}" data-nama_lengkap="{{$a->nama_lengkap}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
                             <i class="bi bi-trash-fill"></i>
                           </a>
 
@@ -287,9 +286,6 @@
 {{-- end edit --}}
 
 
-
-
-
 {{-- start display data --}}
         {{-- <div class="table-responsive">
           <table class="table">
@@ -364,17 +360,17 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
      $('.delete').click(function() {
-        var master_kartukeluargano_kk = $(this).attr('data-id');
+        var master_kartukeluarganama_lengkap = $(this).attr('data-nama_lengkap');
         swal({
                 title: "Apakah Anda Yakin?",
-                text: "Jika anda ingin menghapus No kartu keluarga " + master_kartukeluargano_kk + " maka akan hilang",
+                text: "Jika anda ingin menghapus " + master_kartukeluarganama_lengkap + " maka akan hilang",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    window.location = "/master_kartukeluarga/" + master_kartukeluargano_kk + ""
+                    window.location = "/master_kartukeluarga/" + master_kartukeluarganama_lengkap + ""
                     // swal("Berhasil!! Anda sudah menghapusnya!!", {
                     //     icon: "Berhasil!!",
                     // });

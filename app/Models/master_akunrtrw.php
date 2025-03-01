@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class master_berita extends Model
+class master_akunrtrw extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_berita', 'judul', 'tanggal', 'deskripsi', 'image'];
-    protected $table ='master_beritas';
+    protected $fillable = ['id_rtrw', 'nik', 'nama', 'no_hp', 'rt', 'rw'];
+    protected $table ='master_rt_rw';
     public $timestamps = false;
-
 }

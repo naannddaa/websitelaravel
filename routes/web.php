@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\master_kartukeluargaController;
 use App\Http\Controllers\master_pendudukController;
 use App\Http\Controllers\masterAkunController;
+use App\Http\Controllers\masterAkunRtController;
 use App\Http\Controllers\masterAkunRwController;
 use App\Models\master_kartukeluarga;
 
@@ -27,7 +28,7 @@ Route::get('/master_kartukeluarga/tambah',[master_kartukeluargaController::class
 Route::post('/master_kartukeluarga/masuk',[master_kartukeluargaController::class,'masuk']);
 Route::get('/master_kartukeluarga/{no_kk}/edit',[master_kartukeluargaController::class,'edit']);
 Route::put('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'update']);
-Route::get('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'delete']);
+Route::get('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'delete'])->name('kartukeluarga.delete');
 Route::get('/get-data-kk/{no_kk}', [master_kartukeluargaController::class, 'getDataKK']);
 Route::get('/master_kartukeluarga/{no_kk}/edit',[master_kartukeluargaController::class,'edit']);
 Route::put('/master_kartukeluarga/{no_kk}',[master_kartukeluargaController::class,'update']);
@@ -44,6 +45,12 @@ Route::get('/master_penduduk/{nik}', [master_pendudukController::class, 'delete'
 
 // MASTER AKUN
 //akun rw
-
 Route::resource('akunrw', masterAkunRwController::class);
 
+// akun rt
+// Route::resource('akunrt', masterAkunRtController::class);
+Route::get('/akunrt/create', [masterAkunRtController::class, 'create']);
+Route::get('/akunrt', [masterAkunRtController::class, 'index'])->name('akunrt');
+Route::post('/akunrt/store', [masterAkunRtController::class, 'store'])->name('akun.store');
+Route::put('/akunrt/update/{id}', [masterAkunRtController::class, 'update'])->name('akun.update');
+Route::delete('/akunrt/{id_rtrw}', [masterAkunRtController::class, 'destroy'])->name('akun.destroy');

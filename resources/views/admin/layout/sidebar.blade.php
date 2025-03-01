@@ -81,7 +81,7 @@
                     <a href="/akunrw" class="nav-link">Akun RW</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Akun RT</a>
+                    <a href="/akunrt" class="nav-link">Akun RT</a>
                 </li>
             </ul>
         </li>

@@ -37,7 +37,7 @@ class master_pendudukController extends Controller
     {
 
         $request->validate([
-            'no_kk' => 'required|string|max:255',
+            'no_kk' => 'required|string|max:17',
             // field lainnya
         ]);
 
