@@ -34,6 +34,7 @@
                             <th>Nama Ketua Rukun Tetangga</th>
                             <th>Nomer Handphone</th>
                             <th>RT</th>
+                            <th>RW</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                             <td>{{$a->nama}}</td>
                             <td>{{$a->no_hp}}</td>
                             <td>{{$a->rt}}</td>
+                            <td>{{$a->rw}}</td>
                             <td>
                                 <button type="button" data-bs-toggle="modal" href="#"
                                     data-bs-target="#modaledit-{{ $a->nik }}"
@@ -74,17 +76,22 @@
                         <div class="modal-body">
                             <form action="{{ route('akun.store') }}" method="POST">
                                 @csrf
+                              
+                                <div class="col-12">
+                                    <label class="form-label">ID Akun RT</label>
+                                    <input type="text" class="form-control" name='id_rtrw' id="id_rtrw" value="{{$id_rtrw}}" readonly>
+                                </div>
                                 <div class="col-12">
                                     <label class="form-label">NIK</label>
-                                    <input type="text" class="form-control" name="nik" required>
+                                    <input type="text" class="form-control" name="nik" id="nik" required>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Nama Ketua RT</label>
-                                    <input type="text" class="form-control" name="nama" required>
+                                    <input type="text" class="form-control" name="nama" id="nama" required>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">No HP</label>
-                                    <input type="text" class="form-control" name="no_hp" required>
+                                    <input type="text" class="form-control" name="no_hp" id="no_hp" required>
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-3 row">
@@ -107,6 +114,47 @@
                     </div>
                 </div>
             </div>
+
+            {{-- JavaScript untuk Auto-Load Data --}}
+            <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
+            <script>
+                $(document).ready(function() {
+                    // Event listener untuk field NIK
+                    $('#nik').on('input', function() {
+                        var nik = $(this).val(); // Ambil nilai NIK yang diinput
+
+                        // Kirim request AJAX ke server
+                        if (nik.length > 0) {
+                            $.ajax({
+                                url: "/get-penduduk-data", // Route untuk mengambil data
+                                type: 'GET',
+                                data: {
+                                    nik: nik // Kirim NIK sebagai parameter
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        // Isi field nama dan no_hp dengan data dari server
+                                        $('#nama').val(response.data.nama_lengkap);
+                                        $('#no_hp').val(response.data.no_hp);
+                                    } else {
+                                        // Jika NIK tidak ditemukan, kosongkan field
+                                        $('#nama').val('');
+                                        $('#no_hp').val('');
+                                        alert('NIK tidak ditemukan di database penduduk.');
+                                    }
+                                },
+                                error: function(xhr) {
+                                    console.log(xhr.responseText);
+                                }
+                            });
+                        } else {
+                            // Jika field NIK kosong, kosongkan field nama dan no_hp
+                            $('#nama').val('');
+                            $('#no_hp').val('');
+                        }
+                    });
+                });
+            </script>
 
             {{-- Modal Edit Data --}}
             @foreach ($dataakunrt as $data)
@@ -157,7 +205,6 @@
             @endforeach
 
             {{-- SweetAlert Delete --}}
-            <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
             <script>
                 $('.delete').click(function() {
                     var id_rtrw = $(this).attr('data-id');
@@ -182,4 +229,3 @@
 </body>
 </html>
 @endsection
-    

@@ -48,9 +48,13 @@ Route::get('/master_penduduk/{nik}', [master_pendudukController::class, 'delete'
 Route::resource('akunrw', masterAkunRwController::class);
 
 // akun rt
-// Route::resource('akunrt', masterAkunRtController::class);
 Route::get('/akunrt/create', [masterAkunRtController::class, 'create']);
 Route::get('/akunrt', [masterAkunRtController::class, 'index'])->name('akunrt');
 Route::post('/akunrt/store', [masterAkunRtController::class, 'store'])->name('akun.store');
 Route::put('/akunrt/update/{id}', [masterAkunRtController::class, 'update'])->name('akun.update');
 Route::delete('/akunrt/{id_rtrw}', [masterAkunRtController::class, 'destroy'])->name('akun.destroy');
+
+// Route untuk Auto-Load Data Penduduk
+Route::get('/get-penduduk-data', [masterAkunRtController::class, 'getPendudukData']);
+
+

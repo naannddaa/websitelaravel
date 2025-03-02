@@ -9,7 +9,7 @@ class master_penduduk extends Model
 {
     use HasFactory;
 
-    protected $table = 'master_penduduks';
+    protected $table = 'master_penduduk';
     protected $primaryKey = 'nik';
     protected $keyType = 'string';
     public $timestamp = false;

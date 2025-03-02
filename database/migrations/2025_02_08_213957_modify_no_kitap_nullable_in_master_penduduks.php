@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('no_kitap')->nullable()->change();
         });
     }
-    
-    
-    
+
+
+
         /**
          * Reverse the migrations.
          *
