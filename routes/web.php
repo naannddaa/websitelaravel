@@ -55,6 +55,5 @@ Route::put('/akunrt/update/{id}', [masterAkunRtController::class, 'update'])->na
 Route::delete('/akunrt/{id_rtrw}', [masterAkunRtController::class, 'destroy'])->name('akun.destroy');
 
 // Route untuk Auto-Load Data Penduduk
-Route::get('/get-penduduk-data', [masterAkunRtController::class, 'getPendudukData']);
-
+Route::get('/get-nama-by-nik', [masterAkunRtController::class, 'getNamaByNik']);
 

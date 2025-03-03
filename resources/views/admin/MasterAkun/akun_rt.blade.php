@@ -65,96 +65,94 @@
                 </table>
             </div>
 
-            {{-- Modal Tambah Data --}}
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Tambah Akun Ketua RT</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('akun.store') }}" method="POST">
-                                @csrf
-                              
-                                <div class="col-12">
-                                    <label class="form-label">ID Akun RT</label>
-                                    <input type="text" class="form-control" name='id_rtrw' id="id_rtrw" value="{{$id_rtrw}}" readonly>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">NIK</label>
-                                    <input type="text" class="form-control" name="nik" id="nik" required>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">Nama Ketua RT</label>
-                                    <input type="text" class="form-control" name="nama" id="nama" required>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">No HP</label>
-                                    <input type="text" class="form-control" name="no_hp" id="no_hp" required>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mb-3 row">
-                                        <div class="col">
-                                            <label class="form-label">RT</label>
-                                            <input type="text" class="form-control" name="rt" required>
-                                        </div>
-                                        <div class="col">
-                                            <label class="form-label">RW</label>
-                                            <input type="text" class="form-control" name="rw" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
+ {{-- Modal Tambah Data --}}
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Akun Ketua RT</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('akun.store') }}" method="POST">
+                    @csrf
+                    <div class="col-12">
+                        <label class="form-label" hidden>ID Akun RT</label>
+                        <input type="text" class="form-control" name='id_rtrw' id="id_rtrw" value="{{$id_rtrw}}" readonly hidden>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Nama Ketua RT</label>
+                        <select class="form-control" name="nama" id="nama" required>
+                            <option value="">Pilih Nama</option>
+                            @foreach ($data as $value)
+                                <option
+                                    value="{{ $value->nama_lengkap }}"
+                                    data-nik="{{ $value->nik }}"
+                                    data-rt="{{ $value->rt }}"
+                                    data-rw="{{ $value->rw }}"
+                                >
+                                    {{ $value->nama_lengkap }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">No HP</label>
+                        <input type="text" class="form-control" name="no_hp" id="no_hp" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">NIK</label>
+                        <input type="text" class="form-control" name="nik" id="nik" required readonly>
+                    </div>
+
+
+                    <div class="col-12">
+                        <div class="mb-3 row">
+                            <div class="col">
+                                <label class="form-label">RT</label>
+                                <input type="text" class="form-control" name="rt" id="rt" required readonly>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">RW</label>
+                                <input type="text" class="form-control" name="rw" id="rw" required readonly>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
+</div>
 
-            {{-- JavaScript untuk Auto-Load Data --}}
-            <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-            <script>
-                $(document).ready(function() {
-                    // Event listener untuk field NIK
-                    $('#nik').on('input', function() {
-                        var nik = $(this).val(); // Ambil nilai NIK yang diinput
+<!-- Tambahkan jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Event ketika nama dipilih
+        $('#nama').change(function() {
+            var selectedOption = $(this).find('option:selected');
+            var nik = selectedOption.data('nik'); // Ambil nilai NIK dari data-nik
+            var rt = selectedOption.data('rt');   // Ambil nilai RT dari data-rt
+            var rw = selectedOption.data('rw');   // Ambil nilai RW dari data-rw
 
-                        // Kirim request AJAX ke server
-                        if (nik.length > 0) {
-                            $.ajax({
-                                url: "/get-penduduk-data", // Route untuk mengambil data
-                                type: 'GET',
-                                data: {
-                                    nik: nik // Kirim NIK sebagai parameter
-                                },
-                                success: function(response) {
-                                    if (response.success) {
-                                        // Isi field nama dan no_hp dengan data dari server
-                                        $('#nama').val(response.data.nama_lengkap);
-                                        $('#no_hp').val(response.data.no_hp);
-                                    } else {
-                                        // Jika NIK tidak ditemukan, kosongkan field
-                                        $('#nama').val('');
-                                        $('#no_hp').val('');
-                                        alert('NIK tidak ditemukan di database penduduk.');
-                                    }
-                                },
-                                error: function(xhr) {
-                                    console.log(xhr.responseText);
-                                }
-                            });
-                        } else {
-                            // Jika field NIK kosong, kosongkan field nama dan no_hp
-                            $('#nama').val('');
-                            $('#no_hp').val('');
-                        }
-                    });
-                });
-            </script>
+            if (nik) {
+                // Isi kolom NIK, RT, dan RW dengan nilai yang sesuai
+                $('#nik').val(nik);
+                $('#rt').val(rt);
+                $('#rw').val(rw);
+            } else {
+                // Kosongkan kolom jika tidak ada data
+                $('#nik').val('');
+                $('#rt').val('');
+                $('#rw').val('');
+            }
+        });
+    });
+</script>
 
             {{-- Modal Edit Data --}}
             @foreach ($dataakunrt as $data)
