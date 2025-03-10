@@ -45,7 +45,12 @@ Route::get('/master_penduduk/{nik}', [master_pendudukController::class, 'delete'
 
 // MASTER AKUN
 //akun rw
-Route::resource('akunrw', masterAkunRwController::class);
+Route::get('/akunrw/create', [masterAkunRwController::class, 'create']);
+Route::get('/akunrw', [masterAkunRwController::class, 'index'])->name('akunrw');
+Route::post('/akunrw/store', [masterAkunRwController::class, 'store'])->name('akunrw.store');
+Route::put('/akunrw/update/{id}', [masterAkunRwController::class, 'update'])->name('akunrw.update');
+Route::delete('akunrw/{id}', [masterAkunRwController::class, 'destroy'])->name('akun.destroy');
+Route::get('/get-nama-rw', [masterAkunRwController::class, 'getNamaRw']);
 
 // akun rt
 Route::get('/akunrt/create', [masterAkunRtController::class, 'create']);
@@ -53,7 +58,5 @@ Route::get('/akunrt', [masterAkunRtController::class, 'index'])->name('akunrt');
 Route::post('/akunrt/store', [masterAkunRtController::class, 'store'])->name('akun.store');
 Route::put('/akunrt/update/{id}', [masterAkunRtController::class, 'update'])->name('akun.update');
 Route::delete('/akunrt/{id_rtrw}', [masterAkunRtController::class, 'destroy'])->name('akun.destroy');
-
-// Route untuk Auto-Load Data Penduduk
 Route::get('/get-nama-by-nik', [masterAkunRtController::class, 'getNamaByNik']);
 

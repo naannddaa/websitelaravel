@@ -12,6 +12,7 @@
             </div>
 
             {{-- Form Search --}}
+
             <div class="pb-3">
                 <form class="d-flex" action="{{ url('akunrt') }}" method="get">
                     <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Cari" aria-label="Search">
@@ -89,8 +90,7 @@
                                     value="{{ $value->nama_lengkap }}"
                                     data-nik="{{ $value->nik }}"
                                     data-rt="{{ $value->rt }}"
-                                    data-rw="{{ $value->rw }}"
-                                >
+                                    data-rw="{{ $value->rw }}">
                                     {{ $value->nama_lengkap }}
                                 </option>
                             @endforeach
@@ -153,7 +153,6 @@
         });
     });
 </script>
-
             {{-- Modal Edit Data --}}
             @foreach ($dataakunrt as $data)
             <div class="modal fade" id="modaledit-{{ $data->nik }}" tabindex="-1" aria-labelledby="exampleModalLabeledit" aria-hidden="true">

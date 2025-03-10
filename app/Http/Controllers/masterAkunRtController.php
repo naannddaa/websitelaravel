@@ -12,7 +12,7 @@ public $id_rtrw;
 
 public function index(Request $request)
 {
-    $katakunci = $request->katakunci ?? ''; // Berikan nilai default jika $katakunci null
+    $katakunci = $request->katakunci ?? ''; // default kosong jika tidak mencari data
     $jumlahbaris = 10;
 
     if (strlen($katakunci)) {
@@ -28,7 +28,7 @@ public function index(Request $request)
     // Generate ID otomatis
     $currentDate = now();
     $tahun = $currentDate->format('Y');
-    $prefix = "T{$tahun}-";
+    $prefix = "R{$tahun}-";
 
     $lastAkunRt = master_rt::where('id_rtrw', 'like', "$prefix%")
         ->orderBy('id_rtrw', 'desc')
@@ -38,7 +38,7 @@ public function index(Request $request)
         ? (int)substr($lastAkunRt->id_rtrw, strlen($prefix)) + 1
         : 1;
 
-    $formattedIncrement = str_pad($newIncrement, 4, '0', STR_PAD_LEFT);
+    $formattedIncrement = str_pad($newIncrement, 3, '0', STR_PAD_LEFT);
     $id_rtrw = $prefix . $formattedIncrement;
 
     // Ambil data penduduk dengan status_keluarga = "Kepala Keluarga" dan join dengan master_kartukeluarga
@@ -59,22 +59,22 @@ public function index(Request $request)
     public function create()
     {
         // Generate ID Berita dengan format B[bulan]-001
-        $currentDate = now();
-        $tahun = $currentDate->format('Y');
-        $prefix = "T{$tahun}-";
+        // $currentDate = now();
+        // $tahun = $currentDate->format('Y');
+        // $prefix = "T{$tahun}-";
 
-        $lastAkunRt = master_rt::where('id_rtrw', 'like', "$prefix%")
-            ->orderBy('id_rtrw', 'desc')
-            ->first();
+        // $lastAkunRt = master_rt::where('id_rtrw', 'like', "$prefix%")
+        //     ->orderBy('id_rtrw', 'desc')
+        //     ->first();
 
-        $newIncrement = $lastAkunRt
-            ? (int)substr($lastAkunRt->id_rtrw, strlen($prefix)) + 1
-            : 1;
+        // $newIncrement = $lastAkunRt
+        //     ? (int)substr($lastAkunRt->id_rtrw, strlen($prefix)) + 1
+        //     : 1;
 
-        $formattedIncrement = str_pad($newIncrement, 4, '000', STR_PAD_LEFT);
-        $id_rtrw = $prefix . $formattedIncrement;
+        // $formattedIncrement = str_pad($newIncrement, 2, '0', STR_PAD_LEFT);
+        // $id_rtrw = $prefix . $formattedIncrement;
 
-        return view('admin.MasterAkun.akun_rt', compact('id_rtrw'));
+        return view('admin.MasterAkun.akun_rt');
 
     }
 
@@ -88,7 +88,11 @@ public function index(Request $request)
             'rw' => 'required|string|max:5',
         ], [
             'nik.exists' => 'NIK belum terdaftar di data penduduk, silahkan menambahkan data di master penduduk terlebih dahulu.',
-            'nik.unique' => 'NIK yang anda gunakan sudah terdaftar sebagai Ketua RT / ketua RW.'
+            'nik.unique' => 'NIK yang anda gunakan sudah terdaftar sebagai Ketua RT / ketua RW.',
+            'no_hp.max' => 'Panjang nomer Hp maksimal 15 karakter',
+            'no_hp.min_digits' => 'Panjang nomer Hp miminal 10 karakter',
+            'rt.max' => 'panjang RT maksimal 3 karakter',
+            'rw.max' => 'panjang RW maksimal 3 karakter',
         ]);
 
         $dataakunrt = [
@@ -140,13 +144,11 @@ public function index(Request $request)
         return redirect('akunrt')->with('success', 'Data berhasil dihapus');
     }
 
+        // Ambil data nama_lengkap berdasarkan nama
     public function getNamaByNik(Request $request)
 {
     $nama_lengkap = $request->nama_lengkap;
-
-    // Ambil data nama_lengkap berdasarkan NIK
     $data = master_penduduk::where('nama_lengkap', $nama_lengkap)->first();
-
     if ($data) {
         return response()->json([
             'success' => true,
