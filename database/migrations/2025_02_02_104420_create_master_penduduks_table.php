@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('nama_ayah');
             $table->string('nama_ibu');
             $table->string('no_kk');
-            $table->foreign('no_kk')->references('no_kk')->on('master_kartukeluargas')->onDelete('cascade');; 
             $table->timestamps();
         });
     }

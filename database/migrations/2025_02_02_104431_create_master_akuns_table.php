@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('foto_profil');
             $table->integer('level');
-            $table->string('password');
+            $table->string('password', 255)->change();
             $table->foreign('nik')->references('nik')->on('master_penduduk')->onDelete('cascade');
             $table->timestamps();
         });
