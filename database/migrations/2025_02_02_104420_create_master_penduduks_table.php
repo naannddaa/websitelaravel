@@ -14,25 +14,25 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_penduduks', function (Blueprint $table) {
-            $table->primary('nik');
-            $table->string('nik');
-            $table->string('nama_lengkap');
-            $table->string('jenis_kelamin');
-            $table->string('tempat_lahir');
+            $table->string('nik', 16)->primary();
+            $table->string('nama_lengkap', 50);
+            $table->string('jenis_kelamin', 15);
+            $table->string('tempat_lahir', 30);
             $table->date('tanggal_lahir');
-            $table->string('agama');
-            $table->string('pendidikan');
-            $table->string('pekerjaan');
-            $table->string('golongan_darah');
-            $table->string('status_perkawinan');
-            $table->date('tanggal_perkawinan');
-            $table->string('status_keluarga');
-            $table->string('kewarganegaraan');
-            $table->string('no_paspor');
-            $table->string('no_kitap');
-            $table->string('nama_ayah');
-            $table->string('nama_ibu');
-            $table->string('no_kk');
+            $table->string('agama', 20);
+            $table->string('pendidikan', 50);
+            $table->string('pekerjaan', 50);
+            $table->string('golongan_darah', 3);
+            $table->string('status_perkawinan', 20);
+            $table->date('tanggal_perkawinan')->nullable();
+            $table->string('status_keluarga', 20);
+            $table->string('kewarganegaraan', 5);
+            $table->string('no_paspor', 12)->nullable();
+            $table->string('no_kitap', 12)->nullable();
+            $table->string('nama_ayah', 50);
+            $table->string('nama_ibu', 50);
+            $table->string('no_kk', 16);
+            $table->foreign('no_kk')->references('no_kk')->on('master_kartukeluargas')->onDelete('cascade');
             $table->timestamps();
         });
     }

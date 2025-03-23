@@ -23,7 +23,6 @@ class  ApiRegisController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
         // Simpan user ke database
         $user = master_akun::create([
             'nik' => $request->nik,
@@ -32,6 +31,6 @@ class  ApiRegisController extends Controller
             'no_hp' => $request->no_hp,
         ]);
 
-        return response()->json(['message' => 'User registered successfully', 'master_akun' => $user], 201);
+        return response()->json(['message' => 'regitrasi berhasil', 'master_akun' => $user], 201);
     }
 }

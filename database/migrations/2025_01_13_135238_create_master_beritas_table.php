@@ -10,12 +10,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_berita', function (Blueprint $table) {
-            $table->string('id_berita');
+            $table->string('id_berita', 10);
             $table->primary('id_berita');
-            $table->string('judul');
+            $table->string('judul', 150);
             $table->string('tanggal');
-            $table->string('deskripsi');
-            $table->string('image');
+            $table->text('deskripsi');
+            $table->string('image', 100);
             $table->timestamps();
         });
     }

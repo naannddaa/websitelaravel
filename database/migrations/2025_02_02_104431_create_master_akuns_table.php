@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('master_akun', function (Blueprint $table) {
             $table->primary('id_akun');
             $table->integer('id_akun');
-            $table->string('nik');
-            $table->string('no_hp');
-            $table->string('email');
+            $table->string('nik', 16);
+            $table->string('no_hp', 15);
+            $table->string('email', 50);
             $table->string('foto_profil');
             $table->integer('level');
-            $table->string('password', 255)->change();
-            $table->foreign('nik')->references('nik')->on('master_penduduk')->onDelete('cascade');
+            $table->string('password', 30)->change();
+            $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
             $table->timestamps();
         });
     }

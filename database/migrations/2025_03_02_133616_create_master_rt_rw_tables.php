@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_rt_rw', function (Blueprint $table) {
-            $table->id_rtrw();
-            $table->primary('id_rtrw');
-            $table->nik();
-            $table->nama();
-            $table->no_hp();
-            $table->rt();
-            $table->rw();
-            $table->timestamps();
+             $table->integer('id_rtrw')->primary();
+             $table->string('nik', 16);   
+             $table->string('nama', 100);
+             $table->string('no_hp', 15);
+             $table->string('rt', 6);
+             $table->string('rw', 3);
+             $table->timestamps();
+             $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
         });
     }
 
