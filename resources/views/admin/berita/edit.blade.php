@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-
+@section('title', 'Edit Berita')
 @section('konten')
 
 <!-- START FORM -->
@@ -19,7 +19,7 @@
         <input type="hidden" name="id_berita" value="{{ $databerita->id_berita }}">
 
         {{-- Field Judul --}}
-        <div class="mb-3 row">
+        <div class="mb-3 row mt-5">
             <label for="judul" class="col-sm-2 col-form-label">Judul Berita</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="judul" id="judul" value="{{ $databerita->judul }}" required>

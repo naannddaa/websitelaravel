@@ -43,12 +43,12 @@ public function index(Request $request)
 
     // Ambil data penduduk dengan status_keluarga = "Kepala Keluarga" dan join dengan master_kartukeluarga
     $data = master_penduduk::where('status_keluarga', 'Kepala Keluarga')
-        ->join('master_kartukeluarga', 'master_penduduk.no_kk', '=', 'master_kartukeluarga.no_kk')
+        ->join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
         ->select(
-            'master_penduduk.nama_lengkap',
-            'master_penduduk.nik',
-            'master_kartukeluarga.rt',
-            'master_kartukeluarga.rw'
+            'master_penduduks.nama_lengkap',
+            'master_penduduks.nik',
+            'master_kartukeluargas.rt',
+            'master_kartukeluargas.rw'
         )
         ->get();
 

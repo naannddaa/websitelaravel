@@ -42,7 +42,7 @@
             <label class="form-label">Nomor Kartu Keluarga</label>
             <input type="text" class="form-control" name="no_kk"  required>
         </div>
-        <div class="col-12">
+        <div class="col-12 mt-3">
             <label class="form-label">NIK</label>
             <input type="text" class="form-control" name="nik" required>
         </div>
@@ -116,10 +116,6 @@
   </div>
 {{-- end modal dan tambah data --}}
 
-{{-- start edit --}}
-    {{-- <body class="bg-light">
-        <div class="container">
-            <h2 class="mb-4">Data Kepala Keluarga</h2> --}}
         <div class="table-responsive">
             <table class="table">
                 <thead class="table-primary">
@@ -283,71 +279,6 @@
     </script>
 
 </body>
-{{-- end edit --}}
-
-
-{{-- start display data --}}
-        {{-- <div class="table-responsive">
-          <table class="table">
-            <thead class="table-primary">
-              <tr>
-                <th>No</th>
-                <th>No Kartu Keluarga</th>
-                <th>Nama Kepala Keluarga</th>
-                <th>Alamat</th>
-                <th>RW</th>
-                <th>RT</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($master_kartukeluarga as $a)
-              <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{$a->no_kk}}</td>
-                <td>{{$a->nama_lengkap}}</td>
-                <td>{{$a->alamat}}</td>
-                <td>{{$a->rw}}</td>
-                <td>{{$a->rt}}</td> --}}
-
-                  <!-- Tombol Edit -->
-                  {{-- <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" class="btn btn-warning btn-sm left" title="Edit Data">
-                    <i class="bi bi-pencil-square"></i>
-                  </a> --}}
-                  {{-- <a href="/master_kartukeluarga/{{$a->no_kk}}/edit" data-bs-target="#modaledit" class="btn btn-warning btn-sm left" title="Edit Data">
-                    <i class="bi bi-pencil-square"></i>
-                  </a> --}}
-                  {{-- <td>
-                    <button class="btn btn-warning btn-sm editButton"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalEdit"
-                                data-id="{{$a->id}}"
-                                data-no_kk="{{$a->no_kk}}"
-                                data-nik="{{$a->nik}}"
-                                data-nama_lengkap="{{$a->nama_lengkap}}"
-                                data-alamat="{{$a->alamat}}"
-                                data-rt="{{$a->rt}}"
-                                data-rw="{{$a->rw}}"
-                                data-kode_pos="{{$a->kode_pos}}"
-                                data-desa="{{$a->desa}}"
-                                data-kecamatan="{{$a->kecamatan}}"
-                                data-kabupaten="{{$a->kabupaten}}"
-                                data-provinsi="{{$a->provinsi}}"
-                                data-tanggal_dibuat="{{$a->tanggal_dibuat}}">
-                                <i class="bi bi-pencil-square"></i>
-                            </button> --}}
-                  <!-- Tombol Hapus -->
-                  {{-- <a href="#" data-id="{{$a->no_kk}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
-                    <i class="bi bi-trash-fill"></i>
-                  </a>
-
-                  <!-- Tombol Tambah -->
-                  <a href='{{ url('/master_penduduk')}}' class="btn btn-success btn-sm right" title="Tambah Data">
-                    <i class="bi bi-person-add"></i>
-                  </a>
-              </td>
-              </tr> --}}
-              {{-- @endforeach --}}
             </tbody>
           </table>
         </div>

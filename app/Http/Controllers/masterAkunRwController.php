@@ -48,11 +48,11 @@ class masterAkunRwController extends Controller
 
         // mengambil data penduduk yang berstatus kepala keluarga dan join master penduduk
         $data = master_penduduk::where('status_keluarga', 'Kepala Keluarga')
-        ->join('master_kartukeluarga', 'master_penduduk.no_kk', '=', 'master_kartukeluarga.no_kk')
+        ->join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
         ->select(
-            'master_penduduk.nama_lengkap',
-            'master_penduduk.nik',
-            'master_kartukeluarga.rw'
+            'master_penduduks.nama_lengkap',
+            'master_penduduks.nik',
+            'master_kartukeluargas.rw'
         )
         ->get();
         // kirim ke view
@@ -68,7 +68,7 @@ class masterAkunRwController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|exists:master_penduduk,nik|unique:master_rt_rw,nik',
+            'nik' => 'required|exists:master_penduduks,nik|unique:master_rt_rw,nik',
             'nama' => 'required|string|max:255',
             'no_hp' => 'required|string|max:15|min_digits:10',
 

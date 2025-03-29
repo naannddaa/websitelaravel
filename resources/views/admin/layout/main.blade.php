@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>@yield('title', 'Default Title')</title>
+
     @include('admin.layout.style')
 
     <meta charset="utf-8">

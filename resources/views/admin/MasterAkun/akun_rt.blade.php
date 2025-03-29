@@ -96,11 +96,11 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mt-2">
                         <label class="form-label">No HP</label>
                         <input type="text" class="form-control" name="no_hp" id="no_hp" required>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mt-2">
                         <label class="form-label">NIK</label>
                         <input type="text" class="form-control" name="nik" id="nik" required readonly>
                     </div>
@@ -108,11 +108,11 @@
 
                     <div class="col-12">
                         <div class="mb-3 row">
-                            <div class="col">
+                            <div class="col mt-2">
                                 <label class="form-label">RT</label>
                                 <input type="text" class="form-control" name="rt" id="rt" required readonly>
                             </div>
-                            <div class="col">
+                            <div class="col mt-2">
                                 <label class="form-label">RW</label>
                                 <input type="text" class="form-control" name="rw" id="rw" required readonly>
                             </div>

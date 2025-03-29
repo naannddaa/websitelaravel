@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-
+@section('title', 'Tambah Berita')
 @section('konten')
 
 <!-- START FORM -->
@@ -14,7 +14,7 @@
          </a>
          {{-- tombol kembali end--}}
 
-        <div class="mb-3 row">
+        <div class="mb-3 row mt-5">
             <label for="id_berita" class="col-sm-2 col-form-label">ID Berita</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name='id_berita' id="id_berita" value="{{$idBerita}}" readonly>
@@ -34,38 +34,38 @@
             </div>
         </div>
 
-<div class="mb-3 row">
-    <label for="image" class="col-sm-2 col-form-label">Gambar</label>
-    <div class="col-sm-10">
-        <input type="file" class="form-control" name="image" id="image" required>
-        <img src="" id="showImage" class="img-fluid" width="200px">
-    </div>
-</div>
         <div class="mb-3 row">
-            <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
+            <label for="image" class="col-sm-2 col-form-label">Gambar</label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" name='tanggal' id="tanggal" required>
+                <input type="file" class="form-control" name="image" id="image" required>
+                <img src="" id="showImage" class="img-fluid" width="200px">
             </div>
         </div>
-        <div class="mb-3 row">
-            <label for="submit" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
-        </div>
-    </div>
-    @include('sweetalert::alert')
-</form>
-    <!-- AKHIR FORM -->
-            <script type="text/javascript">
-            $(document).ready(function(){
-               $('#image').change(function(e)){
-                    var reader = new FileReader();
-                    reader.onload = function(e){
-                        $('#showImage').attr('src',e.target.result);
-                    }
-                    reader.readAsDataURL(e.target.files['0']);
-               } 
-            });
-            </script>
+                <div class="mb-3 row">
+                    <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name='tanggal' id="tanggal" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="submit" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
+                </div>
+            </div>
+            @include('sweetalert::alert')
+        </form>
+            <!-- AKHIR FORM -->
+                    <script type="text/javascript">
+                    $(document).ready(function(){
+                    $('#image').change(function(e)){
+                            var reader = new FileReader();
+                            reader.onload = function(e){
+                                $('#showImage').attr('src',e.target.result);
+                            }
+                            reader.readAsDataURL(e.target.files['0']);
+                    } 
+                    });
+                    </script>
 
-    @endsection
+            @endsection
 

@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Berita')
 @section('konten')
 
 <div class="container-scroller">
@@ -44,21 +45,40 @@
                         @foreach ($databerita as $item)
                         <tr>
                             <td class="text-center">{{ $i }}</td>
-                            <td>{{ $item->judul }}</td>
-                            <td class="text-center">
-                                <img src="{{ asset('images/'.$item->image) }}" class="border" style="width: 120px; height: 120px; object-fit: cover;">
+                            <td class="judul">
+                                <p>{{ $item->judul }}</p>
                             </td>
-                            <td>{{ $item->deskripsi }}</td>
+                            <td class="text-center">
+                                <img src="{{ asset('images/'.$item->image) }}" class="border" style="width: auto; height: 120px; border-radius: 0;">
+                            </td>
+
+                           <td class="deskripsi">
+                                <p>{{ $item->deskripsi }}</p>
+                            </td>
+                            <style>
+                               table {
+                                table-layout: fixed;
+                                width: 100%;
+                            }
+
+                             td.judul, td.deskripsi {
+                                white-space: normal;
+                                word-wrap: break-word;
+                                max-width: 400px; /* Bisa disesuaikan */
+                                text-align: justify;
+                            }
+                            </style>
+
                             <td>{{ $item->tanggal }}</td>
 
                             <td class="text-center">
-                                <a href="{{ url('admin/berita/'.$item->id_berita.'/edit') }}" class="btn btn-warning btn-lg me-2">
+                                <a href="{{ url('admin/berita/'.$item->id_berita.'/edit') }}" class="btn btn-warning btn-sm me-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <form onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini?')" class="d-inline" action="{{ url('admin/berita/'.$item->id_berita) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-lg">
+                                    <button type="submit" class="btn btn-danger btn-sm">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>

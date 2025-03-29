@@ -11,7 +11,7 @@ use App\Http\Controllers\masterAkunRwController;
 use App\Models\master_kartukeluarga;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.dashboard.index');
 });
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Route untuk Berita
@@ -22,6 +22,7 @@ Route::post('upload/berita/create', [BeritaController::class, 'store'])->name('a
 Route::get('upload/berita/{id}/edit', [BeritaController::class, 'edit'])->name('admin.berita.edit');
 Route::put('upload/berita/{id}', [BeritaController::class, 'update'])->name('admin.berita.update');
 Route::delete('upload/berita/{id}', [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
+
 //MASTER KARTU KELUARGA
 Route::get('/master_kartukeluarga',[master_kartukeluargaController::class,'index']);
 Route::get('/master_kartukeluarga/tambah',[master_kartukeluargaController::class,'tambah']);

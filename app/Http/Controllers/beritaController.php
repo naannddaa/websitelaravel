@@ -94,16 +94,22 @@ class beritaController extends Controller
             'tanggal' => 'required|date',
         ]);
 
+       $databerita = master_berita::where('id_berita', $id)->firstOrFail(); // Ambil data lama
+
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $this->filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images'), $this->filename);
-        }
+        } else {
+        $filename = $databerita->image; // Pakai gambar lama
+    }
+
 
         $databerita = [
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'image' => $this->filename ?? $request->image_lama,
+            'image' => $this->filename ?? $databerita->image,
             'tanggal' => $request->tanggal,
             'updated_at' => now(),
         ];
