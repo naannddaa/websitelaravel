@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('kode_pos');
             $table->String('kabupaten', 30);
             $table->String('provinsi', 30);
+            $table->date('tanggal_dibuat');
             $table->timestamps();
 
         });

@@ -7,7 +7,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="/master_kartukeluarga" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="{{ url('admin/master_kartukeluarga') }}" aria-expanded="false" aria-controls="ui-basic">
               {{-- <i class="icon-columns menu-icon"></i> --}}
               <span class="menu-title">Kartu Keluarga</span>
             </a>
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin/berita">
+            <a class="nav-link" href="{{ url('admin/berita') }}">
               {{-- <i class="icon-paper menu-icon"></i> --}}
               <span class="menu-title">Berita</span>
             </a>

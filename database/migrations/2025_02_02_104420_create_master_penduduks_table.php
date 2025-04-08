@@ -16,23 +16,23 @@ return new class extends Migration
         Schema::create('master_penduduks', function (Blueprint $table) {
             $table->string('nik', 16)->primary();
             $table->string('nama_lengkap', 50);
-            $table->string('jenis_kelamin', 15);
-            $table->string('tempat_lahir', 30);
-            $table->date('tanggal_lahir');
-            $table->string('agama', 20);
-            $table->string('pendidikan', 50);
-            $table->string('pekerjaan', 50);
-            $table->string('golongan_darah', 3);
-            $table->string('status_perkawinan', 20);
+            $table->string('jenis_kelamin', 15)->nullable();
+            $table->string('tempat_lahir', 30)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('agama', 20)->nullable();
+            $table->string('pendidikan', 50)->nullable();
+            $table->string('pekerjaan', 50)->nullable();
+            $table->string('golongan_darah', 3)->nullable();
+            $table->string('status_perkawinan', 20)->nullable();
             $table->date('tanggal_perkawinan')->nullable();
-            $table->string('status_keluarga', 20);
-            $table->string('kewarganegaraan', 5);
+            $table->string('status_keluarga', 20)->nullable();
+            $table->string('kewarganegaraan', 5)->nullable();
             $table->string('no_paspor', 12)->nullable();
             $table->string('no_kitap', 12)->nullable();
-            $table->string('nama_ayah', 50);
-            $table->string('nama_ibu', 50);
-            $table->string('no_kk', 16);
-            $table->foreign('no_kk')->references('no_kk')->on('master_kartukeluargas')->onDelete('cascade');
+            $table->string('nama_ayah', 50)->nullable();
+            $table->string('nama_ibu', 50)->nullable();
+            $table->string('no_kk', 16)->nullable();
+            $table->foreign('no_kk')->references('no_kk')->on('master_kartukeluargas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

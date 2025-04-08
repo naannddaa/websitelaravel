@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Kartu Keluarga')
 @section('konten')
 @include('sweetalert::alert')
 <!doctype html>
@@ -21,99 +22,88 @@
 
 {{-- tambah data start --}}
     <div class="pb-3" style="text-align:right;">
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >+ Tambah Data</a>
-        </div>
+        <a href="#" class="btn btn-primary" id="btnTambah" data-bs-toggle="modal" data-bs-target="#modalKeluarga">+ Tambah Data</a>
+    </div>
 
-
-{{-- start modal --}}
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+ <!-- Modal Tambah/Edit -->
+<div class="modal fade" id="modalKeluarga" tabindex="-1" aria-labelledby="modalKeluargaLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="keluargaForm" method="POST" action="{{ url('admin/master_kartukeluarga/masuk') }}">
+  @csrf
+  <input type="hidden" name="_method" value="PUT">
+ {{-- Digunakan saat edit --}}
+  
+  <!-- Form input lainnya tetap -->
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Kepala Keluarga</h1>
+          <h5 class="modal-title" id="modalKeluargaLabel">Tambah Data Kepala Keluarga</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        {{-- start field --}}
-        <form action="/master_kartukeluarga/masuk" method="POST">
-            @csrf
-        <div class="col-12">
-            <label class="form-label">Nomor Kartu Keluarga</label>
-            <input type="text" class="form-control" name="no_kk"  required>
-        </div>
-        <div class="col-12 mt-3">
+          <div class="mb-3">
+            <label class="form-label">Nomor KK</label>
+            <input type="text" class="form-control" id="no_kk" name="no_kk" pattern="\d{16}" title="Masukkan 16 digit angka" required>
+          </div>
+          <div class="mb-3">
             <label class="form-label">NIK</label>
-            <input type="text" class="form-control" name="nik" required>
-        </div>
-        <div class="col-12">
+            <input type="text" class="form-control" id="nik" name="nik" pattern="\d{16}" title="Masukkan 16 digit angka" required>
+          </div>
+          <div class="mb-3">
             <label class="form-label">Nama Kepala Keluarga</label>
-            <input type="text" class="form-control" name="nama_lengkap"  required>
-        </div>
-        <div class="col-12">
+            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required>
+          </div>
+          <div class="mb-3">
             <label class="form-label">Alamat</label>
-            <input type="text" class="form-control" name="alamat" required>
-        </div>
-
-        <div class="col-12">
-            <div class="mb-3 row">
-                <div class="col">
-                <label class="form-label">RT</label>
-              <input type="text" class="form-control" name="rt" required>
+            <input type="text" class="form-control" id="alamat" name="alamat" required>
+          </div>
+          <div class="mb-3 row">
+            <div class="col">
+              <label class="form-label">RT</label>
+              <input type="text" class="form-control" id="rt" name="rt" required>
             </div>
             <div class="col">
-                <label class="form-label">RW</label>
-              <input type="text" class="form-control" name="rw" required>
+              <label class="form-label">RW</label>
+              <input type="text" class="form-control" id="rw" name="rw" required>
             </div>
             <div class="col">
-                <label class="form-label">Kode Pos</label>
-                <input type="text" class="form-control" name="kode_pos"  required>
+              <label class="form-label">Kode Pos</label>
+              <input type="text" class="form-control" id="kode_pos" name="kode_pos" required>
             </div>
-        </div>
-    </div>
-
-
-    <div class="col-12">
-        <div class="mb-3 row">
+          </div>
+          <div class="mb-3 row">
             <div class="col">
-            <label class="form-label">Desa</label>
-            <input type="text" class="form-control" name="desa" required>
-        </div>
-        <div class="col">
-            <label class="form-label">Kecamatan</label>
-            <input type="text" class="form-control" name="kecamatan" required>
-        </div>
-    </div>
-</div>
-
-<div class="col-12">
-    <div class="mb-3 row">
-        <div class="col">
-            <label class="form-label">Kabupaten</label>
-            <input type="text" class="form-control" name="kabupaten"  required>
-        </div>
-        <div class="col">
-            <label class="form-label">Provinsi</label>
-            <input type="text" class="form-control" name="provinsi" required>
-        </div>
-    </div>
-</div>
-        <div class="col-12">
+              <label class="form-label">Desa</label>
+              <input type="text" class="form-control" id="desa" name="desa" required>
+            </div>
+            <div class="col">
+              <label class="form-label">Kecamatan</label>
+              <input type="text" class="form-control" id="kecamatan" name="kecamatan" required>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col">
+              <label class="form-label">Kabupaten</label>
+              <input type="text" class="form-control" id="kabupaten" name="kabupaten" required>
+            </div>
+            <div class="col">
+              <label class="form-label">Provinsi</label>
+              <input type="text" class="form-control" id="provinsi" name="provinsi" required>
+            </div>
+          </div>
+          <div class="mb-3">
             <label class="form-label">Tanggal Dibuat</label>
-            <input type="date" class="form-control" name="tanggal_dibuat" required>
+            <input type="date" class="form-control" id="tanggal_dibuat" name="tanggal_dibuat" required>
+          </div>
         </div>
-        {{-- end field --}}
-        </div>
-
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Simpan</button>
         </div>
-
-      </div>
+      </form>
     </div>
-
   </div>
+</div>
+
 {{-- end modal dan tambah data --}}
 
         <div class="table-responsive">
@@ -140,23 +130,21 @@
                         <td>{{$a->rt}}</td>
                         <td>
                             <button class="btn btn-warning btn-sm editButton"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit"
-                                        data-id="{{$a->id}}"
-                                        data-no_kk="{{$a->no_kk}}"
-                                        data-nik="{{$a->nik}}"
-                                        data-nama_lengkap="{{$a->nama_lengkap}}"
-                                        data-alamat="{{$a->alamat}}"
-                                        data-rt="{{$a->rt}}"
-                                        data-rw="{{$a->rw}}"
-                                        data-kode_pos="{{$a->kode_pos}}"
-                                        data-desa="{{$a->desa}}"
-                                        data-kecamatan="{{$a->kecamatan}}"
-                                        data-kabupaten="{{$a->kabupaten}}"
-                                        data-provinsi="{{$a->provinsi}}"
-                                        data-tanggal_dibuat="{{$a->tanggal_dibuat}}">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
+                                    data-id="{{ $a->no_kk }}"
+                                    data-no_kk="{{ $a->no_kk }}"
+                                    data-nik="{{ $a->nik ?? '' }}"
+                                    data-nama_lengkap="{{ $a->nama_lengkap ?? '' }}"
+                                    data-alamat="{{ $a->alamat }}"
+                                    data-rt="{{ $a->rt }}"
+                                    data-rw="{{ $a->rw }}"
+                                    data-kode_pos="{{ $a->kode_pos }}"
+                                    data-desa="{{ $a->desa }}"
+                                    data-kecamatan="{{ $a->kecamatan }}"
+                                    data-kabupaten="{{ $a->kabupaten }}"
+                                    data-provinsi="{{ $a->provinsi }}"
+                                    data-tanggal_dibuat="{{ $a->tanggal_dibuat }}">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
                           <!-- Tombol Hapus -->
                           <a href="{{ route('kartukeluarga.delete',$a->no_kk) }}" data-nama_lengkap="{{$a->nama_lengkap}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
                             <i class="bi bi-trash-fill"></i>
@@ -173,144 +161,109 @@
             </table>
         </div>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Modal Edit -->
-    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Data Kepala Keluarga</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="editForm" action="/master_kartukeluarga/update" method="POST">
-                        @csrf
-                        <input type="hidden" id="id" name="id">
-                        <div class="mb-3">
-                            <label class="form-label">Nomor Kartu Keluarga</label>
-                            <input type="text" class="form-control" id="no_kk" name="no_kk" required>
-                        </div>
+<script>
+    $(document).ready(function () {
 
-                        <div class="mb-3">
-                            <label class="form-label">Nama Kepala Keluarga</label>
-                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" required>
-                        </div>
-
-                        <div class="mb-3 ">
-                            <div class="mb-3 row">
-                                <div class="col">
-                                    <label class="form-label">RT</label>
-                                    <input type="text" class="form-control" id="rt" name="rt" required>
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">RW</label>
-                                    <input type="text" class="form-control" id="rw" name="rw" required>
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">Kode Pos</label>
-                                    <input type="text" class="form-control" id="kode_pos" name="kode_pos" required>
-                                </div>
-                            </div>
-                        </div>
-
-                       <div class="mb-3 ">
-                            <div class="mb-3 row">
-                                <div class="col">
-                            <label class="form-label">Desa</label>
-                            <input type="text" class="form-control" id="desa" required>
-                        </div>
-                        <div class="col">
-                            <label class="form-label">Kecamatan</label>
-                            <input type="text" class="form-control" id="kecamatan" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3 ">
-                    <div class="mb-3 row">
-                        <div class="col">
-                            <label class="form-label">Kabupaten</label>
-                            <input type="text" class="form-control" id="kabupaten"  required>
-                        </div>
-                        <div class="col">
-                            <label class="form-label">Provinsi</label>
-                            <input type="text" class="form-control" id="provinsi" required>
-                        </div>
-                    </div>
-                </div>
-                    <div class="mb-3">
-                            <label class="form-label">Tanggal Dibuat</label>
-                            <input type="date" class="form-control" id="tanggal_dibuat" required>
-                        </div>
-                        {{-- end field --}}
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        $(document).ready(function() {
-            $('.editButton').on('click', function() {
-                let data = $(this).data();
-                $('#id').val(data.id);
-                $('#no_kk').val(data.no_kk);
-                $('#nama_lengkap').val(data.nama_lengkap);
-                $('#alamat').val(data.alamat);
-                $('#rt').val(data.rt);
-                $('#rw').val(data.rw);
-                $('#kode_pos').val(data.kode_pos);
-                $('#desa').val(data.desa);
-                $('#kecamatan').val(data.kecamatan);
-                $('#kabupaten').val(data.kabupaten);
-                $('#provinsi').val(data.provinsi);
-                $('#tanggal_dibuat').val(data.tanggal_dibuat);
+        // Notifikasi sukses
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session("success") }}',
+                showConfirmButton: false,
+                timer: 2000
             });
-        });
-    </script>
+        @endif
 
-</body>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-{{-- end display data --}}
+        // Notifikasi error validasi
+        @if ($errors->any())
+            let errText = '';
+            @foreach ($errors->all() as $error)
+                errText += '{{ $error }}\n';
+            @endforeach
 
-
-    <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-     $('.delete').click(function() {
-        var master_kartukeluarganama_lengkap = $(this).attr('data-nama_lengkap');
-        swal({
-                title: "Apakah Anda Yakin?",
-                text: "Jika anda ingin menghapus " + master_kartukeluarganama_lengkap + " maka akan hilang",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    window.location = "/master_kartukeluarga/" + master_kartukeluarganama_lengkap + ""
-                    // swal("Berhasil!! Anda sudah menghapusnya!!", {
-                    //     icon: "Berhasil!!",
-                    // });
-                } else {
-                    // swal("Tidak ingin menghapusnya?");
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Menyimpan!',
+                text: errText,
+                confirmButtonColor: '#d33',
+                didOpen: () => {
+                    const icon = document.querySelector('.swal2-icon');
+                    if (icon) {
+                        icon.style.marginTop = '30px';
+                    }
                 }
             });
+        @endif
+
+        // Konfirmasi Hapus
+        $('.delete').click(function (e) {
+            e.preventDefault();
+            let nama = $(this).data('nama_lengkap');
+            let url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data atas nama " + nama + " akan dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+                didOpen: () => {
+                    const icon = document.querySelector('.swal2-icon');
+                    if (icon) {
+                        icon.style.marginTop = '30px';
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+        });
+
+        // Mode Tambah
+        $('#btnTambah').click(function () {
+            $('#keluargaForm')[0].reset();
+            $('#modalKeluargaLabel').text('Tambah Data Kepala Keluarga');
+            $('#keluargaForm').attr('action', '{{ url("admin/master_kartukeluarga/masuk") }}');
+            $('#keluargaForm').find('input[name="_method"]').remove();
+            $('#no_kk_lama').val('');
+        });
+
+        // Mode Edit
+        $('.editButton').click(function () {
+            let data = $(this).data();
+            $('#modalKeluargaLabel').text('Edit Data Kepala Keluarga');
+            $('#keluargaForm').attr('action', '{{ url("admin/master_kartukeluarga") }}/' + data.id);
+            $('#keluargaForm').find('input[name="_method"]').remove();
+            $('#keluargaForm').append('<input type="hidden" name="_method" value="PUT">');
+
+            $('#no_kk').val(data.no_kk);
+            $('#nik').val(data.nik);
+            $('#nama_lengkap').val(data.nama_lengkap);
+            $('#alamat').val(data.alamat);
+            $('#rt').val(data.rt);
+            $('#rw').val(data.rw);
+            $('#kode_pos').val(data.kode_pos);
+            $('#desa').val(data.desa);
+            $('#kecamatan').val(data.kecamatan);
+            $('#kabupaten').val(data.kabupaten);
+            $('#provinsi').val(data.provinsi);
+            $('#tanggal_dibuat').val(data.tanggal_dibuat);
+
+            $('#modalKeluarga').modal('show');
+        });
+
     });
 </script>
+
+
+
   </body>
 </html>
 

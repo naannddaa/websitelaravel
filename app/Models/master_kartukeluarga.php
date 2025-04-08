@@ -28,4 +28,10 @@ class master_kartukeluarga extends Model
         'provinsi',
         'tanggal_dibuat',
     ];
+
+    public function penduduk() {
+    return $this->hasOne(master_penduduk::class, 'no_kk', 'no_kk');
+    }
 }
+
+
