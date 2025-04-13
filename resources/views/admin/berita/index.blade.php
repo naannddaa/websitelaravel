@@ -49,7 +49,7 @@
                                 <p>{{ $item->judul }}</p>
                             </td>
                             <td class="text-center">
-                                <img src="{{ asset('images/'.$item->image) }}" class="border" style="width: auto; height: 120px; border-radius: 0;">
+                                <img src="{{ asset('images/'.$item->image) }}" class="border" style="width: 200px; height: auto; border-radius: 0;">
                             </td>
 
                            <td class="deskripsi">
@@ -75,10 +75,13 @@
                                 <a href="{{ url('admin/berita/'.$item->id_berita.'/edit') }}" class="btn btn-warning btn-sm me-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <form onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini?')" class="d-inline" action="{{ url('admin/berita/'.$item->id_berita) }}" method="post">
+                                <form id="formHapus{{ $item->id_berita }}" class="d-inline" action="{{ url('admin/berita/'.$item->id_berita) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm btnHapus"
+                                            data-id="{{ $item->id_berita }}"
+                                            data-nama="{{ $item->judul }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -94,8 +97,36 @@
         </div> <!-- Penutup Border Box -->
     </div>
 
-    @include('sweetalert::alert')
 
 </div>
+<!-- Script SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const hapusButtons = document.querySelectorAll('.btnHapus');
+
+        hapusButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                const nama = this.getAttribute('data-nama');
+
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: `Data berita dengan judul "${nama}" akan dihapus!`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('formHapus' + id).submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 @endsection

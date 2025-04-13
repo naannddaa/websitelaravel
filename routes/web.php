@@ -25,7 +25,8 @@ Route::prefix('admin')->group(function () {
     Route::post('upload/berita/create', [beritaController::class, 'store'])->name('admin.berita.store');
     Route::get('upload/berita/{id}/edit', [beritaController::class, 'edit'])->name('admin.berita.edit');
     Route::put('upload/berita/{id}', [beritaController::class, 'update'])->name('admin.berita.update');
-    Route::delete('upload/berita/{id}', [beritaController::class, 'destroy'])->name('admin.berita.destroy');
+    Route::delete('upload/berita/{id}/delete', [beritaController::class, 'destroy'])->name('admin.berita.destroy');
+
 
     // MASTER KARTU KELUARGA
     Route::get('master_kartukeluarga', [master_kartukeluargaController::class, 'index']);

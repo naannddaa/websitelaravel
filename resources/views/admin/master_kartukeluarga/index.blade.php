@@ -151,7 +151,7 @@
                           </a>
 
                           <!-- Tombol Tambah -->
-                          <a href='{{ url('/master_penduduk')}}' class="btn btn-success btn-sm right" title="Tambah Data">
+                          <a href="{{ url('admin/master_penduduk?nokk=' . $a->no_kk) }}" class="btn btn-success btn-sm right" title="Tambah Data">
                             <i class="bi bi-person-add"></i>
                           </a>
                       </td>
@@ -165,38 +165,6 @@
 
 <script>
     $(document).ready(function () {
-
-        // Notifikasi sukses
-        @if(session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session("success") }}',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        @endif
-
-        // Notifikasi error validasi
-        @if ($errors->any())
-            let errText = '';
-            @foreach ($errors->all() as $error)
-                errText += '{{ $error }}\n';
-            @endforeach
-
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal Menyimpan!',
-                text: errText,
-                confirmButtonColor: '#d33',
-                didOpen: () => {
-                    const icon = document.querySelector('.swal2-icon');
-                    if (icon) {
-                        icon.style.marginTop = '30px';
-                    }
-                }
-            });
-        @endif
 
         // Konfirmasi Hapus
         $('.delete').click(function (e) {
@@ -237,30 +205,32 @@
 
         // Mode Edit
         $('.editButton').click(function () {
-            let data = $(this).data();
-            $('#modalKeluargaLabel').text('Edit Data Kepala Keluarga');
-            $('#keluargaForm').attr('action', '{{ url("admin/master_kartukeluarga") }}/' + data.id);
-            $('#keluargaForm').find('input[name="_method"]').remove();
-            $('#keluargaForm').append('<input type="hidden" name="_method" value="PUT">');
+    let data = $(this).data();
+    $('#modalKeluargaLabel').text('Edit Data Kepala Keluarga');
+    $('#keluargaForm').attr('action', '{{ url("admin/master_kartukeluarga") }}/' + data.no_kk); // Ganti ke no_kk untuk update
+    $('#keluargaForm').find('input[name="_method"]').remove();
+    $('#keluargaForm').append('<input type="hidden" name="_method" value="PUT">');
 
-            $('#no_kk').val(data.no_kk);
-            $('#nik').val(data.nik);
-            $('#nama_lengkap').val(data.nama_lengkap);
-            $('#alamat').val(data.alamat);
-            $('#rt').val(data.rt);
-            $('#rw').val(data.rw);
-            $('#kode_pos').val(data.kode_pos);
-            $('#desa').val(data.desa);
-            $('#kecamatan').val(data.kecamatan);
-            $('#kabupaten').val(data.kabupaten);
-            $('#provinsi').val(data.provinsi);
-            $('#tanggal_dibuat').val(data.tanggal_dibuat);
+    $('#no_kk').val(data.no_kk);
+    $('#nik').val(data.nik);
+    $('#nama_lengkap').val(data.nama_lengkap);
+    $('#alamat').val(data.alamat);
+    $('#rt').val(data.rt);
+    $('#rw').val(data.rw);
+    $('#kode_pos').val(data.kode_pos);
+    $('#desa').val(data.desa);
+    $('#kecamatan').val(data.kecamatan);
+    $('#kabupaten').val(data.kabupaten);
+    $('#provinsi').val(data.provinsi);
+    $('#tanggal_dibuat').val(data.tanggal_dibuat);
 
-            $('#modalKeluarga').modal('show');
+    $('#modalKeluarga').modal('show');
+
         });
 
     });
 </script>
+
 
 
 

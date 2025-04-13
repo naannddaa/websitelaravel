@@ -58,6 +58,13 @@
             </div>
     </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+    .swal2-icon {
+        margin-top: 30px !important; /* Atur sesuai kebutuhan */
+    }
+</style>
+  @include('admin.layout.alerts')
 
     </body>
 </html>

@@ -10,21 +10,18 @@ class master_pendudukController extends Controller
     // Menampilkan daftar data dengan fitur pencarian
     public function index(Request $request)
     {
-        $keyword = $request->katakunci;
-        $query = master_penduduk::query();
+    $query = master_penduduk::query();
 
-        if (!empty($keyword)) {
-            $query->where('no_kk', 'LIKE', '%' . $keyword . '%')
-                  ->orWhere('nik', 'LIKE', '%' . $keyword . '%')
-                  ->orWhere('nama_lengkap', 'LIKE', '%' . $keyword . '%');
-        }
-
-        // $master_penduduk = $query->paginate(5);
-        $master_penduduk = $query->paginate(5);
-
-
-        return view('admin.master_penduduk.index', compact('master_penduduk'));
+    // Jika ada filter berdasarkan no_kk
+    if ($request->has('nokk')) {
+        $query->where('no_kk', $request->nokk);
     }
+
+    $master_penduduk = $query->paginate(10); // atau sesuaikan jumlah per halaman
+
+    return view('admin.master_penduduk.index', compact('master_penduduk'));
+}
+
 
     // Menampilkan form tambah data
     public function tambah()
@@ -33,17 +30,33 @@ class master_pendudukController extends Controller
     }
 
     // Memasukkan data baru ke dalam master$master_pendudukase
-    public function masuk(Request $request)
-    {
+    public function masuk(Request $request) {
 
         $request->validate([
-            'no_kk' => 'required|string|max:17',
-            // field lainnya
+            'nik' => 'required|digits:16|numeric|unique:master_penduduks,nik',
+            'nama_lengkap' => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'agama' => 'required',
+            'pendidikan' => 'required',
+            'pekerjaan' => 'required',
+            'golongan_darah' => 'required',
+            'status_perkawinan' => 'required',
+            'tanggal_perkawinan' => 'nullable|date',
+            'status_keluarga' => 'required',
+            'kewarganegaraan' => 'required',
+            'no_paspor' => 'nullable',
+            'no_kitap' => 'nullable',
+            'nama_ayah' => 'required',
+            'nama_ibu' => 'required',
+            'no_kk' => 'required|exists:master_kartukeluargas,no_kk',
         ]);
 
+        // Simpan data ke tabel master_penduduks
+        master_penduduk::create($request->all());
 
-        master_penduduk::create($request->except('_token', 'submit'));
-        return redirect('master_penduduk')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Anggota keluarga berhasil ditambahkan.');
     }
 
     // Menampilkan form edit berdasarkan NIK
