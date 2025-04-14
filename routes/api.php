@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ApiRegisController;
+use App\Http\Controllers\API\ApiLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [ApiRegisController::class, 'register']);
+Route::post('/login', [ApiRegisController::class, 'login1']);
+
+// Route::post('/login2', [ApiLoginController::class, 'login']);
+
+Route::middleware('api')->group(function(){
+    Route::post('/register', [ApiRegisController::class, 'register']);
+    Route::post('/login', [ApiRegisController::class, 'login']);
+});
+

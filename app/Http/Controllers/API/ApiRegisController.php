@@ -33,4 +33,25 @@ class  ApiRegisController extends Controller
 
         return response()->json(['message' => 'regitrasi berhasil', 'master_akun' => $user], 201);
     }
+
+
+    public function login (Request $request) {
+        $validator = [
+            'nik' => 'required|string',
+            'password' => 'required|string'
+        ];
+        $request->validate($validator);
+        $user = master_akun::where('nik', $request->nik)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
+            $token = $user->createToken('personal access token')->plainTextToken;
+            $response = [
+                'master_akun' => $user,
+                'token' => $token
+            ];
+
+            return response()->json($response, 200);
+        }
+        return response()->json(['message' => 'Invalid NIK or password'], 401);
+    }
+
 }
