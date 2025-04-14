@@ -25,6 +25,7 @@ Route::post('/login', [ApiRegisController::class, 'login1']);
 
 // Route::post('/login2', [ApiLoginController::class, 'login']);
 
+//biar aman
 Route::middleware('api')->group(function(){
     Route::post('/register', [ApiRegisController::class, 'register']);
     Route::post('/login', [ApiRegisController::class, 'login']);
