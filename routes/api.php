@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [ApiRegisController::class, 'register']);
+
+Route::post('/register', [ApiRegisController::class, 'register']);
+Route::post('/login', [ApiRegisController::class, 'login']);
