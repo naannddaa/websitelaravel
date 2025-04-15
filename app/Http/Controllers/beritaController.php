@@ -67,10 +67,12 @@ class beritaController extends Controller
 
         //cek apakah user upload pada form image
         if ($request->hasFile('image')) {
+            
             // mengambil file yg di upload dan menyimpan di variabl file
             $file = $request->file('image');
             $this->filename = date('YmdHi') . '-' . $file->getClientOriginalName();
             // $file->move(public_path('images'), $this->filename);
+
             // menyimpan file pada storage/image
             $data['image'] = $file->storeAs('public/imageberita', $this->filename);
         } else {
