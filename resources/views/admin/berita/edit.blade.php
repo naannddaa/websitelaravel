@@ -11,11 +11,11 @@
           <a  href="{{ url('admin/berita') }}" class="btn btn-outline-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                 <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-              </svg> Kembali 
+              </svg> Kembali
          </a>
          {{-- tombol kembali end--}}
 
-        {{-- Field ID Berita (Hidden) --}}
+        {{-- Field ID Berita Hidden --}}
         <input type="hidden" name="id_berita" value="{{ $databerita->id_berita }}">
 
         {{-- Field Judul --}}
@@ -40,10 +40,11 @@
             <div class="col-sm-10">
                 {{-- Tampilkan gambar lama jika ada --}}
                 @if($databerita->image)
-                    <img src="{{ asset('images/' . $databerita->image) }}" alt="Gambar Berita" id="oldImage" class="img-fluid mb-3" style="max-width: 200px; max-height: 200px;">
+                    <img src="{{ asset('storage/imageberita/' . $databerita->image) }}" alt="Gambar Berita" id="oldImage" class="img-fluid mb-3" style="max-width: 200px; max-height: 200px;">
                 @endif
                 {{-- Tempat untuk gambar baru --}}
                 <img src="" id="showImage" class="img-fluid mt-3 mb-4" style="max-width: 200px; max-height: 200px; display: none;">
+                {{-- accept hanya akan menampilkan file dalam bentuk gambar --}}
                 <input type="file" class="form-control" name="image" id="image" accept="image/*">
             </div>
         </div>
@@ -74,12 +75,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#image').change(function(e) {
-            var file = e.target.files[0]; // Ambil file gambar yang dipilih
+            var file = e.target.files[0]; //mengambil file yang dipilih
             if (file) {
                 var reader = new FileReader();
                 reader.onload = function(event) {
                     $('#oldImage').remove(); // Hapus gambar lama
-                    $('#showImage').attr('src', event.target.result).show(); // Tampilkan gambar baru
+                    $('#showImage').attr('src', event.target.result).show(); // menampilkan gambar baru
                 };
                 reader.readAsDataURL(file);
             } else {

@@ -41,40 +41,34 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- untuk nomor agar langsung otomatis array --}}
                         <?php $i = $databerita->firstItem() ?>
+                        {{-- foreach mengulagi databerita --}}
                         @foreach ($databerita as $item)
                         <tr>
                             <td class="text-center">{{ $i }}</td>
+
                             <td class="judul">
                                 <p>{{ $item->judul }}</p>
                             </td>
+
                             <td class="text-center">
-                                <img src="{{ asset('images/'.$item->image) }}" class="border" style="width: 200px; height: auto; border-radius: 0;">
+                                {{-- memanggil juga gambar yg terletak didirectoru storage --}}
+                                <img src="{{ asset('storage/imageberita/'.$item->image) }}" class="border" style="width: 200px; height: auto; border-radius: 0;">
                             </td>
 
-                           <td class="deskripsi">
+                            <td class="deskripsi text-justify">
                                 <p>{{ $item->deskripsi }}</p>
                             </td>
-                            <style>
-                               table {
-                                table-layout: fixed;
-                                width: 100%;
-                            }
-
-                             td.judul, td.deskripsi {
-                                white-space: normal;
-                                word-wrap: break-word;
-                                max-width: 400px; /* Bisa disesuaikan */
-                                text-align: justify;
-                            }
-                            </style>
 
                             <td>{{ $item->tanggal }}</td>
 
+                            {{-- untuk edit--}}
                             <td class="text-center">
                                 <a href="{{ url('admin/berita/'.$item->id_berita.'/edit') }}" class="btn btn-warning btn-sm me-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
+                                {{-- button hapus --}}
                                 <form id="formHapus{{ $item->id_berita }}" class="d-inline" action="{{ url('admin/berita/'.$item->id_berita) }}" method="post">
                                     @csrf
                                     @method('DELETE')
@@ -91,15 +85,28 @@
                         @endforeach
                     </tbody>
                 </table>
+                <style>
+                    table {
+                     table-layout: fixed;
+                     width: 100%;
+                 }
+
+                  td.judul, td.deskripsi {
+                     white-space: normal;
+                     word-wrap: break-word;
+                     max-width: 400px;
+                     text-align: justify;
+                 }
+                 </style>
                 {{ $databerita->links() }}
             </div>
 
-        </div> <!-- Penutup Border Box -->
+        </div>
     </div>
 
 
 </div>
-<!-- Script SweetAlert -->
+<!-- js notif deletet -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
