@@ -83,7 +83,7 @@ class master_kartukeluargaController extends Controller
             'status_keluarga' => 'Kepala Keluarga'
         ]);
 
-        return redirect('admin/master_kartukeluarga')->with('success', 'Data berhasil ditambahkan');
+        return redirect(url('admin/master_kartukeluarga'))->with('success', 'Data berhasil ditambahkan');
     }
 
     // Menampilkan form edit berdasarkan No KK
@@ -145,6 +145,7 @@ class master_kartukeluargaController extends Controller
     ]);
 
     return redirect('admin/master_kartukeluarga')->with('success', 'Data berhasil diperbarui');
+
 }
 
 
@@ -155,6 +156,6 @@ class master_kartukeluargaController extends Controller
         master_penduduk::where('no_kk', $no_kk)->delete();
         master_kartukeluarga::where('no_kk', $no_kk)->delete();
 
-        return redirect('admin/master_kartukeluarga')->with('success', 'Data berhasil dihapus');
+        return redirect(url('admin/master_kartukeluarga'))->with('success', 'Data berhasil dihapus');
     }
 }

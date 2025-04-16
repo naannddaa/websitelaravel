@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
     Route::post('master_penduduk/masuk', [master_pendudukController::class, 'masuk']);
     Route::get('master_penduduk/{nik}/edit', [master_pendudukController::class, 'edit']);
     Route::put('master_penduduk/{nik}', [master_pendudukController::class, 'update']);
-    Route::get('master_penduduk/{nik}', [master_pendudukController::class, 'delete']);
+    Route::get('master_penduduk/{nik}', [master_pendudukController::class, 'delete'])->name('penduduk.delete');
 
     // MASTER AKUN RW
     Route::get('akunrw/create', [masterAkunRwController::class, 'create']);
