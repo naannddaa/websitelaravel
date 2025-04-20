@@ -19,6 +19,12 @@ class landing_pageController extends Controller
         return view('admin.landingpage.index', compact('data'));
     }
 
+    public function tampil() {
+    $data = landing_page::first(); // atau sesuai dengan model kamu
+
+    return view('landing_page.index', compact('data'));
+}
+
     public function update(Request $request)
 {
     $request->validate([

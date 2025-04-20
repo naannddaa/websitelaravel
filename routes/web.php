@@ -11,9 +11,8 @@ use App\Http\Controllers\masterAkunRtController;
 use App\Http\Controllers\masterAkunRwController;
 
 // Dashboard
-Route::get('/', function () {
-    return view('landing_page.index');
-});
+Route::get('/', [landing_pageController::class, 'tampil']);
+
 // Route::get('/', function () {
 //     return view('admin.dashboard.index');
 // });

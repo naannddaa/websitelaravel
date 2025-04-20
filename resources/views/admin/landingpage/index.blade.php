@@ -11,7 +11,7 @@
         {{-- <a href="{{ url('/') }}" class="btn btn-outline-primary">
             <i class="bi bi-arrow-left-circle-fill"></i> Kembali ke Homepage
         </a> --}}
-        <h4 class="text-start mb-4">Landingpage</h4>
+        <h4 class="text-start mb-4">Edit Landingpage</h4>
         <div class="mb-3 row mt-5">
             <label class="col-sm-2 col-form-label">Judul</label>
             <div class="col-sm-10">
