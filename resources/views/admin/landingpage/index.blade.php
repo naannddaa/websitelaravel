@@ -31,8 +31,8 @@
             <label class="col-sm-2 col-form-label">Gambar1</label>
             <div class="col-sm-10">
                 <input type="file" class="form-control" name="hero_image" id="hero_image">
-                @if($data->hero_image)
-                    <img src="{{ asset('storage/' . $data->hero_image) }}" class="img-fluid mt-2" width="200px" id="previewHero">
+                @if($data->gambar1)
+                    <img src="{{ asset('storage/' . $data->gambar1) }}" class="img-fluid mt-2" width="200px" id="previewHero">
                 @endif
             </div>
         </div>
@@ -57,7 +57,7 @@
             <div class="col-sm-10">
                 <input type="file" class="form-control" name="image_description1" id="image_description1">
                 @if($data->image_description1)
-                    <img src="{{ asset('storage/' . $data->gambar1) }}" class="img-fluid mt-2" width="200px" id="previewDesc1">
+                    <img src="{{ asset('storage/' . $data->image_description1) }}" class="img-fluid mt-2" width="200px" id="previewDesc1">
                 @endif
             </div>
         </div>

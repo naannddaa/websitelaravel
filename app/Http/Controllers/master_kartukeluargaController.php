@@ -40,7 +40,7 @@ class master_kartukeluargaController extends Controller
         });
     }
 
-    $master_kartukeluarga = $query->paginate(10); // ganti jumlah sesuai kebutuhan
+    $master_kartukeluarga = $query->paginate(10); 
 
     return view('admin.master_kartukeluarga.index', compact('master_kartukeluarga'));
 }
