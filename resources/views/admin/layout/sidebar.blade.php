@@ -1,4 +1,5 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas sidebar-fixed" id="sidebar">
+
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="{{ url ('admin.dashboard.index') }}">
@@ -46,6 +47,12 @@
             <a class="nav-link" href="{{ url('admin/berita') }}">
               {{-- <i class="icon-paper menu-icon"></i> --}}
               <span class="menu-title">Berita</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/landingpage') }}">
+              {{-- <i class="icon-paper menu-icon"></i> --}}
+              <span class="menu-title">Website</span>
             </a>
           </li>
         </ul>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\beritaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\landing_pageController;
 use App\Http\Controllers\master_kartukeluargaController;
 use App\Http\Controllers\master_pendudukController;
 use App\Http\Controllers\masterAkunController;
@@ -11,8 +12,11 @@ use App\Http\Controllers\masterAkunRwController;
 
 // Dashboard
 Route::get('/', function () {
-    return view('admin.dashboard.index');
+    return view('landing_page.index');
 });
+// Route::get('/', function () {
+//     return view('admin.dashboard.index');
+// });
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Group route admin
@@ -60,5 +64,10 @@ Route::prefix('admin')->group(function () {
     Route::put('akunrt/update/{id}', [masterAkunRtController::class, 'update'])->name('akun.update');
     Route::delete('akunrt/{id_rtrw}', [masterAkunRtController::class, 'destroy'])->name('akun.destroy');
     Route::get('get-nama-by-nik', [masterAkunRtController::class, 'getNamaByNik']);
+
+    // LANDING PAGE
+    Route::get('/landingpage', [landing_pageController::class, 'index'])->name('homepage.index');
+    Route::post('/landingpage', [landing_pageController::class, 'update'])->name('homepage.update');
+
 
 });

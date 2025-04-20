@@ -39,6 +39,24 @@
         text-align: center;
         vertical-align: middle;
       }
+      .sidebar-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 250px; /* sesuaikan dengan lebar sidebar kamu */
+      overflow-y: auto;
+      /* sesuaikan dengan warna sidebar */
+      z-index: 1000;
+      padding-top: 70px; /* sesuaikan dengan tinggi navbar jika ada */
+      
+  }
+
+  .content-wrapper {
+      margin-left: 250px; /* biar kontennya nggak ketindih sidebar */
+      padding: 20px;
+  }
+
     </style>
 
 

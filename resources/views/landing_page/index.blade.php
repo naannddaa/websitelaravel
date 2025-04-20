@@ -1,261 +1,233 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Landing Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Poppins', sans-serif;
-        scroll-behavior: smooth;
-      }
-      .navbar {
-        transition: all 0.3s;
-      }
-      .navbar.scrolled {
-        background: rgba(52, 58, 64, 0.9) !important;
-        backdrop-filter: blur(10px);
-      }
-      .nav-link {
-        position: relative;
-      }
-      .nav-link::after {
-        content: '';
-        display: block;
-        width: 0;
-        height: 2px;
-        background: #007bff;
-        transition: width 0.3s;
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .nav-link.active::after {
-        width: 100%;
-      }
-      .hero-section {
-        background: linear-gradient(135deg, #0e00a3, #5191ff);
-        color: white;
-        padding: 150px 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero-section h3 {
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: left;
-        animation: fadeInDown 1s;
-      }
-      .hero-section h6 {
-        text-align: left;
-      }
-      .btn-animated {
-        transition: all 0.3s;
-      }
-      .btn-animated:hover {
-        transform: scale(1.1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
-      .card-custom {
-        border: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        transition: transform 0.3s, box-shadow 0.3s;
-        background-color: hsl(211, 100%, 95%);
-        height: 100%;
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .card-custom:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Village</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-        
-
-        
-
-      }
-      .map-container {
-        width: 100%;
-        height: 300px;
-        border-radius: 10px;
-        overflow: hidden;
-      }
-      iframe {
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-      .footer {
-        text-align: center;
-        padding: 20px;
-        background: #f8f9fa;
-        border-top: 1px solid #ddd;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#hero">Desa Digital</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="#hero">Beranda</a></li>
-            <li class="nav-item"><a class="nav-link" href="#wisata">Wisata</a></li>
-            <li class="nav-item"><a class="nav-link" href="#about">Tentang Kami</a></li>
-            <li class="nav-item"><a class="nav-link" href="#news">Berita</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
-            <li class="nav-item"><a class="btn btn-primary" href="#login">Masuk</a></li>
-          </ul>
+    <section class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="#" class="logo">
+                        Digital Village
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <a href="#hero-section" class="nav-link active">Home</a>
+                        </li>
+                        <li>
+                            <a href="#service-section" class="nav-link">Blog</a>
+                        </li>
+                        <li>
+                            <a href="#section-1-first" class="nav-link">Services</a>
+                        </li>
+                        <li>
+                            <a href="#footer-section" class="nav-link">About us</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link">Login</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </nav>
-    
-    <div id="hero" class="hero-section">
-      <h3>Selamat Datang di Desa Digital Desa Kalipait</h3>
-      <h6>" Solusi Cerdas untuk Administrasi Desa Kalipait "</h6>
+    </section>
+    <section class="hero-section" id="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="left-section">
+                    <h1><?= htmlspecialchars($data['title'] ?? '') ?></h1>
+                    <p id="hero-description"><?= nl2br(htmlspecialchars($data['description'] ?? '')) ?></p>
+                        <div class="d-flex">
+                            <a href="#" class="contact-button">Download </a>
+                            <!-- <a href="#" class="view-more-button" id="toggle-description">View More</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                <?php if (!empty($data['hero_image'])): ?>
+            <img src="uploads/<?= htmlspecialchars($data['hero_image'] ?? '') ?>" class="hero-image" alt="Hero Image">
+            <?php endif; ?>
+                </div>
+                <style>
+                    .hero-image {
+                        width: 80%;
+                        height: auto;
+                        display: block;
+                        margin: 110px auto 0 auto;
+                    }
+                </style>                
+            </div>
+        </div>
+    </section>
+    <section class="service-section" id="service-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                   <div class="inner">
+                        <img src="img/home/services/1.png" alt="">
+                        <div class="service">
+                            <h1>Website</h1>
+                            <p>
+                                Pusat informasi dan e-form Desa Kalipait
+                            </p>
+                        </div>
+                   </div>
+                </div>
+                <div class="col-lg-3">
+                     <div class="inner">
+                         <img src="img/home/services/2.png" alt="">
+                         <div class="service">
+                             <h1>Pengajuan Surat</h1>
+                             <p>
+                                 Ajukan dokumen resmi tanpa antre
+                             </p>
+                         </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3">
+                     <div class="inner">
+                         <img src="img/home/services/3.png" alt="">
+                         <div class="service">
+                             <h1>Berita</h1>
+                             <p>
+                                  Info dan pengumuman desa terkini
+                             </p>
+                         </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3">
+                     <div class="inner">
+                         <img src="img/home/services/4.png" alt="">
+                         <div class="service">
+                             <h1>Aplikasi Mobile </h1>
+                             <p>
+                                  Layanan desa dalam genggaman anda
+                             </p>
+                         </div>
+                     </div>
+                  </div>
+            </div>
+        </div>
+    </section>
+    <section class="dummy-section" id="dummy-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>Aplikasi Desa Digital : Semua Layanan Surat Kini dalam Genggaman </h3>
+                    <p>
+                        Ajukan Akta Kelahiran, Kartu Keluarga, KTP, dan beragam surat lainya 
+                        <br>tanpa antre cukup menggunakan handphone
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-1" id="section-1-first">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                <h3><?= htmlspecialchars($data['subtittle'] ?? '') ?></h3>
+                    <p id="section-text"><?= nl2br(htmlspecialchars($data['section_text'] ?? '')) ?></p>
+                </div>
+                <div class="col-lg-6">
+                <?php if (!empty($data['image_description1'])): ?>
+    <div style="display: flex; justify-content: flex-end; max-width: 90%; margin: auto;">
+        <img src="uploads/<?= htmlspecialchars($data['image_description1']) ?>" class="image-description1" alt="Description Image">
     </div>
-    
-    <div id="wisata" class="container my-5">
-      <h2 class="text-center mb-4">Wisata Desa</h2>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card card-custom p-3">
-            <img src="path-to-image1.jpg" class="card-img-top" alt="Wisata 1">
-            <div class="card-body">
-              <h5 class="card-title">Wisata 1</h5>
-              <p class="card-text">Description or details about Wisata 1.</p>
+<?php endif; ?>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-3">
-          <div class="card card-custom p-3">
-            <img src="path-to-image2.jpg" class="card-img-top" alt="Wisata 2">
-            <div class="card-body">
-              <h5 class="card-title">Wisata 2</h5>
-              <p class="card-text">Description or details about Wisata 2.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card card-custom p-3">
-            <img src="path-to-image3.jpg" class="card-img-top" alt="Wisata 3">
-            <div class="card-body">
-              <h5 class="card-title">Wisata 3</h5>
-              <p class="card-text">Description or details about Wisata 3.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card card-custom p-3">
-            <img src="path-to-image4.jpg" class="card-img-top" alt="Wisata 4">
-            <div class="card-body">
-              <h5 class="card-title">Wisata 4</h5>
-              <p class="card-text">Description or details about Wisata 4.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+    </section>
+    <section class="section-1" id="section-1-second">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                <?php if (!empty($data['image_description2'])): ?>
+       <img src="uploads/<?= htmlspecialchars($data['image_description2'] ?? '') ?>" class="image-description2" alt="Description Image2">
+    <?php endif; ?>
+                </div>
+                <div class="col-lg-6">
+                <h3><?= htmlspecialchars($data['subtitle_2'] ?? '') ?></h3>
+                <p id="section-second"><?= nl2br(htmlspecialchars($data['section_second'] ?? '')) ?></p>
+                </div>
 
-    <div id="about" class="container my-5">
-        <h2 class="text-center mb-4">Tentang Kami</h2>
+            </div>
+        </div>
+    </section>
+
+    <?php
+    include 'koneksi.php';
+    $query = $conn->query("SELECT about_us FROM homepage_content WHERE id=1");
+    $data = $query->fetch_assoc();    
+    ?>
+
+        <footer class="footer-section" id="footer-section">
+            <div class="container">
         <div class="row">
-          <!-- Visi Section -->
-          <div class="col-md-6 mb-3">
-            <div class="card card-custom p-4 h-100">
-              <h5>Visi</h5>
-              <p>"Melayani Masyarakat Desa Kalipait Dilandasi Dengan Niat Ibadah Demi Terciptanya Masyarakat Desa Kalipait Maju Dan Sejahtera"</p>
+            <div class="col-lg-4">
+                <h4>About Us</h4>
+                <p>
+                    <?php echo $data['about_us']; ?>
+                </p>
             </div>
-          </div>
-      
-          <!-- Misi Section -->
-          <div class="col-md-6 mb-3">
-            <div class="card card-custom p-4 h-100">
-              <h5>Misi</h5>
-              <ul>
-                <li>Mewujudkan pemerintah yang transparan, akuntabel, partisipatif, tertib, dan disiplin anggaran.</li>
-                <li>Menghapus seluruh iuran-furan yang selama ini ada di Desa Kalipait.</li>
-                <li>Memberdayakan masyarakat.</li>
-                <li>Memberikan pelayanan birokrasi yang cepat dan sistematis.</li>
-                <li>Mengedepankan musyawarah untuk mufakat dalam setiap pengambilan kebijakan.</li>
-                <li>Menjaga kerukunan antar umat beragama dan antar warga sehingga terwujud kehidupan yang guyub, rukun, damai, dan sejahtera bagi seluruh warga Desa Kalipait.</li>
-                <li>Melaksanakan program-program yang dicanangkan oleh Pemerintah Pusat, Provinsi, dan Daerah yang dibutuhkan serta menguntungkan bagi masyarakat.</li>
-              </ul>
+            <div class="col-lg-4">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#hero-section">Home</a></li>
+                    <li><a href="#footer-section">About Us</a></li>
+                    <li><a href="#section-1-first">Services</a></li>
+                    <li><a href="#service-section">Blog</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
             </div>
-          </div>
-      
-          <!-- Kondisi Section (placed below Visi) -->
-          <div class="col-md-6 mb-3">
-            <div class="card card-custom p-4 h-100">
-              <h5>Kondisi Desa</h5>
-              <p>Desa Kalipait adalah sebuah desa di Kabupaten Banyuwangi yang berada di wilayah bagian ujung Selatan, tepatnya kurang lebih 60 km dari Pusat Pemerintahan Kabupaten Banyuwangi ke arah Selatan jalur menuju ke Taman Nasional Alas Punwo.</p>
+            <div class="col-lg-4">
+                <h4>Contact Us</h4>
+                <p>Email: DesaKalipait@gmail.com</p>
+                <p>Phone: +62 857 4878 2437</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126275.58843042006!2d114.2060889218844!3d-8.488476627450437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd3effd0234747f%3A0x3ef5ac1d39badfe2!2sKantor%20Desa%20Kalipait!5e0!3m2!1sid!2sid!4v1743259735533!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-          </div>
-      
-          <!-- Sejarah Section (placed below Visi) -->
-          <div class="col-md-6 mb-3">
-            <div class="card card-custom p-4 h-100">
-              <h5>Sejarah</h5>
-              <p>Diberi nama Kalipait karena dahulu di daerah tersebut banyak mengalir sungai-sungai kecil yang airnya sangat asin. Karena saking asinnya, rasanya sampai pait. Daerah tersebut suasananya sangat teduh serta asri sehingga nyaman untuk tempat beristirahat. Oleh penduduk setempat kemudian dinamakan "Kalipait", berasal dari kata sungai yang airnya sangat asin, dan karena sangat asin itu maka rasanya menjadi pait.</p>
-            </div>
-          </div>
         </div>
-      </div>
-      
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p class="copyright">
+                    © 2025 KELOMPOK 3. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <div id="news" class="container my-5">
-      <h2 class="text-center mb-4">Berita Terbaru</h2>
-      <div class="row">
-        <div class="col-md-3"><div class="card card-custom p-3"><p>Berita 1</p></div></div>
-        <div class="col-md-3"><div class="card card-custom p-3"><p>Berita 2</p></div></div>
-        <div class="col-md-3"><div class="card card-custom p-3"><p>Berita 3</p></div></div>
-        <div class="col-md-3"><div class="card card-custom p-3"><p>Berita 4</p></div></div>
-      </div>
-    </div>
-    
-    <div id="contact" class="container my-5">
-      <h2 class="text-center mb-4">Kontak Kami</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card card-custom p-4">
-            <h5>Alamat</h5>
-            <p>Desa Kalipait, Banyuwangi</p>
-            <h5>Telepon</h5>
-            <p>(0333) 123456</p>
-            <h5>Email</h5>
-            <p>contact@digitalvillage.com</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card card-custom p-4">
-            <p>Untuk melihat lokasi Desa Kalipait di Google Maps, klik tautan berikut:</p>
-            <a href="https://www.google.com/maps/place/Desa+Kalipait,+Tegaldlimo,+Kabupaten+Banyuwangi,+Jawa+Timur" target="_blank">Desa Kalipait, Tegaldlimo, Banyuwangi di Google Maps</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 
-    <div class="footer">
-      <p>&copy; 2025 Digital Village. All rights reserved.</p>
-    </div>
-    
     <script>
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-          document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-          this.classList.add('active');
+        document.getElementById("toggle-description").addEventListener("click", function(e) {
+            e.preventDefault();
+            var moreText = document.getElementById("more-text");
+            var btn = document.getElementById("toggle-description");
+    
+            if (moreText.style.display === "none") {
+                moreText.style.display = "inline";
+                btn.textContent = "View Less";
+            } else {
+                moreText.style.display = "none";
+                btn.textContent = "View More";
+            }
         });
-      });
     </script>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</body>
 </html>

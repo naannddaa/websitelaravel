@@ -7,5 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class landing_page extends Model
 {
-    use HasFactory;
+   protected $table = 'master_landingpage';
+
+   public $timestamps = false;
+
+    protected $fillable = [
+        'judul',
+        'deskripsi1',
+        'gambar1',
+        'subtittle',
+        'section_text',
+        'image_description1',
+        'subtitle_2',
+        'section_second',
+        'image_description2',
+        'about_us',
+        'updated_at',
+    ];
+
 }

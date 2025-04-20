@@ -137,17 +137,22 @@ class beritaController extends Controller
 
     public function destroy($id)
     {
-        $berita = master_berita::where('id_berita', $id)->first();
-        if ($berita && $berita->image) {
-            // $imagePath = public_path('images/' . $berita->image);
-            $imagePath = public_path('storage/imageberita/' . $berita->image);
+       // Temukan data berdasarkan 'id_berita'
+    $berita = master_berita::where('id_berita', $id)->first();
+    
+    if ($berita && $berita->image) {
+        // Path gambar
+        $imagePath = public_path('storage/imageberita/' . $berita->image);
 
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
+        if (file_exists($imagePath)) {
+            // Hapus file gambar
+            unlink($imagePath);
         }
-
-        master_berita::where('id_berita', $id)->delete();
-        return redirect('admin/berita')->with('success', 'Data Berhasil Dihapus');
     }
+
+    // Hapus data berdasarkan 'id_berita'
+    master_berita::where('id_berita', $id)->delete();
+
+    return redirect('admin/berita')->with('success', 'Data Berhasil Dihapus');
+}
 }

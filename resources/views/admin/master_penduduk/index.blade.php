@@ -1,7 +1,6 @@
 @extends('admin.layout.main')
 @section('title', 'Penduduk')
 @section('konten')
-@include('sweetalert::alert')
 @php
     $no_kk = request('nokk');
 @endphp
@@ -10,11 +9,7 @@
   <div class="container-scroller">
     <div class="table-container">
       <div class="d-flex justify-content-between align-items-center mb-3">
-<<<<<<< HEAD
           <h2 class="text-start mb-4">Data Anggota Penduduk</h2>
-=======
-          <h2 class="text-start mb-4">Data Anggota Keluarga</h2>
->>>>>>> e81612140ffba1585815dbb5bff90a2f9eba64a1
       </div>
 
       <!-- FORM PENCARIAN -->
@@ -48,14 +43,9 @@
 
                 <div class="mb-3">
                     <label class="form-label">NIK</label>
-<<<<<<< HEAD
                   <input type="tel" class="form-control" name="nik" 
        pattern="[0-9]{16}" title="Masukkan 16 digit angka" required>  
                   </div>
-=======
-                    <input type="text" class="form-control" name="nik" required>
-                </div>
->>>>>>> e81612140ffba1585815dbb5bff90a2f9eba64a1
                 <div class="mb-3">
                     <label class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control" name="nama_lengkap"  required>
@@ -247,13 +237,8 @@
                 </a>
 
                 <!-- Tombol Hapus -->
-<<<<<<< HEAD
                 <a href="{{ route('penduduk.delete',$a->nik) }}" data-nama_lengkap="{{$a->nama_lengkap}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
                     <i class="bi bi-trash-fill"></i>
-=======
-                <a href="#" data-id="{{ $a->nik }}" class="btn btn-danger btn-sm delete">
-                  <i class="bi bi-trash-fill"></i>
->>>>>>> e81612140ffba1585815dbb5bff90a2f9eba64a1
                 </a>
               </td>
             </tr>
@@ -268,71 +253,9 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{{ asset('js/penduduk.js') }}"></script>
 
-=======
-
-  <!-- Script -->
-  <script src="https://code.jquery.com/jquery-3.6.3.slim.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script>
-    $('.btn-edit').click(function () {
-    const data = $(this).data();
-
-    $('#exampleModalLabel').text('Edit Anggota Keluarga');
-    $('#anggotaForm').attr('action', '/admin/master_penduduk/' + data.nik);
-    $('#formMethod').val('PUT');
-    
-    $('#anggota_nik').val(data.nik);
-    $('[name="nik"]').val(data.nik).prop('readonly', true);
-    $('[name="nama_lengkap"]').val(data.nama_lengkap);
-    $('[name="tempat_lahir"]').val(data.tempat_lahir);
-    $('[name="tanggal_lahir"]').val(data.tanggal_lahir);
-    $('[name="jenis_kelamin"]').val(data.jenis_kelamin);
-    $('[name="agama"]').val(data.agama);
-    $('[name="pendidikan"]').val(data.pendidikan);
-    $('[name="pekerjaan"]').val(data.pekerjaan);
-    $('[name="golongan_darah"]').val(data.golongan_darah);
-    $('[name="status_perkawinan"]').val(data.status_perkawinan);
-    $('[name="tanggal_perkawinan"]').val(data.tanggal_perkawinan);
-    $('[name="status_keluarga"]').val(data.status_keluarga);
-    $('[name="kewarganegaraan"]').val(data.kewarganegaraan);
-    $('[name="no_paspor"]').val(data.no_paspor);
-    $('[name="no_kitap"]').val(data.no_kitap);
-    $('[name="nama_ayah"]').val(data.nama_ayah);
-    $('[name="nama_ibu"]').val(data.nama_ibu);
-
-    $('#exampleModal').modal('show');
-  });
-
-  $('#exampleModal').on('hidden.bs.modal', function () {
-    $('#anggotaForm')[0].reset();
-    $('#formMethod').val('POST');
-    $('#anggotaForm').attr('action', '/admin/master_penduduk/masuk');
-    $('#exampleModalLabel').text('Tambah Anggota Keluarga');
-    $('[name="nik"]').prop('readonly', false);
-  });
-
-    $('.delete').click(function() {
-      var nik = $(this).attr('data-id');
-      swal({
-        title: "Apakah Anda Yakin?",
-        text: "Jika anda ingin menghapus NIK " + nik + ", maka datanya akan hilang.",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      }).then((willDelete) => {
-        if (willDelete) {
-          window.location = "/master_penduduk/" + nik;
-        } else {
-          swal("Data tidak jadi dihapus.");
-        }
-      });
-    });
-  </script>
->>>>>>> e81612140ffba1585815dbb5bff90a2f9eba64a1
 </body>
 @endsection

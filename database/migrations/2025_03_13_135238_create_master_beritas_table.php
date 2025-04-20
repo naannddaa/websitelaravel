@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('tanggal');
             $table->text('deskripsi');
             $table->string('image', 100);
+            $table->char('nik', 16);
+            $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
             $table->timestamps();
         });
     }

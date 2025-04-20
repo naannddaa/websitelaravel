@@ -1,7 +1,6 @@
 @extends('admin.layout.main')
 @section('title', 'Kartu Keluarga')
 @section('konten')
-@include('sweetalert::alert')
 <!doctype html>
 <html lang="en">
 
