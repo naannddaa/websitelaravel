@@ -1,6 +1,6 @@
 @extends('admin.layout.main')
 @section('konten')
-@section('title', 'Akun RT')
+@section('title', 'Surat Masuk')
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +8,7 @@
     <div class="container-scroller">
         <div class="table-container">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 class="text-start mb-4">Akun Rukun Tetangga</h2>
+                <h2 class="text-start mb-4">Surat Masuk</h2>
             </div>
 
             {{-- Form Search --}}
@@ -32,14 +32,14 @@
                         <tr>
                             <th>No</th>
                             <th>NIK</th>
-                            <th>Nama Ketua Rukun Tetangga</th>
-                            <th>Nomer Handphone</th>
-                            <th>RT</th>
+                            <th>Nama</th>
+                            <th>Jenis Surat</th>
+                            <th>Waktu Pengajuan</th>
                             <th>RW</th>
-                            <th>Aksi</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {{-- <tbody>
                         @foreach ($dataakunrt as $a)
                         @if (!is_null($a->rt))
                         <tr>
@@ -62,12 +62,12 @@
                         </tr>
                         @endif
                         @endforeach
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
 
  {{-- Modal Tambah Data --}}
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -126,35 +126,12 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Tambahkan jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Event ketika nama dipilih
-        $('#nama').change(function() {
-            var selectedOption = $(this).find('option:selected');
-            var nik = selectedOption.data('nik'); // Ambil nilai NIK dari data-nik
-            var rt = selectedOption.data('rt');   // Ambil nilai RT dari data-rt
-            var rw = selectedOption.data('rw');   // Ambil nilai RW dari data-rw
 
-            if (nik) {
-                // Isi kolom NIK, RT, dan RW dengan nilai yang sesuai
-                $('#nik').val(nik);
-                $('#rt').val(rt);
-                $('#rw').val(rw);
-            } else {
-                // Kosongkan kolom jika tidak ada data
-                $('#nik').val('');
-                $('#rt').val('');
-                $('#rw').val('');
-            }
-        });
-    });
-</script>
             {{-- Modal Edit Data --}}
-            @foreach ($dataakunrt as $data)
+            {{-- @foreach ($dataakunrt as $data)
             <div class="modal fade" id="modaledit-{{ $data->nik }}" tabindex="-1" aria-labelledby="exampleModalLabeledit" aria-hidden="true">
                 <div class="modal-dialog">
                     <form action="{{ route('akun.update', $data->nik) }}" method="POST">
@@ -199,28 +176,9 @@
                     </form>
                 </div>
             </div>
-            @endforeach
+            @endforeach --}}
 
-            {{-- SweetAlert Delete --}}
-            <script>
-                $('.delete').click(function() {
-                    var id_rtrw = $(this).attr('data-id');
-                    swal({
-                            title: "Hapus Akun",
-                            text: "Jika anda ingin menghapus akun Ketua RT " + id_rtrw + " maka akan hilang",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                window.location = "/akunrt/" + id_rtrw + ""
-                            } else {
-                                // swal("Tidak ingin menghapusnya?");
-                            }
-                        });
-                });
-            </script>
+           
         </div>
     </div>
 </body>

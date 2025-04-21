@@ -2,7 +2,7 @@
 
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{ url ('admin.dashboard.index') }}">
+            <a class="nav-link" href="{{ url ('admin/dashboard') }}">
               {{-- <i class="icon-grid menu-icon"></i> --}}
               <span class="menu-title">Dashboard</span>
             </a>
@@ -14,7 +14,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+            <a class="nav-link" data-toggle="collapse" href="{{ url('admin/pengajuan') }}" aria-expanded="false" aria-controls="form-elements">
               {{-- <i class="icon-columns menu-icon"></i> --}}
               <span class="menu-title">Pengajuan Surat</span>
               <i class="menu-arrow"></i>
@@ -30,15 +30,15 @@
             </a>
             <ul id="master-akun" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="nav-item">
-                    <a href="/akunrw" class="nav-link">Akun RW</a>
+                    <a href="{{ url('admin/akunrw') }}" class="nav-link">Akun RW</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/akunrt" class="nav-link">Akun RT</a>
+                    <a href="{{ url('admin/akunrt') }}" class="nav-link">Akun RT</a>
                 </li>
             </ul>
         </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+            <a class="nav-link" data-toggle="collapse" href="{{ url('admin/mastersurat') }}" aria-expanded="false" aria-controls="error">
               {{-- <i class="icon-ban menu-icon"></i> --}}
               <span class="menu-title">Master Surat</span>
             </a>
