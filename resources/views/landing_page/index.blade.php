@@ -20,25 +20,26 @@
                     </a>
                 </div>
                 <div class="col-lg-6">
-                <div class="menu">
-                    <ul>
-                        <li>
-                            <a href="#hero-section" class="nav-link active">Home</a>
-                        </li>
-                        <li>
-                            <a href="#service-section" class="nav-link">Blog</a>
-                        </li>
-                        <li>
-                            <a href="#section-1-first" class="nav-link">Services</a>
-                        </li>
-                        <li>
-                            <a href="#footer-section" class="nav-link">About us</a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link">Login</a>
-                        </li>
-                    </ul>
-                </div>
+               <div class="menu">
+    <ul>
+        <li>
+            <a href="#hero-section" class="nav-link active">Home</a>
+        </li>
+        <li>
+            <a href="#service-section" class="nav-link">Blog</a>
+        </li>
+        <li>
+            <a href="#section-1-first" class="nav-link">Services</a>
+        </li>
+        <li>
+            <a href="#footer-section" class="nav-link">About us</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link">Login</a>
+        </li>
+    </ul>
+</div>
+
                 </div>
             </div>
         </div>
@@ -58,7 +59,7 @@
                 </div>
                 <div class="col-lg-5">
                 <?php if (!empty($data['gambar1'])): ?>
-            <img src="{{ asset('storage/' . $data->gambar1) }}" alt="Hero Image" class="hero-image" alt="Hero Image">
+            <img src="{{ asset('storage/' . $data->gambar1) }}" style="width: 400px; height: auto;" alt="Hero Image" class="hero-image" alt="Hero Image">
             <?php endif; ?>
                 </div>
                 <style>
@@ -145,7 +146,7 @@
                 <div class="col-lg-6">
                 <?php if (!empty($data['image_description1'])): ?>
     <div style="display: flex; justify-content: flex-end; max-width: 90%; margin: auto;">
-        <img src="{{ asset('storage/' . $data->image_description1) }}" class="image-description1" alt="Description Image">
+        <img src="{{ asset('storage/' . $data->image_description1) }}" style="width: 500px; height: auto;" class="image-description1" alt="Description Image">
     </div>
 <?php endif; ?>
                 </div>
@@ -157,7 +158,7 @@
             <div class="row">
                 <div class="col-lg-6">
                 <?php if (!empty($data['image_description2'])): ?>
-       <img src="{{ asset('storage/' . $data->image_description2) }}" class="image-description2" alt="Description Image2">
+       <img src="{{ asset('storage/' . $data->image_description2) }}" style="width: 400px; height: auto;" class="image-description2" alt="Description Image2">
     <?php endif; ?>
                 </div>
                 <div class="col-lg-6">
@@ -206,23 +207,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="{{ asset('js/landingpage.js') }}"></script>
 
-    <script>
-        document.getElementById("toggle-description").addEventListener("click", function(e) {
-            e.preventDefault();
-            var moreText = document.getElementById("more-text");
-            var btn = document.getElementById("toggle-description");
-    
-            if (moreText.style.display === "none") {
-                moreText.style.display = "inline";
-                btn.textContent = "View Less";
-            } else {
-                moreText.style.display = "none";
-                btn.textContent = "View More";
-            }
-        });
-    </script>
+
     
 </body>
 </html>

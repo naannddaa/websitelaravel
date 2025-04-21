@@ -1,6 +1,6 @@
 @extends('admin.layout.main')
 @section('konten')
-@include('sweetalert::alert')
+@section('title', 'Akun RW')
 <!doctype html>
 <html lang="en">
 {{-- header --}}

@@ -6,9 +6,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\landing_pageController;
 use App\Http\Controllers\master_kartukeluargaController;
 use App\Http\Controllers\master_pendudukController;
+use App\Http\Controllers\Master_suratController;
 use App\Http\Controllers\masterAkunController;
 use App\Http\Controllers\masterAkunRtController;
 use App\Http\Controllers\masterAkunRwController;
+use App\Http\Controllers\SuratmasukController;
 
 // Dashboard
 Route::get('/', [landing_pageController::class, 'tampil']);
@@ -16,10 +18,12 @@ Route::get('/', [landing_pageController::class, 'tampil']);
 // Route::get('/', function () {
 //     return view('admin.dashboard.index');
 // });
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 // Group route admin
 Route::prefix('admin')->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Route untuk Berita
     Route::resource('berita', beritaController::class);
@@ -68,5 +72,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/landingpage', [landing_pageController::class, 'index'])->name('homepage.index');
     Route::post('/landingpage', [landing_pageController::class, 'update'])->name('homepage.update');
 
+    // PENGAJUAN SURAT
+    Route::get('/pengajuan', [SuratmasukController::class, 'index'])->name('pengajuan.masuk');
 
+    // MASTER SURAT
+    Route::get('/mastersurat', [Master_suratController::class, 'index'])->name('surat.index');
 });

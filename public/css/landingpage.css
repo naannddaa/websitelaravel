@@ -59,9 +59,12 @@ p, h1, h2, h3 {
     color: #000;
 }
 
-.header-section .menu ul li a.active {
-    color: #1090cb;
+.header-section .menu ul li a.active  {
+    color: #1090cb !important;
+    font-weight: bold;
 }
+
+
 
 /* Hero section  */
 
@@ -259,6 +262,12 @@ p, h1, h2, h3 {
     font-size: 16px;
     line-height: 170%;
     color: #545454;
+}
+
+.hero-image {
+    width: 50%; /* Set the width to 100% of the parent container */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 1200px; /* Optional: Set a max-width to prevent it from growing too large */
 }
 
 /* Footer section */
