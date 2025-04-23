@@ -13,22 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
-       Schema::create('master_pengajuan', function (Blueprint $table) {
-            $table->integer('id_pengajuan')->primary();
-            $table->char('id_surat', 20);
-            $table->char('nik', 16);
+        Schema::create('master_pengajuan', function (Blueprint $table) {
+            $table->increments('id_pengajuan');
+            $table->string('id_surat', 20);
+            $table->string('nik', 16); // sudah diperbaiki dari 'stirng'
             $table->string('keperluan', 50);
             $table->date('tanggal_diajukan')->nullable();
             $table->string('status', 25);
-            $table->string('keterangan_ditolak', 50);
-            $table->string('foto1', 100);
-            $table->string('foto2', 100);
-            $table->string('foto3', 100);
-            $table->string('foto4', 100);
-            $table->string('foto5', 100);
-            $table->string('foto6', 100);
-            $table->string('foto7', 100);
-            $table->string('foto8', 100);
+            $table->string('keterangan_ditolak', 50)->nullable();
+            $table->string('foto1', 100)->nullable();
+            $table->string('foto2', 100)->nullable();
+            $table->string('foto3', 100)->nullable();
+            $table->string('foto4', 100)->nullable();
+            $table->string('foto5', 100)->nullable();
+            $table->string('foto6', 100)->nullable();
+            $table->string('foto7', 100)->nullable();
+            $table->string('foto8', 100)->nullable();
+            $table->timestamps();
+
             $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
         });
     }
@@ -40,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_pengajuan_table');
+        Schema::dropIfExists('master_pengajuan'); // diperbaiki dari 'master_pengajuan_table'
     }
 };

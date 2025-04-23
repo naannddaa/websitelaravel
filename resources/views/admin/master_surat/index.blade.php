@@ -1,183 +1,124 @@
 @extends('admin.layout.main')
 @section('konten')
 @section('title', 'Master Surat')
+
 <!doctype html>
 <html lang="en">
 
 <body class="bg-light">
-    <div class="container-scroller">
+<div class="container-scroller">
         <div class="table-container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="text-start mb-4">Master Surat</h2>
             </div>
 
-            {{-- Form Search --}}
-
             <div class="pb-3">
-                <form class="d-flex" action="{{ url('akunrt') }}" method="get">
+                <form class="d-flex" action="{{ url('mastersurat.index') }}" method="get">
                     <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Cari" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Cari</button>
                 </form>
             </div>
 
-            {{-- Tambah Data --}}
             <div class="pb-3" style="text-align:right;">
-                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">+ Tambah Data</a>
+                <a href="#" class="btn btn-primary" id="btnTambahSurat" data-id_surat="{{ $id_surat }}">+ Tambah Data</a>
+
             </div>
 
-            {{-- Display Data --}}
+            {{-- Tabel Data --}}
             <div class="table-responsive">
                 <table class="table">
                     <thead class="table-primary">
                         <tr>
                             <th>No</th>
+                            <th>ID Surat</th>
                             <th>Nama Surat</th>
                             <th>Gambar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @foreach ($dataakunrt as $a)
-                        @if (!is_null($a->rt))
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$a->nik}}</td>
-                            <td>{{$a->nama}}</td>
-                            <td>{{$a->no_hp}}</td>
-                            <td>{{$a->rt}}</td>
-                            <td>{{$a->rw}}</td>
-                            <td>
-                                <button type="button" data-bs-toggle="modal" href="#"
-                                    data-bs-target="#modaledit-{{ $a->nik }}"
-                                    class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                                <a href="#" data-id="{{$a->id_rtrw}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
-                                    <i class="bi bi-trash-fill"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        @endif
-                        @endforeach
-                    </tbody> --}}
+                    <tbody>
+                            @foreach($datasurat as $item)
+                            @if (!is_null($item->nama_surat))
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{ $item->id_surat }}</td>
+                                <td>{{ $item->nama_surat}}</td>
+                                <td>
+                                    <img src="{{ asset('storage/surat/' . $item->image) }}" width="100">
+                                </td>
+
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm btnEditSurat"
+                            data-action="{{ route('mastersurat.update', $item->id_surat) }}"
+                            data-id="{{ $item->id_surat }}"
+                            data-nama="{{ $item->nama_surat }}"
+                            data-gambar="{{ $item->image }}">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+
+
+                        <form method="POST" action="{{ route('mastersurat.destroy', $item->id_surat) }}" style="display:inline;">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm btnDeleteSurat"
+                                data-nama="{{ $item->nama_surat }}">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+                @endif
+            @endforeach
+
+            </tbody>
                 </table>
+                {{ $datasurat->withQueryString()->links() }}
             </div>
 
- {{-- Modal Tambah Data --}}
-{{-- <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah Akun Ketua RT</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('akun.store') }}" method="POST">
-                    @csrf
-                    <div class="col-12">
-                        <label class="form-label" hidden>ID Akun RT</label>
-                        <input type="text" class="form-control" name='id_rtrw' id="id_rtrw" value="{{$id_rtrw}}" readonly hidden>
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label">Nama Ketua RT</label>
-                        <select class="form-control" name="nama" id="nama" required>
-                            <option value="">Pilih Nama</option>
-                            @foreach ($data as $value)
-                                <option
-                                    value="{{ $value->nama_lengkap }}"
-                                    data-nik="{{ $value->nik }}"
-                                    data-rt="{{ $value->rt }}"
-                                    data-rw="{{ $value->rw }}">
-                                    {{ $value->nama_lengkap }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <label class="form-label">No HP</label>
-                        <input type="text" class="form-control" name="no_hp" id="no_hp" required>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <label class="form-label">NIK</label>
-                        <input type="text" class="form-control" name="nik" id="nik" required readonly>
-                    </div>
-
-
-                    <div class="col-12">
-                        <div class="mb-3 row">
-                            <div class="col mt-2">
-                                <label class="form-label">RT</label>
-                                <input type="text" class="form-control" name="rt" id="rt" required readonly>
-                            </div>
-                            <div class="col mt-2">
-                                <label class="form-label">RW</label>
-                                <input type="text" class="form-control" name="rw" id="rw" required readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-<!-- Tambahkan jQuery -->
-
-            {{-- Modal Edit Data --}}
-            {{-- @foreach ($dataakunrt as $data)
-            <div class="modal fade" id="modaledit-{{ $data->nik }}" tabindex="-1" aria-labelledby="exampleModalLabeledit" aria-hidden="true">
+            {{-- Modal Tambah/Edit --}}
+            <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form action="{{ route('akun.update', $data->nik) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Edit Akun Ketua RT</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-12">
-                                    <label>NIK</label>
-                                    <input type="text" class="form-control" name="nik" value="{{ $data->nik }}" disabled>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalTitle">Tambah Surat</h4>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formSurat" method="POST" enctype="multipart/form-data" data-store-url="{{ route('mastersurat.store') }}" action="{{ route('mastersurat.store') }}">
+
+                                @csrf
+                                <input type="hidden" name="_method" id="formMethod" value="POST">
+                               <div class="mb-3">
+                                    <label for="inputIdSurat" class="form-label">ID Surat</label>
+                                    <input type="text" class="form-control" id="inputIdSurat" name="id_surat" value="{{ old('id_surat') }}" readonly>
                                 </div>
-                                <div class="col-12">
-                                    <label>Nama Ketua RT</label>
-                                    <input type="text" class="form-control" name="nama" value="{{ $data->nama }}">
+                                <div class="mb-3">
+                                    <label for="inputNamaSurat" class="form-label">Nama Surat</label>
+                                    <input type="text" class="form-control" id="inputNamaSurat" name="nama_surat" required>
                                 </div>
-                                <div class="col-12">
-                                    <label>No HP</label>
-                                    <input type="text" class="form-control" name="no_hp" value="{{ $data->no_hp }}">
-                                </div>
-                                <div class="col-12">
-                                    <div class="mb-3 row">
-                                        <div class="col">
-                                            <label class="form-label">RT</label>
-                                            <input type="text" class="form-control" name="rt" value="{{ $data->rt }}">
-                                        </div>
-                                        <div class="col">
-                                            <label>RW</label>
-                                            <input type="text" class="form-control" name="rw" value="{{ $data->rw }}">
-                                        </div>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="inputImage" class="form-label">Gambar</label>
+                                    <input type="file" class="form-control" id="inputImage" name="image" accept="image/*">
+                                        @if (isset($surat) && $surat->image)
+                                            <div class="mt-2">
+                                                <label>Gambar Lama:</label>
+                                                <br>
+                                               <img id="gambarLama" src="" width="100" alt="Image Surat">
+                                            </div>
+                                        @endif
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-            @endforeach --}}
 
-           
-        </div>
-    </div>
+{{-- JS Form Handler --}}
+<script src="{{ asset('js/mastersurat.js') }}"></script>
+
 </body>
-</html>
 @endsection

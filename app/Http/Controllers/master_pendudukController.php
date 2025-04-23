@@ -59,12 +59,6 @@ class master_pendudukController extends Controller
         return redirect()->back()->with('success', 'Anggota keluarga berhasil ditambahkan.');
     }
 
-    // Menampilkan form edit berdasarkan NIK
-    public function edit($nik)
-    {
-        $master_penduduk = master_penduduk::where('nik', $nik)->firstOrFail();
-        return view('admin.master_penduduk.edit', compact('master_penduduk'));
-    }
 
     // Mengupdate data berdasarkan NIK
     public function update(Request $request, $nik_lama)

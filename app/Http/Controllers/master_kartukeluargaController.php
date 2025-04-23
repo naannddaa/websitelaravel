@@ -46,12 +46,6 @@ class master_kartukeluargaController extends Controller
 }
 
 
-    // Menampilkan form tambah data
-    public function tambah()
-    {
-        return view('admin.master_kartukeluarga.tambah');
-    }
-
     // Memasukkan data baru ke dalam database, ini smaa macam masuk, guna untuk insert data
     public function masuk(Request $request)
     {
@@ -84,15 +78,6 @@ class master_kartukeluargaController extends Controller
         ]);
 
         return redirect(url('admin/master_kartukeluarga'))->with('success', 'Data berhasil ditambahkan');
-    }
-
-    // Menampilkan form edit berdasarkan No KK
-    public function edit($no_kk)
-    {
-        $master_kartukeluarga = master_kartukeluarga::where('no_kk', $no_kk)->firstOrFail();
-        $master_penduduk = master_penduduk::where('no_kk', $no_kk)->first();
-
-        return view('admin.master_kartukeluarga.edit', compact('master_kartukeluarga', 'master_penduduk'));
     }
 
     // Mengupdate data berdasarkan No KK

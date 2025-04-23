@@ -8,14 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class master_surat extends Model
 {
     use HasFactory;
-    protected $table = ['master_surat'];
-    protected $fillable = [ 'nama_surat', 'id_surat', 'image'];
+    public $incrementing = false;
+    protected $primaryKey = 'id_surat';
+
+    // Tabel yang digunakan
+    protected $table = 'master_surat';
+
+    // Kolom yang boleh diisi
+    protected $fillable = ['id_surat', 'nama_surat', 'image'];
+
+    // Nonaktifkan timestamps (jika tidak digunakan)
     public $timestamps = false;
 
-
-    // relasi ke tabel master_pengajuan
-    public function pengajuan () {
-        return $this->hashMany(master_pengajuan::class, 'id_surat');
+    // Relasi ke master_pengajuan
+    public function pengajuan()
+    {
+        return $this->hasMany(master_pengajuan::class, 'id_surat');
     }
-
 }

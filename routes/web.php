@@ -37,18 +37,14 @@ Route::prefix('admin')->group(function () {
 
     // MASTER KARTU KELUARGA
     Route::get('master_kartukeluarga', [master_kartukeluargaController::class, 'index']);
-    Route::get('master_kartukeluarga/tambah', [master_kartukeluargaController::class, 'tambah']);
     Route::post('master_kartukeluarga/masuk', [master_kartukeluargaController::class, 'masuk'])->name('kartukeluarga.masuk');
-    Route::get('master_kartukeluarga/{no_kk}/edit', [master_kartukeluargaController::class, 'edit']);
     Route::put('master_kartukeluarga/{no_kk}', [master_kartukeluargaController::class, 'update'])->name('kartukeluarga.update');
     Route::get('master_kartukeluarga/{no_kk}', [master_kartukeluargaController::class, 'delete'])->name('kartukeluarga.delete');
     Route::get('get-data-kk/{no_kk}', [master_kartukeluargaController::class, 'getDataKK']);
 
     // MASTER PENDUDUK
     Route::get('master_penduduk', [master_pendudukController::class, 'index']);
-    Route::get('master_penduduk/tambah', [master_pendudukController::class, 'tambah']);
     Route::post('master_penduduk/masuk', [master_pendudukController::class, 'masuk']);
-    Route::get('master_penduduk/{nik}/edit', [master_pendudukController::class, 'edit']);
     Route::put('master_penduduk/{nik}', [master_pendudukController::class, 'update']);
     Route::get('master_penduduk/{nik}', [master_pendudukController::class, 'delete'])->name('penduduk.delete');
 
@@ -76,5 +72,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/pengajuan', [SuratmasukController::class, 'index'])->name('pengajuan.masuk');
 
     // MASTER SURAT
-    Route::get('/mastersurat', [Master_suratController::class, 'index'])->name('surat.index');
+    Route::get('/mastersurat', [Master_suratController::class, 'index'])->name('mastersurat.index');
+    Route::post('/mastersurat/masuk', [Master_suratController::class, 'store'])->name('mastersurat.store');
+    Route::put('/mastersurat/update/{id}', [Master_suratController::class, 'update'])->name('mastersurat.update');
+    Route::delete('/mastersurat/delete/{id}', [Master_suratController::class, 'destroy'])->name('mastersurat.destroy');
 });
