@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <a href="#" class="logo">
-                        Digital Village
+                        {{-- <img src="{{ asset('storage/logo/logo-desa.png') }}" alt="logo"> --}}
                     </a>
                 </div>
                 <div class="col-lg-6">
@@ -38,7 +38,7 @@
             <a href="#footer-section" class="nav-link">About us</a>
         </li>
         <li>
-            <a href="{{ route('login.index') }}" class="nav-link">Login</a>
+            <a href="#" class="nav-link">Login</a>
         </li>
     </ul>
 </div>
@@ -48,103 +48,6 @@
         </div>
     </section>
     <section class="hero-section" id="hero-section">
-        <style>
-            .hero-section {
-                padding: 60px 0;
-                background-color: #0057A6;
-            }
-    
-            .left-section h1 {
-                font-weight: bold;
-                font-size: 2.5rem;
-                margin-bottom: 20px;
-                color: #ffff;
-            }
-    
-            .left-section p {
-                font-size: 1rem;
-                margin-bottom: 30px;
-                color: #ffff;
-            }
-    
-            .contact-button {
-                background-color: #007bff;
-                color: white;
-                padding: 10px 20px;
-                border-radius: 8px;
-                text-decoration: none;
-                font-weight: 600;
-            }
-    
-            #heroCarousel {
-                max-width: 400px;
-                margin: auto;
-                padding-top: 150px;  
-            }
-    
-            .carousel-item img {
-                height: auto;
-                width: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-            }
-    
-            .carousel-controls-bottom {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 15px;
-                gap: 10px;
-            }
-    
-            .carousel-nav-buttons {
-                display: flex;
-                justify-content: center;
-                gap: 30px;
-            }
-    
-            .carousel-nav-buttons button {
-                background-color: white;
-                border: none;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-                color: #333;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            }
-    
-            .carousel-indicators-custom {
-                display: flex;
-                justify-content: center;
-                gap: 8px;
-            }
-    
-            .carousel-indicators-custom button {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                border: none;
-                background-color: #bbb;
-                opacity: 1;
-            }
-    
-            .carousel-indicators-custom button.active {
-                background-color: #f49c50;
-            }
-    
-            @media (max-width: 768px) {
-                .hero-section .row {
-                    flex-direction: column;
-                }
-    
-                #heroCarousel {
-                    max-width: 100%;
-                    margin-top: 30px;
-                }
-            }
-        </style>
-    
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -160,13 +63,13 @@
                     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{ asset('storage/landingpage/hero_images/fMb9gdDNg15MIwHBBWvv7WVatfmGoKQWLKeIa9Oc.png') }}" alt="Slide 1">
+                                <img src="{{ asset('storage/coroseul/1.png') }}" alt="Slide 1">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('storage/landingpage/hero_images/fMb9gdDNg15MIwHBBWvv7WVatfmGoKQWLKeIa9Oc.png') }}" alt="Slide 2">
+                                <img src="{{ asset('storage/coroseul/2.png') }}" alt="Slide 2">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('storage/landingpage/hero_images/mdJJuag5EeoS9cuwi6ICWy7TkgTHS03qKhFtC1nc.png') }}" alt="Slide 3">
+                                <img src="{{ asset('storage/coroseul/2.png') }}" alt="Slide 3">
                             </div>
                         </div>
     
@@ -277,7 +180,7 @@
             <div class="row">
                 <div class="col-lg-6">
                 <?php if (!empty($data['image_description2'])): ?>
-       <img src="{{ asset('storage/' . $data->image_description2) }}" style="width: 400px; height: auto;" class="image-description2" alt="Description Image2">
+       <img src="{{ asset('storage/' . $data->image_description2) }}" style="width: 600px; height: auto;" class="image-description2" alt="Description Image2">
     <?php endif; ?>
                 </div>
                 <div class="col-lg-6">
@@ -288,6 +191,78 @@
             </div>
         </div>
     </section>
+
+    {{-- visi misi --}}
+    <section class="visi-misi-section">
+        <div class="visi">
+          <h2>Visi</h2>
+          <p id="visi">{{ nl2br(e($data->visi ?? '')) }}</p>
+        </div>
+        <div class="misi">
+          <h2>Misi</h2>
+          <p id="misi">{{ nl2br(e($data->misi ?? '')) }}</p>
+        </div>
+      </section>
+      
+    
+    <section class="profile-section">
+        <h2>Perangkat Desa</h2>
+        <p>Perangkat Desa Kalipait periode tahun 2025–2029</p>
+      
+        {{-- Kepala Desa --}}
+        <div class="kepala-desa">
+          <div class="card">
+            <img src="{{ asset('storage/profile/kepaladesa.jpg') }}" alt="Kepala Desa">
+            <h4>Supriyono.</h4>
+            <p>Kepala Desa Kalipait 2025–2029</p>
+          </div>
+        </div>
+      
+        {{-- 8 perangkat lain --}}
+        <div class="container perangkat-desa">
+          <div class="card">
+            <img src="{{ asset('storage/profile/ADI.jpg') }}" alt="Wakil">
+            <h4>Adi Jatman,S.H</h4>
+            <p>Kepala Dusun Purworejo  </p>
+          </div>
+          <div class="card">
+            <img src="{{ asset('storage/profile/misyadi.jpg') }}" alt="Sekretaris">
+            <h4>Misyadi</h4>
+            <p> Kepala Dusun Kutorejo </p>
+          </div>
+          <div class="card">
+            <img src="{{ asset('storage/profile/abal.jpg') }}" alt="Bendahara">
+            <h4>Abal Mudlofar,S.Pd</h4>
+            <p>Sekretaris Desa Kalipait</p>
+          </div>
+          <div class="card">
+            <img src="{{ asset('storage/profile/luluk.jpg') }}" alt="Pemerintahan">
+            <h4>Luluk Uswatun Hasanah</h4>
+            <p>Kepala Seksi Kesejahteraan Rakyat</p>
+          </div>
+          <div class="card">
+            <img src="{{ asset('storage/profile/sumarji.jpg') }}" alt="Kesejahteraan">
+            <h4>Sumarji</h4>
+            <p>Kepala Seksi Pemerintahan</p>
+          </div>
+          <div class="card">
+            <img src="{{ asset('storage/profile/yustika.jpg') }}" alt="Pelayanan">
+            <h4>Yustika Nova Anggraini</h4>
+            <p>Kepala Urusan Umum</p>
+          </div>
+          <div class="card">
+            <img src="{{ asset('storage/profile/melin.jpg') }}" alt="Umum">
+            <h4>Melin Efraini</h4>
+            <p>Kepala Urusan Keuangan</p>
+          </div>
+          <div class="card">
+            <img src="{{ asset('storage/profile/abd.jpg') }}" alt="Keuangan">
+            <h4>M. Abdul Ghofur</h4>
+            <p>Kepala Urusan Perencanaan</p>
+          </div>
+        </div>
+      </section>
+      
 
         <footer class="footer-section" id="footer-section">
             <div class="container">
@@ -310,15 +285,15 @@
             </div>
             <div class="col-lg-4">
                 <h4>Contact Us</h4>
-                <p>Email: DesaKalipait@gmail.com</p>
-                <p>Phone: +62 857 4878 2437</p>
+                <p>Email: desa.kalipait@gmail.com</p>
+                <p>Phone: +62 895-2643-2934</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126275.58843042006!2d114.2060889218844!3d-8.488476627450437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd3effd0234747f%3A0x3ef5ac1d39badfe2!2sKantor%20Desa%20Kalipait!5e0!3m2!1sid!2sid!4v1743259735533!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <p class="copyright">
-                    © 2025 KELOMPOK 3. All Rights Reserved.
+                        © 2025 Desa Kalipait x About You. All rights reserved.
                     </p>
                 </div>
             </div>

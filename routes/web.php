@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\master_kartukeluargaController;
 use App\Http\Controllers\master_pendudukController;
 use App\Http\Controllers\Master_suratController;
+use App\Http\Controllers\SuratditolakController;
 use App\Http\Controllers\masterAkunController;
 use App\Http\Controllers\masterAkunRtController;
 use App\Http\Controllers\masterAkunRwController;
@@ -74,6 +75,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     // PENGAJUAN SURAT
     Route::get('/pengajuan', [SuratmasukController::class, 'index'])->name('pengajuan.masuk');
+    Route::get('/suratditolak', [SuratditolakController::class, 'index'])->name('suratditolak.tampil');
 
     // MASTER SURAT
     Route::get('/mastersurat', [Master_suratController::class, 'index'])->name('mastersurat.index');

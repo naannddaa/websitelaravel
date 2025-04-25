@@ -21,6 +21,8 @@ class landing_page extends Model
         'subtitle_2',
         'section_second',
         'image_description2',
+        'visi',
+        'misi',
         'about_us',
         'updated_at',
     ];

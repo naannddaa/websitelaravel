@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\landing_page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; 
+use App\Models\HeroImage;
+
 
 class landing_pageController extends Controller
 {
@@ -11,18 +13,18 @@ class landing_pageController extends Controller
     {
         $data = landing_page::first();
 
-        // Jika tidak ada data, buat dummy kosong untuk menghindari error di blade
+       
         if (!$data) {
-            $data = new landing_page(); // semua field null by default
+            $data = new landing_page(); 
         }
 
         return view('admin.landingpage.index', compact('data'));
     }
 
     public function tampil() {
-    $data = landing_page::first(); // atau sesuai dengan model kamu
-
-    return view('landing_page.index', compact('data'));
+        $data = landing_page::first();
+        $heroimages = HeroImage::all(); 
+        return view('landing_page.index', compact('data', 'heroimages'));
 }
 
     public function update(Request $request)
@@ -38,6 +40,8 @@ class landing_pageController extends Controller
         'hero_image.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'image_description1' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'image_description2' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'visi' => 'nullable|string',
+        'misi' => 'nullable|string',
     ]);
 
     // Cari data pertama atau buat baru jika tidak ada
@@ -50,12 +54,14 @@ class landing_pageController extends Controller
 
     // Update teks
     $content->judul = $request->title;
-    $content->deskripsi1 = $request->description;
-    $content->subtittle = $request->subtittle;
-    $content->section_text = $request->section_text;
-    $content->subtitle_2 = $request->subtitle_2;
-    $content->section_second = $request->section_second;
-    $content->about_us = $request->about_content;
+        $content->deskripsi1 = $request->description;
+        $content->subtittle = $request->subtittle;
+        $content->section_text = $request->section_text;
+        $content->subtitle_2 = $request->subtitle_2;
+        $content->section_second = $request->section_second;
+        $content->about_us = $request->about_content;
+        $content->visi = $request->visi;
+        $content->misi = $request->misi;
 
     // Upload hero image jika ada
     if ($request->hasFile('hero_image')) {
@@ -88,8 +94,8 @@ class landing_pageController extends Controller
         $content->image_description2 = $request->file('image_description2')->store('landingpage/description_images', 'public');
     }
 
-    // Simpan perubahan
-    $content->save();
+        // Simpan perubahan
+        $content->save();
 
     return redirect()->back()->with('success', 'Konten berhasil diperbarui!');
 }

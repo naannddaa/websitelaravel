@@ -30,6 +30,11 @@ p, h1, h2, h3 {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
+h1, h2, h3 {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    font-weight: bold;
+}
 
 
 /* Header section  */
@@ -69,16 +74,106 @@ p, h1, h2, h3 {
 /* Hero section  */
 
 .hero-section {
-    background-color: #E7F4FA;
-    min-height: 100vh;
+    padding: 60px 0;
+    background-color: #0057A6;
 }
 
+.left-section h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.left-section p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.contact-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#heroCarousel {
+    max-width: 400px;
+    margin: auto;
+    padding-top: 150px;  
+}
+
+.carousel-item img {
+    height: auto;
+    max-height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.carousel-controls-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.carousel-nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.carousel-nav-buttons button {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-indicators-custom {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.carousel-indicators-custom button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: #bbb;
+    opacity: 1;
+}
+
+.carousel-indicators-custom button.active {
+    background-color: #f49c50;
+}
+
+@media (max-width: 768px) {
+    .hero-section .row {
+        flex-direction: column;
+    }
+
+    #heroCarousel {
+        max-width: 100%;
+        margin-top: 30px;
+    }
+}
 .hero-section h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 40px;
     line-height: 60px;
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 27px !important;
 }
 
@@ -95,7 +190,7 @@ p, h1, h2, h3 {
     font-weight: normal;
     font-size: 15px;
     line-height: 204.3%;
-    color: #5C5C5C;
+    color: #ffffff;
     margin-bottom: 27px !important;
 }
 
@@ -170,9 +265,6 @@ p, h1, h2, h3 {
     color: #969696;
 }
 
-/* Dummy section  */
-
-
 
 .dummy-section {
     padding: 40px 20px;
@@ -197,8 +289,6 @@ p, h1, h2, h3 {
     color: #868686;
 }
 
-
-/* Section 1  */
 
 .section-1 {
     padding: 40px 20px;
@@ -228,7 +318,7 @@ p, h1, h2, h3 {
 
 .section-1 .top-head h5 {
     font-style: normal;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 17px;
     color: #000000;
     margin-bottom: 0;
@@ -265,15 +355,175 @@ p, h1, h2, h3 {
 }
 
 .hero-image {
-    width: 50%; /* Set the width to 100% of the parent container */
-    height: auto; /* Maintain the aspect ratio */
+    width: 50%; 
+    height: auto; 
     max-width: 1200px; /* Optional: Set a max-width to prevent it from growing too large */
 }
+.visi-misi-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .visi, .misi {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .visi h2, .misi h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #2b2b2b;
+  }
+  
+  .visi p, .misi ul {
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: justify;
+    color: #868686;
+  }
+  .misi {
+    text-align: left;
+  }
+  
+  .misi h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #2b2b2b;
+    text-align: left; /* pastikan judul rata kiri */
+  }
+  
+  .misi p {
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
+    color: #868686;
+  }
+  
+  
+  /* Responsif */
+  @media (max-width: 768px) {
+    .visi-misi-section {
+      flex-direction: column;
+    }
+  }
+  
+  .profile-section h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  .profile-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .profile-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .profile-section p {
+    font-style: italic;
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 50px;
+    
+  }
+  
+  .profile-section .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+  }
+  
+  .profile-section .card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 240px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-section .card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .profile-section .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .profile-section .card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #34495e;
+    margin: 20px 0 5px;
+  }
+  
+  .profile-section .card p {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .profile-section .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .profile-section .card {
+      width: 80%;
+    }
+  }
+  .card img {
+    width: 100%;
+    height: 300px; /* Samakan dengan gambar ketiga */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.kepala-desa {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-bottom: 60px; /* Tambahkan agar ada jarak ke bawah */
+  margin-top: 20px;
+  }
+  
+  .perangkat-desa {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+
+  
 
 /* Footer section */
 
 .footer-section {
-    background-color: #1090CB;
+    background-color: #0057A6;
     padding: 40px 20px;
     color: #fff;
     text-align: center;
@@ -286,6 +536,27 @@ p, h1, h2, h3 {
     line-height: 175%;
     color: #fff;
     margin: 0;
+}
+
+.footer-links {
+    list-style: none;       
+    padding: 0;             
+    margin: 0;             
+}
+
+.footer-links li {
+    margin-bottom: 8px;     
+}
+
+.footer-links a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 300ms;
+}
+
+.footer-links a:hover {
+    color: #E7F4FA;
 }
 
 .footer-section a {
