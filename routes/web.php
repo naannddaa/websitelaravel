@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\beritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\landing_pageController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\master_kartukeluargaController;
 use App\Http\Controllers\master_pendudukController;
 use App\Http\Controllers\Master_suratController;
@@ -19,9 +20,12 @@ Route::get('/', [landing_pageController::class, 'tampil']);
 //     return view('admin.dashboard.index');
 // });
 
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.index')->middleware('guest');
+Route::post('/login', [LoginController::class, 'login'])->name('login.proses')->middleware('guest');
+
 
 // Group route admin
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

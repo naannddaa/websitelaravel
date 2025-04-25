@@ -1,4 +1,17 @@
-<nav class="sidebar sidebar-offcanvas sidebar-fixed" id="sidebar">
+<nav class="sidebar sidebar-offcanvas sidebar-fixed" id="sidebar" style="background-color: #10243c">
+<style>
+    .sidebar .menu-title, .sidebar span {
+        color: white !important;
+         font-weight: bold;
+    }
+    .sidebar .nav-item a.nav-link {
+            color: white !important; /* Warna teks putih */
+        }
+
+        .sidebar .nav-item a.nav-link:hover {
+            color: #ffcc00 !important; /* Warna hover jika diperlukan */
+        }
+</style>
 
         <ul class="nav">
           <li class="nav-item">

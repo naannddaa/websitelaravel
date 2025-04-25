@@ -7,8 +7,11 @@
     <title>Digital Village</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 </head>
+
 <body>
 
     <section class="header-section">
@@ -35,7 +38,7 @@
             <a href="#footer-section" class="nav-link">About us</a>
         </li>
         <li>
-            <a href="#" class="nav-link">Login</a>
+            <a href="{{ route('login.index') }}" class="nav-link">Login</a>
         </li>
     </ul>
 </div>
@@ -45,34 +48,150 @@
         </div>
     </section>
     <section class="hero-section" id="hero-section">
+        <style>
+            .hero-section {
+                padding: 60px 0;
+                background-color: #0057A6;
+            }
+    
+            .left-section h1 {
+                font-weight: bold;
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                color: #ffff;
+            }
+    
+            .left-section p {
+                font-size: 1rem;
+                margin-bottom: 30px;
+                color: #ffff;
+            }
+    
+            .contact-button {
+                background-color: #007bff;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+            }
+    
+            #heroCarousel {
+                max-width: 400px;
+                margin: auto;
+                padding-top: 150px;  
+            }
+    
+            .carousel-item img {
+                height: auto;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+    
+            .carousel-controls-bottom {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 15px;
+                gap: 10px;
+            }
+    
+            .carousel-nav-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+            }
+    
+            .carousel-nav-buttons button {
+                background-color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                color: #333;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            }
+    
+            .carousel-indicators-custom {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+            }
+    
+            .carousel-indicators-custom button {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                border: none;
+                background-color: #bbb;
+                opacity: 1;
+            }
+    
+            .carousel-indicators-custom button.active {
+                background-color: #f49c50;
+            }
+    
+            @media (max-width: 768px) {
+                .hero-section .row {
+                    flex-direction: column;
+                }
+    
+                #heroCarousel {
+                    max-width: 100%;
+                    margin-top: 30px;
+                }
+            }
+        </style>
+    
         <div class="container">
-            <div class="row">
-                <div class="col-lg-7">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
                     <div class="left-section">
-                    <h1>{{ $data->judul }}</h1>
-                    <p>{{ $data->deskripsi1 }}</p>
+                        <h1>{{ $data->judul }}</h1>
+                        <p>{{ $data->deskripsi1 }}</p>
                         <div class="d-flex">
-                            <a href="#" class="contact-button">Download </a>
-                            <!-- <a href="#" class="view-more-button" id="toggle-description">View More</a> -->
+                            <a href="#" class="contact-button">Download</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                <?php if (!empty($data['gambar1'])): ?>
-            <img src="{{ asset('storage/' . $data->gambar1) }}" style="width: 400px; height: auto;" alt="Hero Image" class="hero-image" alt="Hero Image">
-            <?php endif; ?>
+                <div class="col-lg-6">
+                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{ asset('storage/landingpage/hero_images/fMb9gdDNg15MIwHBBWvv7WVatfmGoKQWLKeIa9Oc.png') }}" alt="Slide 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('storage/landingpage/hero_images/fMb9gdDNg15MIwHBBWvv7WVatfmGoKQWLKeIa9Oc.png') }}" alt="Slide 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('storage/landingpage/hero_images/mdJJuag5EeoS9cuwi6ICWy7TkgTHS03qKhFtC1nc.png') }}" alt="Slide 3">
+                            </div>
+                        </div>
+    
+                        <!-- Custom Indicators -->
+                        <div class="carousel-indicators-custom">
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+    
+                        <!-- Custom Controls -->
+                        <div class="carousel-controls-bottom">
+                            <div class="carousel-nav-buttons">
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">&#8592;</button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide="next">&#8594;</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <style>
-                    .hero-image {
-                        width: 80%;
-                        height: auto;
-                        display: block;
-                        margin: 110px auto 0 auto;
-                    }
-                </style>                
             </div>
         </div>
     </section>
+    
+    
+    
     <section class="service-section" id="service-section">
         <div class="container">
             <div class="row">
@@ -208,7 +327,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('js/landingpage.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     
 </body>

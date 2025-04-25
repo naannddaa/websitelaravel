@@ -13,7 +13,7 @@ return new class extends Migration
            $table->id(); // ini otomatis akan jadi primary key dan autoincrement
             $table->string('judul');
             $table->text('deskripsi1')->nullable();
-            $table->string('gambar1',100)->nullable();
+            $table->json('gambar1')->nullable();
             $table->text('subtittle')->nullable();
             $table->text('section_text')->nullable();
             $table->string('image_description1',100)->nullable();

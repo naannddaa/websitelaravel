@@ -35,7 +35,7 @@ class landing_pageController extends Controller
         'subtitle_2' => 'nullable|string',
         'section_second' => 'nullable|string',
         'about_content' => 'nullable|string',
-        'hero_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'hero_image.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'image_description1' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'image_description2' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);
@@ -50,42 +50,49 @@ class landing_pageController extends Controller
 
     // Update teks
     $content->judul = $request->title;
-        $content->deskripsi1 = $request->description;
-        $content->subtittle = $request->subtittle;
-        $content->section_text = $request->section_text;
-        $content->subtitle_2 = $request->subtitle_2;
-        $content->section_second = $request->section_second;
-        $content->about_us = $request->about_content;
+    $content->deskripsi1 = $request->description;
+    $content->subtittle = $request->subtittle;
+    $content->section_text = $request->section_text;
+    $content->subtitle_2 = $request->subtitle_2;
+    $content->section_second = $request->section_second;
+    $content->about_us = $request->about_content;
 
-    // Upload image jika ada
+    // Upload hero image jika ada
     if ($request->hasFile('hero_image')) {
-            // Hapus gambar lama jika ada
-            if ($content->gambar1) {
-                Storage::delete('public/' . $content->gambar1);
-            }
-            $content->gambar1 = $request->file('hero_image')->store('landingpage/hero_images', 'public');
+        // Hapus gambar lama jika ada
+        if ($content->gambar1) {
+            Storage::delete('public/' . $content->gambar1);
         }
-
-        if ($request->hasFile('image_description1')) {
-            // Hapus gambar lama jika ada
-            if ($content->image_description1) {
-                Storage::delete('public/' . $content->image_description1);
-            }
-            $content->image_description1 = $request->file('image_description1')->store('landingpage/description_images', 'public');
+        $paths = [];
+        foreach ($request->file('hero_image') as $file) {
+            $paths[] = $file->store('landingpage/hero_images', 'public');
         }
+        $content->gambar1 = json_encode($paths);
+    }
 
-        if ($request->hasFile('image_description2')) {
-            // Hapus gambar lama jika ada
-            if ($content->image_description2) {
-                Storage::delete('public/' . $content->image_description2);
-            }
-            $content->image_description2 = $request->file('image_description2')->store('landingpage/description_images', 'public');
+    // Upload image_description1 jika ada
+    if ($request->hasFile('image_description1')) {
+        // Hapus gambar lama jika ada
+        if ($content->image_description1) {
+            Storage::delete('public/' . $content->image_description1);
         }
+        $content->image_description1 = $request->file('image_description1')->store('landingpage/description_images', 'public');
+    }
 
-        // Simpan perubahan
-        $content->save();
+    // Upload image_description2 jika ada
+    if ($request->hasFile('image_description2')) {
+        // Hapus gambar lama jika ada
+        if ($content->image_description2) {
+            Storage::delete('public/' . $content->image_description2);
+        }
+        $content->image_description2 = $request->file('image_description2')->store('landingpage/description_images', 'public');
+    }
 
-        return redirect()->back()->with('success', 'Konten berhasil diperbarui!');
+    // Simpan perubahan
+    $content->save();
+
+    return redirect()->back()->with('success', 'Konten berhasil diperbarui!');
 }
+
 
 }

@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_akun', function (Blueprint $table) {
-            $table->primary('id_akun');
-            $table->integer('id_akun');
+            $table->primary('id');
+            $table->integer('id');
             $table->string('nik', 16);
             $table->string('no_hp', 15);
             $table->string('email', 50);
             $table->string('foto_profil');
             $table->integer('level');
-            $table->string('password', 30)->change();
+            $table->string('password', 100);
             $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
             $table->timestamps();
         });
