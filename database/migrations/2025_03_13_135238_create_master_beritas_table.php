@@ -10,8 +10,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_beritas', function (Blueprint $table) {
-            $table->string('id_berita', 10);
-            $table->primary('id_berita');
+            
+            $table->primary('id_berita');$table->string('id_berita', 10);
             $table->string('judul', 150);
             $table->string('tanggal');
             $table->text('deskripsi');

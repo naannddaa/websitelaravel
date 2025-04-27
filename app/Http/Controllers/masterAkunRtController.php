@@ -42,8 +42,7 @@ class masterAkunRtController extends Controller
         $id_rtrw = $prefix . $formattedIncrement;
 
         // Ambil data penduduk yang Kepala Keluarga
-        $data = master_penduduk::where('status_keluarga', 'Kepala Keluarga')
-            ->join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
+        $data = master_penduduk::join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
             ->select(
                 'master_penduduks.nama_lengkap',
                 'master_penduduks.nik',
@@ -63,7 +62,7 @@ class masterAkunRtController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|string|exists:master_penduduk,nik|max:17|unique:master_rt_rw,nik',
+            'nik' => 'required|string|exists:master_penduduks,nik|max:17|unique:master_rt_rw,nik',
             'nama' => 'required|string|max:255',
             'no_hp' => 'required|string|max:15',
             'rt' => 'required|string|max:5',
@@ -75,7 +74,7 @@ class masterAkunRtController extends Controller
             'rt.max' => 'Panjang RT maksimal 3 karakter',
             'rw.max' => 'Panjang RW maksimal 3 karakter',
         ]);
-
+ 
         // Validasi kombinasi RT dan RW
         $exists = master_rt::where('rt', $request->rt)
             ->where('rw', $request->rw)
@@ -83,8 +82,7 @@ class masterAkunRtController extends Controller
 
         if ($exists) {
             return redirect()->back()->withErrors([
-                'rt' => 'Kombinasi RT dan RW sudah ada. Harap gunakan kombinasi yang berbeda.',
-                'rw' => 'Kombinasi RT dan RW sudah ada. Harap gunakan kombinasi yang berbeda.'
+                'rt' => 'Ketua RT pada RW itu sudah ada.',
             ])->withInput();
         }
 
@@ -112,42 +110,44 @@ class masterAkunRtController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'no_hp' => 'required',
-            'rt' => 'required',
-            'rw' => 'required'
-        ]);
+{
+    $request->validate([
+        'nama' => 'required',
+        'no_hp' => 'required',
+        'rt' => 'required',
+        'rw' => 'required'
+    ]);
 
-        // Cek kombinasi RT dan RW (kecuali untuk data yang sedang di-edit)
-        $exists = master_rt::where('rt', $request->rt)
-            ->where('rw', $request->rw)
-            ->where('nik', '!=', $id)
-            ->exists();
+    // Cek kombinasi RT dan RW (kecuali untuk data yang sedang di-edit)
+    $exists = master_rt::where('rt', $request->rt)
+        ->where('rw', $request->rw)
+        ->where('id_rtrw', '!=', $id)  // Make sure you're comparing with the right field, id_rtrw
+        ->exists();
 
-        if ($exists) {
-            return redirect()->back()->withErrors([
-                'rt' => 'Kombinasi RT dan RW sudah ada. Harap gunakan kombinasi yang berbeda.',
-                'rw' => 'Kombinasi RT dan RW sudah ada. Harap gunakan kombinasi yang berbeda.'
-            ])->withInput();
-        }
-
-        $dataakunrt = [
-            'nama' => $request->nama,
-            'no_hp' => $request->no_hp,
-            'rt' => $request->rt,
-            'rw' => $request->rw,
-        ];
-
-        master_rt::where('nik', $id)->update($dataakunrt);
-        return redirect()->route('akunrt')->with('success', 'Data Berhasil Diedit');
+    if ($exists) {
+        return redirect()->back()->withErrors([
+            'rt' => 'Ketua RT pada RW itu sudah ada.',
+        ])->withInput();
     }
+
+    // Update the data based on the id_rtrw
+    $dataakunrt = [
+        'nama' => $request->nama,
+        'no_hp' => $request->no_hp,
+        'rt' => $request->rt,
+        'rw' => $request->rw,
+    ];
+
+    master_rt::where('id_rtrw', $id)->update($dataakunrt);  // Use id_rtrw to find the record
+
+    return redirect()->route('akunrt')->with('success', 'Data Berhasil Diedit');
+}
+
 
     public function destroy($id_rtrw)
     {
         master_rt::where('id_rtrw', $id_rtrw)->delete();
-        return redirect('akunrt')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('akunrt')->with('success', 'Data berhasil dihapus');
     }
 
     public function getNamaByNik(Request $request)

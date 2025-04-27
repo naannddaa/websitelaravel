@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\master_berita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class beritaController extends Controller
 {
@@ -79,6 +80,8 @@ class beritaController extends Controller
             $this->filename = null;
         }
 
+        $nik = Auth::user()->nik;
+
         // menyimpannya ke database berdasarkan inputan dari form
         $databerita = [
             'id_berita' => $request->id_berita,
@@ -86,6 +89,7 @@ class beritaController extends Controller
             'deskripsi' => $request->deskripsi,
             'image' => $this->filename,
             'tanggal' => $request->tanggal,
+            'nik' => $nik,
             'created_at' => now(),
         ];
 

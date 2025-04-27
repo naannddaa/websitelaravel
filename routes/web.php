@@ -15,14 +15,20 @@ use App\Http\Controllers\masterAkunRwController;
 use App\Http\Controllers\SuratmasukController;
 
 // Dashboard
-Route::get('/', [landing_pageController::class, 'tampil']);
+Route::get('/', [landing_pageController::class, 'tampil'])->name('website');
 
 // Route::get('/', function () {
 //     return view('admin.dashboard.index');
 // });
 
+Route::get('/check-nama-nik', function () {
+    return view('cekk');
+})->middleware('auth');  // Pastikan hanya yang login yang bisa mengakses
+
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.index')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login'])->name('login.proses')->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // Group route admin
@@ -66,7 +72,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('akunrt', [masterAkunRtController::class, 'index'])->name('akunrt');
     Route::post('akunrt/store', [masterAkunRtController::class, 'store'])->name('akun.store');
     Route::put('akunrt/update/{id}', [masterAkunRtController::class, 'update'])->name('akun.update');
-    Route::delete('akunrt/{id_rtrw}', [masterAkunRtController::class, 'destroy'])->name('akun.destroy');
+    Route::get('akunrt/{id_rtrw}', [masterAkunRtController::class, 'destroy'])->name('akunrt.destroy');
     Route::get('get-nama-by-nik', [masterAkunRtController::class, 'getNamaByNik']);
 
     // LANDING PAGE
@@ -74,8 +80,14 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/landingpage', [landing_pageController::class, 'update'])->name('homepage.update');
 
     // PENGAJUAN SURAT
-    Route::get('/pengajuan', [SuratmasukController::class, 'index'])->name('pengajuan.masuk');
+    Route::get('/suratmasuk', [SuratmasukController::class, 'index'])->name('pengajuan.masuk');
+    Route::post('/suratmasuk/{id_pengajuan}/setuju', [SuratmasukController::class, 'setuju'])->name('pengajuan.setuju');
+    Route::post('/suratmasuk/{id_pengajuan}/tolak', [SuratmasukController::class, 'tolak'])->name('pengajuan.tolak');
+    Route::delete('/suratmasuk/{id_pengajuan}/delete', [SuratmasukController::class, 'destroy'])->name('pengajuan.hapus');
+
+
     Route::get('/suratditolak', [SuratditolakController::class, 'index'])->name('suratditolak.tampil');
+    Route::delete('/suratditolak/{id_pengajuan}/delete', [SuratditolakController::class, 'destroy'])->name('suratditolak.hapus');
 
     // MASTER SURAT
     Route::get('/mastersurat', [Master_suratController::class, 'index'])->name('mastersurat.index');

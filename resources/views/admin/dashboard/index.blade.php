@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Dashboard')
 @section('konten')
 <!DOCTYPE html>
 <html lang="en">

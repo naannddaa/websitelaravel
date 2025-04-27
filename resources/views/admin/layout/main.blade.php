@@ -57,6 +57,15 @@
       padding: 20px;
   }
 
+  .navbar {
+    box-shadow: none !important;
+}
+
+  .no-caret::after {
+    display: none !important;
+}
+
+
     </style>
 
 

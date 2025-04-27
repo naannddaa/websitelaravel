@@ -47,16 +47,16 @@
         <div class="col">
             <h3 class="mb-4 fw-bold">Login</h3>
 
-            @if(session('success'))
-                <div class="alert alert-success d-flex align-items-center" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                    <div>
-                        {{ session('success') }}
-                    </div>
+           @if(session('success'))
+                <div class="alert alert-success" id="alert-success">
+                    {{ session('success') }}
                 </div>
             @endif
+
             @if(session('error'))
-                <div class="alert alert-danger">{{ session('error') }}</div>
+                <div class="alert alert-danger" id="alert-error">
+                    {{ session('error') }}
+                </div>
             @endif
 
 
@@ -104,6 +104,18 @@
             icon.classList.add('bi-eye-slash');
         }
     });
+
+    setTimeout(function() {
+        var successAlert = document.getElementById('alert-success');
+        var errorAlert = document.getElementById('alert-error');
+
+        if (successAlert) {
+            successAlert.style.display = 'none';
+        }
+        if (errorAlert) {
+            errorAlert.style.display = 'none';
+        }
+    }, 3000); 
 </script>
 
 </body>

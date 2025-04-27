@@ -33,7 +33,7 @@ class MasterUserSeeder extends Seeder
                 'email' => 'akun2@example.com',
                 'foto_profil' => 'default.png',
                 'level' => 2,
-                'password' => 'admin456',
+                'password' => Hash::make('password123'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
