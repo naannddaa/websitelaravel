@@ -12,9 +12,8 @@
             </div>
 
             {{-- Form Search --}}
-
             <div class="pb-3">
-                <form class="d-flex" action="{{ url('akunrt') }}" method="get">
+                <form class="d-flex" action="{{ route('pengajuan.masuk') }}" method="get">
                     <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Cari" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Cari</button>
                 </form>
@@ -29,66 +28,153 @@
                             <th>NIK</th>
                             <th>Nama</th>
                             <th>Jenis Surat</th>
-                            <th>Waktu Pengajuan</th>
+                            <th>Tanggal Pengajuan</th>
                             <th>RW</th>
                             <th>Status</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @foreach ($dataakunrt as $a)
-                        @if (!is_null($a->rt))
+                    <tbody>
+                        @foreach ($datapengajuan as $a)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$a->nik}}</td>
-                            <td>{{$a->nama}}</td>
-                            <td>{{$a->no_hp}}</td>
-                            <td>{{$a->rt}}</td>
+                            <td>{{$a->nama_lengkap}}</td>
+                            <td>{{$a->nama_surat}}</td>
+                            <td>{{$a->tanggal_diajukan}}</td>
                             <td>{{$a->rw}}</td>
                             <td>
-                                <button type="button" data-bs-toggle="modal" href="#"
-                                    data-bs-target="#modaledit-{{ $a->nik }}"
-                                    class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil-square"></i>
+                                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail-{{ $a->id_pengajuan }}">
+                                    <i class="bi bi-eye-fill"></i>
                                 </button>
-                                <a href="#" data-id="{{$a->id_rtrw}}" class="btn btn-danger btn-sm delete right" title="Hapus Data">
-                                    <i class="bi bi-trash-fill"></i>
-                                </a>
+                                <form action="{{ url('admin/suratmasuk/'.$a->id_pengajuan.'/delete') }}" method="POST" id="deleteForm-{{ $a->id_pengajuan }}" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $a->id_pengajuan }})">
+                                        <i class="bi bi-trash-fill" ></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
-                        @endif
+
+                        {{-- Modal Detail Pengajuan --}}
+                        <div class="modal fade" id="modalDetail-{{ $a->id_pengajuan }}" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
+                                <div class="modal-dialog"> 
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">Detail Pengajuan</h6>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Konten detail pengajuan -->
+                                            <div class="">
+                                                <label class="form-label">Nama</label>
+                                                <input type="text" class="form-control" value="{{ $a->nama_lengkap }}" readonly>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Nama Surat</label>
+                                                <input type="text" class="form-control" value="{{ $a->nama_surat }}" readonly>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Jenis Kelamin</label>
+                                                    <input type="text" class="form-control" value="{{ $a->jenis_kelamin }}" readonly>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label">TTL</label>
+                                                    <input type="text" class="form-control" value="{{ $a->tempat_tanggal_lahir }}" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Warga / Agama</label>
+                                                    <input type="text" class="form-control" value="{{ $a->warga_agama }}" readonly>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label">RW</label>
+                                                    <input type="text" class="form-control" value="{{ $a->rw }}" readonly>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label">RT</label>
+                                                    <input type="text" class="form-control" value="{{ $a->rt }}" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Keperluan</label>
+                                                    <input type="text" class="form-control" value="{{ $a->keperluan }}" readonly>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label">Tanggal Diajukan</label>
+                                                    <input type="text" class="form-control" value="{{ $a->tanggal_diajukan }}" readonly>
+                                                </div>
+                                            </div>
+
+                                            {{-- Bukti Upload (jika ada) --}}
+                                            <div class="row">
+                                                @for ($i = 1; $i <= 8; $i++)
+                                                    @php $foto = 'foto'.$i; @endphp
+                                                    @if (!empty($a->$foto))
+                                                        <div class="col-12 mb-2">
+                                                            <label class="form-label">Bukti{{ $i }}</label><br>
+                                                            <img src="{{ asset('storage/surat/' . $a->$foto) }}" width="100%">
+                                                        </div>
+                                                    @endif
+                                                @endfor
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-end gap-2">
+                                            <button type="button" class="btn btn-danger" onclick="bukaModalPenolakan({{ $a->id_pengajuan }})">Tolak</button>
+
+                                            <button type="button" class="btn btn-primary" onclick="setujuiPengajuan({{ $a->id_pengajuan }})">Setujui</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {{-- End Modal --}}
                         @endforeach
-                    </tbody> --}}
+                    </tbody>
                 </table>
             </div>
 
- {{-- Modal Tambah Data --}}
-{{-- <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah Akun Ketua RT</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('akun.store') }}" method="POST">
-                    @csrf
-                    <div class="col-12">
-                        <label class="form-label" hidden>ID Akun RT</label>
-                        <input type="text" class="form-control" name='id_rtrw' id="id_rtrw" value="{{$id_rtrw}}" readonly hidden>
+            {{-- Modal Penolakan (opsional jika mau dipakai) --}}
+            <div class="modal fade" id="modalPenolakan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        
+                        <div class="modal-header">
+                            <h6>Alasan Penolakan</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form id="formPenolakan" method="POST">
+                                @csrf
+                                <div class="col-12 mb-3">
+                                    <textarea rows="4" class="form-control" name="alasan" id="inputAlasan"></textarea>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-danger">Tolak Pengajuan</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+
+
+        </div> {{-- end table-container --}}
     </div>
-</div> --}}
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('js/suratmasuk.js') }}"></script>
 
-<!-- Tambahkan jQuery -->
-
-            
-
-           
-        </div>
-    </div>
 </body>
 </html>
 @endsection

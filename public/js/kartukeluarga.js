@@ -66,3 +66,7 @@ $(document).ready(function () {
         $("#modalKeluarga").modal("show");
     });
 });
+
+document.getElementById("tanggal_dibuat").addEventListener("focus", function (e) {
+    this.showPicker && this.showPicker(); // Untuk browser yang support showPicker()
+});

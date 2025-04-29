@@ -30,7 +30,7 @@
         <div class="mb-3 row">
             <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
             <div class="col-sm-10">
-                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" required>{{ $databerita->deskripsi }}</textarea>
+                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="8" required>{{ $databerita->deskripsi }}</textarea>
             </div>
         </div>
 
@@ -87,6 +87,10 @@
                 $('#showImage').hide(); // Sembunyikan gambar baru jika tidak ada file dipilih
             }
         });
+    });
+
+    document.getElementById('tanggal').addEventListener('focus', function(e) {
+        this.showPicker && this.showPicker(); // Untuk browser yang support showPicker()
     });
 </script>
 

@@ -46,25 +46,36 @@
                         {{-- foreach mengulagi databerita --}}
                         @foreach ($databerita as $item)
                         <tr>
-                            <td class="text-center">{{ $i }}</td>
+                            <td style="vertical-align: top;" class="text-center">{{ $i }}</td>
 
-                            <td class="judul">
+                            <td style="vertical-align: top;" class="judul">
                                 <p>{{ $item->judul }}</p>
                             </td>
 
-                            <td class="text-center">
+                            <td style="vertical-align: top;" class="text-center">
                                 {{-- memanggil juga gambar yg terletak didirectoru storage --}}
                                 <img src="{{ asset('storage/imageberita/'.$item->image) }}" class="border" style="width: 200px; height: auto; border-radius: 0;">
                             </td>
 
-                            <td class="deskripsi text-justify">
-                                <p>{{ $item->deskripsi }}</p>
+                            <td class="deskripsi text-justify align-top">
+                                <p>
+                                    @php
+                                        $words = explode(' ', strip_tags($item->deskripsi)); // Pecah deskripsi jadi array kata
+                                    @endphp
+
+                                    @if (count($words) > 50)
+                                        {{ implode(' ', array_slice($words, 0, 50)) }}... 
+                                    @else
+                                        {{ $item->deskripsi }}
+                                    @endif
+                                </p>
                             </td>
 
-                            <td>{{ $item->tanggal }}</td>
+
+                            <td style="vertical-align: top;" >{{ $item->tanggal }}</td>
 
                             {{-- untuk edit--}}
-                            <td class="text-center">
+                            <td style="vertical-align: top;" class="text-center">
                                 <a href="{{ url('admin/berita/'.$item->id_berita.'/edit') }}" class="btn btn-warning btn-sm me-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>

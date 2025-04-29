@@ -6,6 +6,8 @@
             title: 'Berhasil!',
             text: '{{ session('success') }}',
             confirmButtonColor: '#3085d6',
+            timer: 3000,  // Durasi 5 detik
+            showConfirmButton: false, 
         });
     @elseif (session('error'))
         Swal.fire({

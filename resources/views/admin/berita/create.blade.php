@@ -30,7 +30,7 @@
             <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
             <div class="col-sm-10">
                 {{-- <input type="text" class="form-control" name='deskripsi' id="deskripsi" required> --}}
-                <textarea type="text" class="form-control" name='deskripsi' id="deskripsi" required ></textarea>
+                <textarea rows="8" type="text" class="form-control" name='deskripsi' id="deskripsi" required ></textarea>
             </div>
         </div>
 
@@ -54,18 +54,20 @@
             </div>
             @include('sweetalert::alert')
         </form>
-            <!-- AKHIR FORM -->
-                    <script type="text/javascript">
-                    $(document).ready(function(){
-                    $('#image').change(function(e)){
-                            var reader = new FileReader();
-                            reader.onload = function(e){
-                                $('#showImage').attr('src',e.target.result);
-                            }
-                            reader.readAsDataURL(e.target.files['0']);
-                    } 
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#image').change(function(e){
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            $('#showImage').attr('src', e.target.result).show();
+                        }
+                        reader.readAsDataURL(e.target.files[0]);
                     });
-                    </script>
+                });
 
+                document.getElementById('tanggal').addEventListener('focus', function(e) {
+                    this.showPicker && this.showPicker(); // Untuk browser yang support showPicker()
+                });
+                </script>
             @endsection
 

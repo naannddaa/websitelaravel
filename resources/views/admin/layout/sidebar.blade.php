@@ -26,22 +26,25 @@
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/dashboard') }}">
+                <i class="bi bi-house-fill me-3"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="{{ url('admin/master_kartukeluarga') }}" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{{ url('admin/master_kartukeluarga') }}" >
+                <i class="bi bi-people-fill me-3"></i>
                 <span class="menu-title">Kartu Keluarga</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#master-pengajuan" aria-expanded="false" aria-controls="master-pengajuan" id="toggle-master-pengajuan">
+                <i class="bi bi-envelope-check-fill me-3"></i>
                 <span class="menu-title">Pengajuan Surat</span>
                 <i class="menu-arrow"></i>
             </a>
             <ul id="master-pengajuan" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="nav-item">
-                    <a href="{{ url('admin/pengajuan') }}" class="nav-link">Surat Masuk</a>
+                    <a href="{{ url('admin/suratmasuk') }}" class="nav-link">Surat Masuk</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('admin/suratditolak') }}" class="nav-link">Surat Ditolak</a>
@@ -51,8 +54,8 @@
 
         <li class="nav-item">
             <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#master-akun" aria-expanded="false" aria-controls="master-akun" id="toggle-master-akun">
+                 <i class="bi bi-person-fill me-3"></i>
                 <span class="menu-title">Master Akun</span>
-                <i class="menu-arrow"></i>
             </a>
             <ul id="master-akun" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="nav-item">
@@ -65,21 +68,25 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="{{ url('admin/mastersurat') }}" aria-expanded="false" aria-controls="error" id="toggle-master-surat">
+            <a class="nav-link" href="{{ url('admin/mastersurat') }}">
+                <i class="bi bi-envelope-fill me-3"></i>
                 <span class="menu-title">Master Surat</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/berita') }}">
+                <i class="bi bi-newspaper me-3"></i>
                 <span class="menu-title">Berita</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/landingpage') }}">
+                <i class="bi bi-globe-americas me-3"></i>
                 <span class="menu-title">Website</span>
             </a>
         </li>
+        
     </ul>
 </nav>
 

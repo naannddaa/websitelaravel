@@ -12,7 +12,7 @@ class master_penduduk extends Model
     protected $table = 'master_penduduks';
     protected $primaryKey = 'nik';
     protected $keyType = 'string';
-    public $timestamp = false;
+    public $timestamps = false;
     protected $fillable = [
         'nik',
         'nama_lengkap',
@@ -34,8 +34,5 @@ class master_penduduk extends Model
         'no_kk',
 
     ];
-    protected $allowedFields = [
-        'nik',
-        'nama_lengkap'
-    ];
+    
 }

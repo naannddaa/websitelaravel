@@ -32,6 +32,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
+             $table->foreign('id_surat')->references('id_surat')->on('master_surat')->onDelete('cascade');
         });
     }
 

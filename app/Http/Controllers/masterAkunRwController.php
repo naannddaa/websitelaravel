@@ -34,7 +34,7 @@ class masterAkunRwController extends Controller
         $tahun = $currentDate->format('Y');
         $prefix = "R{$tahun}-";
 
-        $lastAkunRw = master_rw::where('id_rtrw', 'like', "$prefix")
+        $lastAkunRw = master_rw::where('id_rtrw', 'like', "$prefix%")
         ->orderBy('id_rtrw', 'desc')
         ->first();
 
@@ -47,8 +47,7 @@ class masterAkunRwController extends Controller
         $id_rtrw = $prefix . $formattedIncrement;
 
         // mengambil data penduduk yang berstatus kepala keluarga dan join master penduduk
-        $data = master_penduduk::where('status_keluarga', 'Kepala Keluarga')
-        ->join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
+        $data = master_penduduk::join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
         ->select(
             'master_penduduks.nama_lengkap',
             'master_penduduks.nik',
@@ -66,30 +65,44 @@ class masterAkunRwController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nik' => 'required|exists:master_penduduks,nik|unique:master_rt_rw,nik',
-            'nama' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:15|min_digits:10',
+{
+    $request->validate([
+        'nik' => 'required|exists:master_penduduks,nik|unique:master_rt_rw,nik',
+        'nama' => 'required|string|max:255',
+        'no_hp' => 'required|string|max:15|min_digits:10',
+        'rw' => 'required|string|max:3',
+    ], [
+        'nik.exists' => 'NIK belum terdaftar di data penduduk, silahkan menambahkan data di master penduduk terlebih dahulu.',
+        'nik.unique' => 'NIK yang anda gunakan sudah terdaftar sebagai Ketua RW.',
+        'no_hp.max' => 'Panjang nomer Hp maksimal 15 karakter',
+        'no_hp.min_digits' => 'Panjang nomer Hp minimal 10 karakter',
+        'rw.required' => 'RW wajib diisi.',
+        'rw.max' => 'Panjang RW maksimal 3 karakter',
+    ]);
 
-            'rw' => 'required|string|max:3',
-        ], [
-            'nik.exists' => 'NIK belum terdaftar di data penduduk, silahkan menambahkan data di master penduduk terlebih dahulu.',
-            'nik.unique' => 'NIK yang anda gunakan sudah terdaftar sebagai Ketua RT / ketua RW.',
-            'no_hp.max' => 'Panjang nomer Hp maksimal 15 karakter',
-            'no_hp.min_digits' => 'Panjang nomer Hp miminal 10 karakter',
-            'rw.max' => 'panjang RW maksimal 3 karakter',
-        ]);
-        $dataakunrw = [
-            'id_rtrw' => $request->id_rtrw,
-            'nik' => $request->nik,
-            'nama' => $request->nama,
-            'no_hp' => $request->no_hp,
-            'rw' => $request->rw,
-        ];
-        master_rw::create($dataakunrw);
-        return redirect()->route('akunrw')->with('success', 'Data Berhasil Disimpan');
+    // Validasi RW tidak boleh duplicate untuk Ketua RW
+    $existsRw = master_rt::where('rw', $request->rw)
+        ->whereNull('rt') // cari RW tanpa RT (ketua RW)
+        ->exists();
+
+    if ($existsRw) {
+        return redirect()->back()->withErrors([
+            'rw' => 'RW yg dipilih sudah memiliki Ketua RW.',
+        ])->withInput();
     }
+
+    $dataakunrw = [
+        'id_rtrw' => $request->id_rtrw,
+        'nik' => $request->nik,
+        'nama' => $request->nama,
+        'no_hp' => $request->no_hp,
+        'rw' => $request->rw,
+    ];
+
+    master_rt::create($dataakunrw);
+
+    return redirect()->route('akunrw')->with('success', 'Data Berhasil Disimpan');
+}
 
     public function show($id)
     {
@@ -104,10 +117,26 @@ class masterAkunRwController extends Controller
     public function update(Request $request, $id)
 {
     $request->validate([
-        'nama' => 'required',
-        'no_hp' => 'required',
-        'rw' => 'required'
+        'nama' => 'required|string|max:255',
+        'no_hp' => 'required|string|max:15|min_digits:10',
+        'rw' => 'required|string|max:3',
+    ], [
+        'nama.required' => 'Nama wajib diisi.',
+        'no_hp.required' => 'Nomor HP wajib diisi.',
+        'rw.required' => 'RW wajib diisi.',
     ]);
+
+    // Cek apakah RW sudah digunakan oleh Ketua RW lain
+    $existsRw = master_rw::where('rw', $request->rw)
+        ->where('id_rtrw', '!=', $id) // exclude data yang sedang diedit
+        ->whereNull('rt') // kalau mau pastikan hanya ketua RW, bisa tambah ini
+        ->exists();
+
+    if ($existsRw) {
+        return redirect()->back()->withErrors([
+            'rw' => 'RW ini sudah memiliki Ketua RW.',
+        ])->withInput();
+    }
 
     $dataakunrw = [
         'nama' => $request->nama,
@@ -115,9 +144,11 @@ class masterAkunRwController extends Controller
         'rw' => $request->rw,
     ];
 
-    master_rw::where('nik', $id)->update($dataakunrw);
+    master_rw::where('id_rtrw', $id)->update($dataakunrw);
+
     return redirect()->route('akunrw')->with('success', 'Data Berhasil Diedit');
 }
+
 
     public function destroy($id_rtrw)
     {

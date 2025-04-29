@@ -38,7 +38,7 @@
             <a href="#footer-section" class="nav-link">About us</a>
         </li>
         <li>
-            <a href="#" class="nav-link">Login</a>
+            <a href="{{ route('login.index') }}" class="nav-link">Login</a>
         </li>
     </ul>
 </div>
