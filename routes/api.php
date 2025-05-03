@@ -31,5 +31,6 @@ Route::middleware('api')->group(function(){
     Route::post('/register', [ApiRegisController::class, 'register']);
     Route::post('/login', [ApiRegisController::class, 'login']);
     Route::get('/statusdiajukan', [status_diajukan_controller::class, 'index']);
+    
 });
 
