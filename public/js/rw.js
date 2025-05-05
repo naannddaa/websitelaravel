@@ -17,14 +17,13 @@ $(document).ready(function () {
     });
 });
 
-// Konfirmasi Hapus
 $(".delete").click(function (e) {
     e.preventDefault();
-    let url = $(this).attr("href");
+    const form = $(this).closest("form");
 
     Swal.fire({
         title: "Yakin ingin menghapus?",
-        text: "Data diatas akan dihapus secara permanen!",
+        text: "Data di atas akan dihapus secara permanen!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -39,16 +38,16 @@ $(".delete").click(function (e) {
         },
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = url;
+            form.submit();
         }
     });
 });
+
 
 $(document).ready(function () {
     // Tombol Tambah Data
     $("#btn-add").click(function () {
         $("#modalTitle").text("Tambah Akun Ketua RW");
-        $("#modalForm").attr("action", "{{ route('akunrw.store') }}");
         $("#modalForm").find('[name="_method"]').remove();
         $("#modalForm")[0].reset();
         $("#modal").modal("show");

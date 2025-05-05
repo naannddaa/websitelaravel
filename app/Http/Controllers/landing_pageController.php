@@ -5,6 +5,7 @@ use App\Models\landing_page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; 
 use App\Models\HeroImage;
+use App\Models\MasterBerita;
 
 
 class landing_pageController extends Controller
@@ -24,7 +25,10 @@ class landing_pageController extends Controller
     public function tampil() {
         $data = landing_page::first();
         $heroimages = HeroImage::all(); 
-        return view('landing_page.index', compact('data', 'heroimages'));
+        $beritas = MasterBerita::all();
+
+        return view('landing_page.index', compact('data', 'heroimages', 'beritas'));
+
 }
 
     public function update(Request $request)
@@ -54,14 +58,14 @@ class landing_pageController extends Controller
 
     // Update teks
     $content->judul = $request->title;
-        $content->deskripsi1 = $request->description;
-        $content->subtittle = $request->subtittle;
-        $content->section_text = $request->section_text;
-        $content->subtitle_2 = $request->subtitle_2;
-        $content->section_second = $request->section_second;
-        $content->about_us = $request->about_content;
-        $content->visi = $request->visi;
-        $content->misi = $request->misi;
+    $content->deskripsi1 = $request->description;
+    $content->subtittle = $request->subtittle;
+    $content->section_text = $request->section_text;
+    $content->subtitle_2 = $request->subtitle_2;
+    $content->section_second = $request->section_second;
+    $content->about_us = $request->about_content;
+    $content->visi = $request->visi;
+    $content->misi = $request->misi;
 
     // Upload hero image jika ada
     if ($request->hasFile('hero_image')) {

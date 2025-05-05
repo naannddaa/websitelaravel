@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Models\master_pengajuan;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        Paginator::useBootstrapFive();
+    Paginator::useBootstrapFive();
+
+    $jumlahPengajuan = master_pengajuan::where('status', 'Diajukan')->count();
+    View::share('jumlahPengajuan', $jumlahPengajuan);
     }
 }

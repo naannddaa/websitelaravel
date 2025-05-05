@@ -18,21 +18,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <a href="#" class="logo">
-                        {{-- <img src="{{ asset('storage/logo/logo-desa.png') }}" alt="logo"> --}}
-                    </a>
+                    <div class="logo-container d-flex align-items-center">
+                        <img src="{{ asset('storage/logo/logo.png') }}" alt="Logo Desa" class="logo-img">
+                        <div class="logo-text ms-3">
+                            <h4 class="mb-0">Desa Kalipait</h4>
+                            <small>Kabupaten Banyuwangi</small>
+                        </div>
+                    </div>
                 </div>
+                                
                 <div class="col-lg-6">
                <div class="menu">
     <ul>
         <li>
-            <a href="#hero-section" class="nav-link active">Home</a>
+            <a href="#hero-section" class="nav-link ">Home</a>
         </li>
         <li>
-            <a href="#service-section" class="nav-link">Blog</a>
+            <a href="#service-section" class="nav-link">Service</a>
+         </li>
+        <li>
+           <a href="#profile-section" class="nav-link">Profile</a>
         </li>
         <li>
-            <a href="#section-1-first" class="nav-link">Services</a>
+            <a href="#berita-section" class="nav-link">Berita</a>
         </li>
         <li>
             <a href="#footer-section" class="nav-link">About us</a>
@@ -68,25 +76,22 @@
                             <div class="carousel-item">
                                 <img src="{{ asset('storage/coroseul/2.png') }}" alt="Slide 2">
                             </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('storage/coroseul/2.png') }}" alt="Slide 3">
-                            </div>
                         </div>
     
                         <!-- Custom Indicators -->
-                        <div class="carousel-indicators-custom">
+                        {{-- <div class="carousel-indicators-custom">
                             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
+                        </div> --}}
     
                         <!-- Custom Controls -->
-                        <div class="carousel-controls-bottom">
+                        {{-- <div class="carousel-controls-bottom">
                             <div class="carousel-nav-buttons">
                                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">&#8592;</button>
                                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide="next">&#8594;</button>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -192,20 +197,25 @@
         </div>
     </section>
 
-    {{-- visi misi --}}
     <section class="visi-misi-section">
-        <div class="visi">
-          <h2>Visi</h2>
-          <p id="visi">{{ nl2br(e($data->visi ?? '')) }}</p>
+        <div class="container">
+            <div class="row">
+                <div class="col visi">
+                    <h2>Visi</h2>
+                    <p id="visi">{{ nl2br(e($data->visi ?? '')) }}</p>
+                </div>
+                <div class="col misi">
+                    <h2>Misi</h2>
+                    <p id="misi">{{ nl2br(e($data->misi ?? '')) }}</p>
+                </div>
+            </div>
         </div>
-        <div class="misi">
-          <h2>Misi</h2>
-          <p id="misi">{{ nl2br(e($data->misi ?? '')) }}</p>
-        </div>
-      </section>
+    </section>
+    
+    
       
     
-    <section class="profile-section">
+    <section class="profile-section" id="profile-section">
         <h2>Perangkat Desa</h2>
         <p>Perangkat Desa Kalipait periode tahun 2025–2029</p>
       
@@ -260,37 +270,67 @@
             <h4>M. Abdul Ghofur</h4>
             <p>Kepala Urusan Perencanaan</p>
           </div>
-        </div>
+        </div>  
       </section>
       
-
-        <footer class="footer-section" id="footer-section">
-            <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <h4>About Us</h4>
-                <p>
-                    <p>{{ $data->about_us }}</p>
-                </p>
+      <section class="berita-section py-5" id="berita-section">
+        <div class="container-berita">
+            <div class="berita-header text-center mb-5">
+                <h2 class="berita-heading">Berita Terkini</h2>
+                <p class="berita-subheading">Berita terbaru tentang Desa Kalipait dan informasi terkini untuk masyarakat.</p>
             </div>
-            <div class="col-lg-4">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#hero-section">Home</a></li>
-                    <li><a href="#footer-section">About Us</a></li>
-                    <li><a href="#section-1-first">Services</a></li>
-                    <li><a href="#service-section">Blog</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4">
-                <h4>Contact Us</h4>
-                <p>Email: desa.kalipait@gmail.com</p>
-                <p>Phone: +62 895-2643-2934</p>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126275.58843042006!2d114.2060889218844!3d-8.488476627450437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd3effd0234747f%3A0x3ef5ac1d39badfe2!2sKantor%20Desa%20Kalipait!5e0!3m2!1sid!2sid!4v1743259735533!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+    
+            @if($beritas->count() > 0)
+                <div class="scroll-wrapper-berita">
+                    @foreach($beritas as $berita)
+                        <div class="card-berita d-flex flex-column">
+                            <img src="{{ asset('storage/imageberita/' . $berita->image) }}" alt="{{ $berita->judul }}">
+                            <div class="card-body-berita">
+                                <h5 class="card-title-berita">{{ $berita->judul }}</h5>
+                                <p class="card-text-berita">{{ Str::limit(strip_tags($berita->isi), 100, '...') }}</p>
+                                <a href="{{ route('landing_page.show', $berita->id_berita) }}" class="btn-berita" >Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
+    </section>
+    
+    
+    <footer class="footer-section" id="footer-section">
+        <div class="container">
             <div class="row">
+                <div class="col-lg-4">
+                    <h4>About Us</h4>
+                    <p>{{ $data->about_us }}</p>
+                </div>
+    
+                <div class="col-lg-4 text-center">
+                    <h4>Connect</h4>
+                    <hr style="width: 50px; border: 1px solid #fff; margin: 10px auto;">
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/desakalipait/" class="social-icon" target="_blank">
+                            <img src="{{ asset('storage/icons/instagram.png') }}" alt="Instagram">
+                        </a>
+                        <a href="mailto:desa.kalipait@gmail.com" class="social-icon">
+                            <img src="{{ asset('storage/icons/email.png') }}" alt="Email">
+                        </a>
+                        <a href="https://wa.me/6289526432934" class="social-icon" target="_blank">
+                            <img src="{{ asset('storage/icons/whatsapp.png') }}" alt="WhatsApp">
+                        </a>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4">
+                    <h4>Contact Us</h4>
+                    <p>Email: desa.kalipait@gmail.com</p>
+                    <p>Phone: +62 895-2643-2934</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126275.58843042006!2d114.2060889218844!3d-8.488476627450437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd3effd0234747f%3A0x3ef5ac1d39badfe2!2sKantor%20Desa%20Kalipait!5e0!3m2!1sid!2sid!4v1743259735533!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+    
+            <div class="row mt-4">
                 <div class="col-lg-12 text-center">
                     <p class="copyright">
                         © 2025 Desa Kalipait x About You. All rights reserved.
@@ -299,6 +339,7 @@
             </div>
         </div>
     </footer>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('js/landingpage.js') }}"></script>

@@ -25,27 +25,6 @@
                 <textarea class="form-control" name="description" rows="6" required>{{ $data->deskripsi1 }}</textarea>
             </div>
         </div>
-
-         {{-- Gambar Slide --}}
-         <div id="fileInputsContainer">
-            <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">Gambar Slide</label>
-                <div class="col-sm-10">
-                    <div id="inputContainer">
-                        
-                        @if(empty($data->gambar1)) 
-                            {{-- Input pertama jika gambar tidak ada --}}
-                            <input type="file" name="hero_image[]" class="form-control image-input">
-                        @endif
-                    </div>
-        
-                    <!-- Tombol tambah harus di luar inputContainer -->
-                    <button type="button" class="btn btn-sm btn-primary mt-3" id="addImageInput">+ Tambah Gambar</button>
-        
-                    <div id="previewContainer" class="d-flex flex-wrap gap-2 mt-2"></div>
-                </div>
-            </div>
-        </div>
         
 
         <div class="mb-3 row">

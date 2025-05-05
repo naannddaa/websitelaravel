@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\status_diajukan_controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\beritaController;
 use App\Http\Controllers\DashboardController;
@@ -13,9 +14,14 @@ use App\Http\Controllers\masterAkunController;
 use App\Http\Controllers\masterAkunRtController;
 use App\Http\Controllers\masterAkunRwController;
 use App\Http\Controllers\SuratmasukController;
+use App\Http\Controllers\LandingBeritaController;
+use App\Http\Controllers\generate;
 
 // Dashboard
 Route::get('/', [landing_pageController::class, 'tampil'])->name('website');
+Route::get('/sktm/view', [generate::class, 'viewSurat'])->name('sktm.view');
+Route::get('/sktm/cetak', [generate::class, 'generatePDF'])->name('sktm.cetak');
+
 
 // Route::get('/', function () {
 //     return view('admin.dashboard.index');
@@ -30,6 +36,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.ind
 Route::post('/login', [LoginController::class, 'login'])->name('login.proses')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/landing_page', [LandingBeritaController::class, 'index'])->name('landing_page.index');
+Route::get('/landing_page/{id_berita}', [LandingBeritaController::class, 'show'])->name('landing_page.show');
 
 // Group route admin
 Route::middleware(['auth'])->prefix('admin')->group(function () {
@@ -80,6 +88,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/landingpage', [landing_pageController::class, 'update'])->name('homepage.update');
 
     // PENGAJUAN SURAT
+    Route::get('/admin/count-pengajuan', function() {
+        $count = \App\Models\master_pengajuan::where('status', 'Diajukan')->count();
+    return response()->json(['count' => $count]);
+    });
+
     Route::get('/suratmasuk', [SuratmasukController::class, 'index'])->name('pengajuan.masuk');
     Route::post('/suratmasuk/{id_pengajuan}/setuju', [SuratmasukController::class, 'setuju'])->name('pengajuan.setuju');
     Route::post('/suratmasuk/{id_pengajuan}/tolak', [SuratmasukController::class, 'tolak'])->name('pengajuan.tolak');

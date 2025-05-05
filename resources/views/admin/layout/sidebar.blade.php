@@ -37,11 +37,20 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#master-pengajuan" aria-expanded="false" aria-controls="master-pengajuan" id="toggle-master-pengajuan">
-                <i class="bi bi-envelope-check-fill me-3"></i>
+            <a href="#" class="nav-link position-relative" data-bs-toggle="collapse" data-bs-target="#master-pengajuan" aria-expanded="false" aria-controls="master-pengajuan" id="toggle-master-pengajuan">
+                <i class="bi bi-envelope-check-fill me-3 position-relative">
+                    @if($jumlahPengajuan > 0)
+                        <span class="position-absolute badge rounded-pill bg-danger" id="pengajuan-count"
+                            style="top: 0; left: 140px; font-size: 10px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; transform: translateY(-50%);">
+                            {{ $jumlahPengajuan }}
+                        </span>
+                    @endif
+                </i>
                 <span class="menu-title">Pengajuan Surat</span>
                 <i class="menu-arrow"></i>
             </a>
+
+
             <ul id="master-pengajuan" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="nav-item">
                     <a href="{{ url('admin/suratmasuk') }}" class="nav-link">Surat Masuk</a>
@@ -103,5 +112,29 @@
         $('#master-pengajuan').collapse('hide'); // Hide Pengajuan Surat
     });
 });
+
+$(document).ready(function() {
+    function loadPengajuanCount() {
+        $.ajax({
+            url: "{{ url('admin/count-pengajuan') }}",
+            type: "GET",
+            success: function(data) {
+                if(data.count > 0) {
+                    $('#pengajuan-count').text(data.count).show();
+                } else {
+                    $('#pengajuan-count').hide();
+                }
+            }
+        });
+    }
+
+    // Load pertama
+    loadPengajuanCount();
+
+    // Refresh tiap 15 detik
+    setInterval(loadPengajuanCount, 15000);
+});
+
+
 
 </script>

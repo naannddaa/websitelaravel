@@ -53,12 +53,11 @@
         // Set modal for adding new data
         $('#modalTitle').text('Tambah Akun Ketua RT');
         // Use @route helper to generate the URL correctly within the JavaScript string
-        $('#modalForm').attr('action', "{{ route('akun.store') }}");  // Action untuk store (POST)
+       // Action untuk store (POST)
         $('#modalForm').find('[name="_method"]').remove();  // Remove method for POST request
-        $('#modalForm').append('<input type="hidden" name="_method" value="POST">');  // Method POST
-
+   
         // Clear all input fields for adding new data
-        $('#id_rtrw').val('{{ $id_rtrw }}');
+        $('#id_rtrw').val(id);
         $('#nama').val('');
         $('#no_hp').val('');
         $('#nik').val('');

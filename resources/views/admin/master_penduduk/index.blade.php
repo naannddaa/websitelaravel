@@ -159,11 +159,11 @@
                 </div>
                 <div class="mb-3 row">
                     <div class="col">
-                        <label class="form-label">Nomer Paspor</label>
+                        <label class="form-label">Nomor Paspor</label>
                       <input type="text" class="form-control" name="no_paspor">
                     </div>
                     <div class="col">
-                        <label class="form-label">Nomer KITAP</label>
+                        <label class="form-label">Nomor KITAP</label>
                       <input type="text" class="form-control" name="no_kitap">
                     </div>
                 </div>

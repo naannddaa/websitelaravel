@@ -21,6 +21,8 @@ return new class extends Migration
             $table->text('section_second')->nullable();
             $table->string('image_description2',100)->nullable();
             $table->text('about_us')->nullable();
+            $table->text('visi')->nullable();
+            $table->text('misi')->nullable();
             $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }

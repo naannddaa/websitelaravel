@@ -34,7 +34,7 @@ class LoginController extends Controller
             
             // Login user
             Auth::login($user);
-
+ 
             // Cari nama lengkap dari master_penduduks
             $penduduk = DB::table('master_penduduks')->where('nik', $user->nik)->first();
             $nama = $penduduk ? $penduduk->nama_lengkap : $user->nik;

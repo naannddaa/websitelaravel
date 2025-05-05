@@ -59,9 +59,14 @@
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
 
-                                        <a href="{{ route('akun.destroy', $a->id_rtrw) }}" class="btn btn-danger btn-sm delete" title="Hapus Data">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
+                                        <form action="{{ route('akun.destroy', $a->id_rtrw) }}" method="POST" class="d-inline delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm delete" title="Hapus Data">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
+
                                     </td>
                                 </tr>
                             @endif
@@ -74,7 +79,7 @@
             <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form id="modalForm" method="POST">
+                        <form id="modalForm" action="{{ route('akunrw.store') }}" method="POST">
                             @csrf
                             <div class="modal-header">
                                 <h4 class="modal-title" id="modalTitle">Tambah Akun Ketua RW</h4>

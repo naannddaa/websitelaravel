@@ -1,0 +1,64 @@
+.berita-detail {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.card-berita-detail {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-berita-detail img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.card-body-berita-detail {
+    text-align: left;
+}
+
+.card-title-berita-detail {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    
+}
+
+.card-text-berita-detail {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.card-body-berita-detail small.text-muted {
+    display: block;
+    font-size: 15px;
+    color: #6c757d; 
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 500; 
+}
+
+.btn-berita {
+    background-color: #1090cb;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 30px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-berita:hover {
+    background-color: #0b7cb8;
+}

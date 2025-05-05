@@ -7,6 +7,8 @@ use App\Models\master_akun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 
 class  ApiRegisController extends Controller
 {
@@ -40,18 +42,35 @@ class  ApiRegisController extends Controller
             'nik' => 'required|string',
             'password' => 'required|string'
         ];
-        $request->validate($validator);
-        $user = master_akun::where('nik', $request->nik)->first();
-        if ($user && Hash::check($request->password, $user->password)) {
-            $token = $user->createToken('personal access token')->plainTextToken;
-            $response = [
-                'master_akun' => $user,
-                'token' => $token
-            ];
+         $user = master_akun::where('nik', $request->nik)->first();
 
-            return response()->json($response, 200);
-        }
-        return response()->json(['message' => 'Invalid NIK or password'], 401);
+    // Cek apakah user ditemukan dan password cocok
+    if ($user && Hash::check($request->password, $user->password)) {
+        // Generate token
+        $token = $user->createToken('personal access token')->plainTextToken;
+
+        // Ambil data penduduk manual dari tabel
+        $penduduk = DB::table('master_penduduks')->where('nik', $user->nik)->first();
+        $nama = $penduduk ? $penduduk->nama_lengkap : $user->nik;
+
+        // Siapkan response
+        $response = [
+            'master_akun' => [
+                'nik' => $user->nik,
+                'id_penduduk' => $user->id_penduduk,
+                'nama' => $nama,
+                // Tambahkan field tambahan jika perlu
+            ],
+            'token' => $token
+        ];
+
+        return response()->json($response, 200);
     }
 
+    // Jika gagal login
+    return response()->json([
+        'message' => 'NIK atau password salah.'
+    ], 401);
+
+}
 }

@@ -1,8 +1,13 @@
+<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Digital Village
+          <img src="{{ asset('storage/logo/logo.png') }}" alt="Logo Desa" class="logo-img">
+          <div class="logo-text ms-3">
+              <h4 class="mb-0">Desa Kalipait</h4>
+              <small>Kabupaten Banyuwangi</small>
+          </div>
         </a>
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

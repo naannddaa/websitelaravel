@@ -153,7 +153,7 @@ class masterAkunRwController extends Controller
     public function destroy($id_rtrw)
     {
         master_rw::where('id_rtrw', $id_rtrw)->delete();
-        return redirect('akunrw')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('akunrw')->with('success', 'Data berhasil dihapus');
     }
 
     // memgambil data untuk tambah data berdasarkan nama

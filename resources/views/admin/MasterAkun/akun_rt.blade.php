@@ -22,7 +22,7 @@
 
             {{-- Tambah Data --}}
             <div class="pb-3" style="text-align:right;">
-                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" id="addDataBtn">+ Tambah Data</a>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" id="addDataBtn" data-id="{{ $id_rtrw }}">+ Tambah Data</a>
             </div>
 
             {{-- Display Data --}}
@@ -83,8 +83,8 @@
                             <form id="modalForm" action="{{ route('akun.store') }}" method="POST">
                                 @csrf
                                 <div class="col-12">
-                                    <label class="form-label" hidden>ID Akun RT</label>
-                                    <input type="text" class="form-control" name='id_rtrw' id="id_rtrw" value="{{$id_rtrw}}" readonly hidden>
+                                    <label class="form-label" hidden >ID Akun RT</label>
+                                    <input type="text" class="form-control" name='id_rtrw' id="id_rtrw" value="{{$id_rtrw}}" hidden>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Nama Ketua RT</label>
