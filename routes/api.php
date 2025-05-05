@@ -32,5 +32,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [ApiRegisController::class, 'register']);
 Route::post('/login', [ApiRegisController::class, 'login']);
 Route::get('/statusdiajukan', [status_diajukan_controller::class, 'index']);
+    
 Route::get('/getprofil', [Getprofil::class, 'index']);
 
