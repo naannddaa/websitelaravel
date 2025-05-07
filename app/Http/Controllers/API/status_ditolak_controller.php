@@ -11,7 +11,7 @@ class status_ditolak_controller extends Controller
 {
     public function index(Request $request)
 {
-    $status = $request->query('status', 'ditolak'); // default ditolak kalau kosong
+    $status = $request->query('status', 'ditolak');
 
     $data = DB::table('master_pengajuan')
         ->join('master_surat', 'master_pengajuan.id_surat', '=', 'master_surat.id_surat')
