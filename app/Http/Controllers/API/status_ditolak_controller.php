@@ -18,7 +18,9 @@ class status_ditolak_controller extends Controller
         ->select(
             'master_surat.nama_surat',
             'master_pengajuan.status',
-            'master_pengajuan.keterangan_ditolak'
+            'master_pengajuan.keterangan_ditolak',
+            'master_pengajuan.updated_at',
+
         )
         ->where('master_pengajuan.status', $status)
 

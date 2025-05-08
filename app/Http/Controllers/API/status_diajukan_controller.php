@@ -24,7 +24,8 @@ class status_diajukan_controller extends Controller
         ->select(
             'master_surat.nama_surat',
             'master_pengajuan.tanggal_diajukan',
-            'master_pengajuan.status'
+            'master_pengajuan.status',
+           
         )
         ->where('master_pengajuan.nik', $nik)
         ->where('master_pengajuan.status', 'disetujui rt') // <== hanya status ini
