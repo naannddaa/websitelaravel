@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\ApiRegisController;
 use App\Http\Controllers\API\ApiLoginController;
 use App\Http\Controllers\API\status_diajukan_controller;
+use App\Http\Controllers\API\status_selesai_controller;
 use App\Http\Controllers\API\Getprofil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +37,7 @@ Route::middleware('api')->group(function(){
     Route::get('/statusdiajukan', [status_diajukan_controller::class, 'index']);
     Route::get('/getprofil', [Getprofil::class, 'index']);
     Route::get('/statusditolak', [status_ditolak_controller::class, 'index']);
-
+    Route::get('/statusselesai', [status_selesai_controller::class, 'index']);
 
 });
 
