@@ -29,7 +29,7 @@
 
             <!-- Tabel Berita -->
             <div class="p-2 bg-body ">
-                <table class="table  table-hover">
+                <table class="display expandable-table dataTable no-footer" style="width: 100%">
                     <thead class="table-primary">
                         <tr>
                             <th class="col-md-1 text-center">No</th>

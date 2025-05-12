@@ -52,7 +52,7 @@ class Master_suratController extends Controller
     {
         $request->validate([
             'id_surat' => 'required|unique:master_surat,id_surat',
-            'nama_surat' => 'required|string|max:255',
+            'nama_surat' => 'required|string|max:255|unique:master_surat,nama_surat',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 

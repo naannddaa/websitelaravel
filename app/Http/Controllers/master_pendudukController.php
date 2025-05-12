@@ -17,6 +17,9 @@ class master_pendudukController extends Controller
         $query->where('no_kk', $request->nokk);
     }
 
+    $query->orderBy('no_kk')
+          ->orderByRaw("FIELD(status_keluarga, 'Kepala Keluarga', 'Istri', 'Anak')");
+
     $master_penduduk = $query->paginate(10); // atau sesuaikan jumlah per halaman
 
     return view('admin.master_penduduk.index', compact('master_penduduk'));

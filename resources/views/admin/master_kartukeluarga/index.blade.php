@@ -11,12 +11,14 @@
             <h2 class="text-start mb-4">Data Kepala Keluarga</h2>
         </div>
         <!-- FORM PENCARIAN -->
-    <div class="pb-3">
-      <form class="d-flex" action="{{ url('master_kartukeluarga') }}" method="get">
-          <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Cari" aria-label="Search">
-          <button class="btn btn-outline-primary" type="submit">Cari</button>
-      </form>
-    </div>
+    <form class="d-flex mb-3" action="{{ route('kartukeluarga.view') }}" method="get" id="form-cari">
+        <input class="form-control me-1" type="search" name="katakunci"
+            value="{{ Request::get('katakunci') }}"
+            placeholder="Cari No KK / Nama Kepala Keluarga"
+            aria-label="Search"
+            id="input-cari" autocomplete="off">
+        <button class="btn btn-outline-primary" type="submit">Cari</button>
+    </form>
 
 
 {{-- tambah data start --}}
@@ -66,27 +68,27 @@
             </div>
             <div class="col">
               <label class="form-label">Kode Pos</label>
-              <input type="text" class="form-control" id="kode_pos" name="kode_pos" required>
+              <input type="text" value="68484" class="form-control" id="kode_pos" name="kode_pos" required readonly>
             </div>
           </div>
           <div class="mb-3 row">
             <div class="col">
               <label class="form-label">Desa</label>
-              <input type="text" class="form-control" id="desa" name="desa" required>
+              <input type="text" value="Kalipait" class="form-control" id="desa" name="desa" required readonly>
             </div>
             <div class="col">
               <label class="form-label">Kecamatan</label>
-              <input type="text" class="form-control" id="kecamatan" name="kecamatan" required>
+              <input type="text" value="Tegaldlimo" class="form-control" id="kecamatan" name="kecamatan" required readonly>
             </div>
           </div>
           <div class="mb-3 row">
             <div class="col">
               <label class="form-label">Kabupaten</label>
-              <input type="text" class="form-control" id="kabupaten" name="kabupaten" required>
+              <input type="text" value="Banyuwangi" class="form-control" id="kabupaten" name="kabupaten" required readonly>
             </div>
             <div class="col">
               <label class="form-label">Provinsi</label>
-              <input type="text" class="form-control" id="provinsi" name="provinsi" required>
+              <input type="text" value="Jawa Timur" class="form-control" id="provinsi" name="provinsi" required readonly>
             </div>
           </div>
           <div class="mb-3">
@@ -106,9 +108,9 @@
 {{-- end modal dan tambah data --}}
 
         <div class="table-responsive">
-            <table class="table">
+            <table class="display expandable-table dataTable no-footer" style="width: 100%">
                 <thead class="table-primary">
-                    <tr>
+                    <tr role="row">
                         <th>No</th>
                         <th>No Kartu Keluarga</th>
                         <th>Nama Kepala Keluarga</th>

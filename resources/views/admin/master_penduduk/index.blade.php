@@ -20,12 +20,19 @@
         </form>
       </div>
 
+      <!-- Baris tombol -->
+      <div class="d-flex justify-content-between align-items-center pb-3">
+        <a href="{{ url('admin/master_penduduk/cetak-draft-kk?nokk=' . $no_kk) }}" target="_blank" class="btn btn-success">
+            <i class="bi bi-printer-fill"></i>  Draft KK
+        </a>
+
       <!-- Tombol Tambah -->
       <div class="pb-3 text-end">
         <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="bi bi-person-check-fill"></i> Tambah Anggota Keluarga
         </a>
       </div>
+    </div>
 
       <!-- Modal Tambah/Edit -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -184,13 +191,12 @@
               <button type="submit" class="btn btn-primary" form="anggotaForm">Simpan</button>
             </div>
           </div>
-        </div>
       </div>
     </div>
 
       <!-- Tabel Anggota Keluarga -->
       <div class="table-responsive">
-        <table class="table">
+        <table class="display expandable-table dataTable no-footer" style="width: 100%">
           <thead class="table-primary">
             <tr>
               <th>No</th>

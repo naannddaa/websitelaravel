@@ -70,3 +70,13 @@ $(document).ready(function () {
 document.getElementById("tanggal_dibuat").addEventListener("focus", function (e) {
     this.showPicker && this.showPicker(); // Untuk browser yang support showPicker()
 });
+
+const input = document.getElementById('input-cari');
+    let timeout = null;
+
+input.addEventListener('input', function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        document.getElementById('form-cari').submit();
+    }, 500); // tunggu 500ms setelah mengetik terakhir
+});

@@ -26,7 +26,7 @@
 
             {{-- display data --}}
             <div class="table-responsive">
-                <table class="table">
+                <table class="display expandable-table dataTable no-footer" style="width: 100%">
                     <thead class="table-primary">
                         <tr>
                             <th>No</th>
@@ -39,7 +39,7 @@
                     </thead>
                     <tbody>
                         @foreach ($dataakunrw as $a)
-                            @if (is_null($a->rt))
+                            
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $a->nik }}</td>
@@ -69,12 +69,15 @@
 
                                     </td>
                                 </tr>
-                            @endif
+                           
                         @endforeach
                     </tbody>
                 </table>
             </div>
-
+            <div class="mt-3">
+                {{ $dataakunrw->withQueryString()->links() }}
+            </div>
+            
             {{-- modal --}}
             <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -90,9 +93,9 @@
                                 <input type="hidden" name="id_rtrw" id="id_rtrw" value="{{ $id_rtrw }}">
 
                                 <div class="mb-3">
-                                    <label class="form-label">Nama Ketua RW</label>
-                                    <select class="form-control" name="nama" id="nama" required>
-                                        <option value="">Pilih Nama</option>
+                                    <label for="nama" class="form-label">Nama Ketua RW</label>
+                                    <select class="form-select select-nama" name="nama" id="nama" required>
+                                        <option disabled selected value="">Pilih Nama</option>
                                         @foreach ($data as $value)
                                             <option 
                                                 value="{{ $value->nama_lengkap }}"
@@ -132,8 +135,38 @@
             {{-- scripts --}}
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="{{ asset('js/rw.js') }}"></script>
+            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+            <!-- Select2 JS -->
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+            <style>
+                .select2-container .select2-selection--single {
+                    height: 38px;
+                    padding: 6px 12px;
+                    border: 1px solid #ced4da;
+                    border-radius: 0.375rem;
+                }
+
+                .select2-container--default .select2-selection--single .select2-selection__rendered {
+                    line-height: 24px;
+                }
+
+                .select2-container--default .select2-selection--single .select2-selection__arrow {
+                    height: 38px;
+                    right: 10px;
+                }
+
+                .select2-dropdown {
+                    z-index: 1056 !important; /* lebih tinggi dari modal */
+                }
+            </style>
+
+
+
         </div>
     </div>
+
 </body>
 </html>
 @endsection

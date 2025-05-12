@@ -86,4 +86,25 @@ $(document).ready(function () {
         $("#nik").val(nik);
         $("#rw").val(rw);
     });
+
+});
+
+$(document).ready(function () {
+    $(".select-nama").select2({
+        placeholder: "Pilih Nama",
+        allowClear: false,
+        width: "100%",
+        dropdownParent: $("#modal"),
+    });
+
+    $("#nama").on("change", function () {
+        let selected = $(this).find(":selected");
+        $("#nik").val(selected.data("nik") || "");
+        $("#rw").val(selected.data("rw") || "");
+    });
+
+    // Autofokus saat modal dibuka
+    $("#modal").on("shown.bs.modal", function () {
+        $("#nama").select2("open");
+    });
 });

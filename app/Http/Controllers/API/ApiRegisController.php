@@ -59,7 +59,6 @@ class  ApiRegisController extends Controller
                 'nik' => $user->nik,
                 'id_penduduk' => $user->id_penduduk,
                 'nama' => $nama,
-                // Tambahkan field tambahan jika perlu
             ],
             'token' => $token
         ];

@@ -55,6 +55,10 @@
                 <li class="nav-item">
                     <a href="{{ url('admin/suratmasuk') }}" class="nav-link">Surat Masuk</a>
                 </li>
+                 <li class="nav-item">
+                     <a href="{{ route('suratselesai.index') }}" class="nav-link">Surat Selesai</a>
+                 </li>
+
                 <li class="nav-item">
                     <a href="{{ url('admin/suratditolak') }}" class="nav-link">Surat Ditolak</a>
                 </li>

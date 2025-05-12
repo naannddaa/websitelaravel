@@ -1,41 +1,56 @@
-function bukaModalPenolakan(idPengajuan) {
-    // Tutup semua modal yang masih kebuka (termasuk modal detail)
-    var modalDetail = document.getElementById("modalDetail-" + idPengajuan);
-    var bootstrapModal = bootstrap.Modal.getInstance(modalDetail);
+function bukaModalPenolakan(event, idPengajuan) {
+    event.preventDefault();
+
+    // Ambil tombol yang diklik
+    const button = event.currentTarget;
+
+    const route = button.getAttribute("data-route");
+
+    const modalDetail = document.getElementById("modalDetail-" + idPengajuan);
+    const bootstrapModal = bootstrap.Modal.getInstance(modalDetail);
     if (bootstrapModal) {
         bootstrapModal.hide();
+        bootstrapModal._element.classList.remove("show");
+        document.body.classList.remove("modal-open");
+        document
+            .querySelectorAll(".modal-backdrop")
+            .forEach((el) => el.remove());
     }
 
-    // Atur action form-nya sesuai ID pengajuan
     const form = document.getElementById("formPenolakan");
-    form.action = "{{ route('pengajuan.masuk') }}/" + idPengajuan + "/tolak";
+    form.action = route;
 
-    // Reset input alasan
     document.getElementById("inputAlasan").value = "";
 
-    // Tampilkan modal penolakan
-    var modalPenolakan = new bootstrap.Modal(
+    const modalPenolakan = new bootstrap.Modal(
         document.getElementById("modalPenolakan")
     );
     modalPenolakan.show();
 }
 
-function setujuiPengajuan(idPengajuan) {
-    // Buat form sementara
+function setujuiPengajuan(event, idPengajuan) {
+    event.preventDefault();
+
+    const button = event.currentTarget;
+    const route = button.getAttribute("data-route");
+
     const form = document.createElement("form");
     form.method = "POST";
-    form.action = "{{ route('pengajuan.masuk') }}/" + idPengajuan + "/setuju"; // <-- pastikan route ini ada!
+    form.action = route;
 
-    // Tambahkan CSRF token
+    // CSRF token
     const csrf = document.createElement("input");
     csrf.type = "hidden";
     csrf.name = "_token";
-    csrf.value = "{{ csrf_token() }}";
+    csrf.value = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
     form.appendChild(csrf);
 
     document.body.appendChild(form);
     form.submit();
 }
+
 
 function confirmDelete(id) {
     Swal.fire({
@@ -54,4 +69,3 @@ function confirmDelete(id) {
         }
     });
 }
-

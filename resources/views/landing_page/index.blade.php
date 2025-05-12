@@ -31,19 +31,19 @@
                <div class="menu">
     <ul>
         <li>
-            <a href="#hero-section" class="nav-link ">Home</a>
+            <a href="#hero-section" class="nav-link ">Beranda</a>
         </li>
         <li>
-            <a href="#service-section" class="nav-link">Service</a>
+            <a href="#service-section" class="nav-link">Layanan</a>
          </li>
         <li>
-           <a href="#profile-section" class="nav-link">Profile</a>
+           <a href="#profile-section" class="nav-link">Perangkat</a>
         </li>
         <li>
             <a href="#berita-section" class="nav-link">Berita</a>
         </li>
         <li>
-            <a href="#footer-section" class="nav-link">About us</a>
+            <a href="#footer-section" class="nav-link">Tentang Kami</a>
         </li>
         <li>
             <a href="{{ route('login.index') }}" class="nav-link">Login</a>

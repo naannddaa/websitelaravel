@@ -13,17 +13,23 @@ class masterAkunRtController extends Controller
     public function index(Request $request)
     {
         $katakunci = $request->katakunci ?? '';
-        $jumlahbaris = 10;
-
-        if (strlen($katakunci)) {
-            $dataakunrt = master_rt::where('id_rtrw', 'like', "%$katakunci%")
-                ->orWhere('nama', 'like', "%$katakunci%")
-                ->orWhere('nik', 'like', "%$katakunci%")
-                ->orWhere('rt', 'like', "%$katakunci%")
-                ->paginate($jumlahbaris);
-        } else {
-            $dataakunrt = master_rt::orderBy('id_rtrw', 'desc')->paginate($jumlahbaris);
+        $jumlahbaris = 10; // Ubah ke jumlah baris realistik, contoh 10 per halaman
+    
+        $query = master_rt::query();
+    
+        if (!empty($katakunci)) {
+            $query->where(function ($q) use ($katakunci) {
+                $q->where('id_rtrw', 'like', "%$katakunci%")
+                  ->orWhere('nama', 'like', "%$katakunci%")
+                  ->orWhere('nik', 'like', "%$katakunci%")
+                  ->orWhere('rt', 'like', "%$katakunci%");
+            });
         }
+    
+        $dataakunrt = master_rt::whereNotNull('rt')
+        ->orderBy('id_rtrw', 'desc')
+        ->paginate($jumlahbaris);
+    
 
         // Generate ID otomatis
         $currentDate = now();

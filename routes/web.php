@@ -15,6 +15,7 @@ use App\Http\Controllers\masterAkunRtController;
 use App\Http\Controllers\masterAkunRwController;
 use App\Http\Controllers\SuratmasukController;
 use App\Http\Controllers\LandingBeritaController;
+use App\Http\Controllers\SuratSelesaiController;
 use App\Http\Controllers\generate;
 
 // Dashboard
@@ -55,7 +56,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 
     // MASTER KARTU KELUARGA
-    Route::get('master_kartukeluarga', [master_kartukeluargaController::class, 'index']);
+    Route::get('master_kartukeluarga', [master_kartukeluargaController::class, 'index'])->name('kartukeluarga.view');
     Route::post('master_kartukeluarga/masuk', [master_kartukeluargaController::class, 'masuk'])->name('kartukeluarga.masuk');
     Route::put('master_kartukeluarga/{no_kk}', [master_kartukeluargaController::class, 'update'])->name('kartukeluarga.update');
     Route::get('master_kartukeluarga/{no_kk}', [master_kartukeluargaController::class, 'delete'])->name('kartukeluarga.delete');
@@ -102,9 +103,14 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/suratditolak', [SuratditolakController::class, 'index'])->name('suratditolak.tampil');
     Route::delete('/suratditolak/{id_pengajuan}/delete', [SuratditolakController::class, 'destroy'])->name('suratditolak.hapus');
 
+    Route::get('/surat-selesai', [SuratSelesaiController::class, 'index'])->name('suratselesai.index');
+    
     // MASTER SURAT
     Route::get('/mastersurat', [Master_suratController::class, 'index'])->name('mastersurat.index');
     Route::post('/mastersurat/masuk', [Master_suratController::class, 'store'])->name('mastersurat.store');
     Route::put('/mastersurat/update/{id}', [Master_suratController::class, 'update'])->name('mastersurat.update');
     Route::delete('/mastersurat/delete/{id}', [Master_suratController::class, 'destroy'])->name('mastersurat.destroy');
+
+    Route::get('suratmasuk/{id}/cetak', [generate::class, 'generateAndStorePdf']);
+
 });

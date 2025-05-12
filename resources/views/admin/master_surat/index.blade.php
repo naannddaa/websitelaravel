@@ -26,7 +26,7 @@
 
             {{-- Tabel Data --}}
             <div class="table-responsive">
-                <table class="table">
+                <table class="display expandable-table dataTable no-footer" style="width: 100%">
                     <thead class="table-primary">
                         <tr>
                             <th>No</th>

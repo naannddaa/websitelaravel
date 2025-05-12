@@ -16,17 +16,25 @@ class masterAkunRwController extends Controller
     {
         $katakunci = $request->katakunci ?? '';
         $jumlahbaris = 10;
+        
+        $dataakunrw = master_rw::whereNull('rt');
 
         if (strlen($katakunci)) {
-            $dataakunrw = master_rw::where('id_rtrw', 'like', "%$katakunci%")
-            ->orWhere('nama', 'like', "%$katakunci%")
-            ->orWhere('nik', 'like', "%$katakunci%")
-            ->orWhere('rw', 'like', "%$katakunci%")
-            ->paginate($jumlahbaris);
+            $dataakunrw = master_rw::whereNull('rt')
+                ->where(function($query) use ($katakunci) {
+                    $query->where('id_rtrw', 'like', "%$katakunci%")
+                        ->orWhere('nama', 'like', "%$katakunci%")
+                        ->orWhere('nik', 'like', "%$katakunci%")
+                        ->orWhere('rw', 'like', "%$katakunci%");
+                })
+                ->orderBy('id_rtrw', 'desc')
+                ->paginate($jumlahbaris);
         } else {
-            $dataakunrw = master_rw::orderBy('id_rtrw', 'desc')->paginate($jumlahbaris);
+            $dataakunrw = master_rw::whereNull('rt')
+                ->orderBy('id_rtrw', 'desc')
+                ->paginate($jumlahbaris);
         }
-        $dataakunrw = master_rw::whereNull('rt')->get();
+        
 
 
         // membuat id autoincrement

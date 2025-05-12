@@ -3,6 +3,7 @@
 @section('title', 'Surat Masuk')
 <!doctype html>
 <html lang="en">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <body class="bg-light">
     <div class="container-scroller">
@@ -21,7 +22,7 @@
 
             {{-- Display Data --}}
             <div class="table-responsive">
-                <table class="table">
+                <table class="display expandable-table dataTable no-footer" style="width: 100%">
                     <thead class="table-primary">
                         <tr>
                             <th>No</th>
@@ -53,6 +54,9 @@
                                         <i class="bi bi-trash-fill" ></i>
                                     </button>
                                 </form>
+                                <a href="{{ url('admin/suratmasuk/'.$a->id_pengajuan.'/cetak') }}" target="_blank" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-printer-fill"></i>
+                                </a>
                             </td>
                         </tr>
 
@@ -127,10 +131,13 @@
 
                                         </div>
                                         <div class="modal-footer d-flex justify-content-end gap-2">
-                                            <button type="button" class="btn btn-danger" onclick="bukaModalPenolakan({{ $a->id_pengajuan }})">Tolak</button>
+                                            <button type="button" class="btn btn-danger" onclick="bukaModalPenolakan(event, {{ $a->id_pengajuan }})" data-route="{{ route('pengajuan.tolak', $a->id_pengajuan) }}">Tolak</button>
 
-                                            <button type="button" class="btn btn-primary" onclick="setujuiPengajuan({{ $a->id_pengajuan }})">Setujui</button>
-
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="setujuiPengajuan(event, {{ $a->id_pengajuan }})"
+                                                data-route="{{ route('pengajuan.setuju', $a->id_pengajuan) }}">
+                                                Setujui
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -144,6 +151,7 @@
 
             {{-- Modal Penolakan (opsional jika mau dipakai) --}}
             <div class="modal fade" id="modalPenolakan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
                 <div class="modal-dialog">
                     <div class="modal-content">
                         
@@ -156,7 +164,7 @@
                             <form id="formPenolakan" method="POST">
                                 @csrf
                                 <div class="col-12 mb-3">
-                                    <textarea rows="4" class="form-control" name="alasan" id="inputAlasan"></textarea>
+                                    <textarea rows="4" class="form-control" name="keterangan_ditolak" id="inputAlasan"></textarea>
                                 </div>
                                 <div class="modal-footer d-flex justify-content-end">
                                     <button type="submit" class="btn btn-danger">Tolak Pengajuan</button>
@@ -172,9 +180,11 @@
         </div> {{-- end table-container --}}
     </div>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('js/suratmasuk.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset('js/suratmasuk.js') }}"></script>
 
+    
 </body>
 </html>
 @endsection
