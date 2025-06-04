@@ -110,12 +110,12 @@
     <div class="content">
       Desa Kalipait Kecamatan Tegaldlimo Kabupaten Banyuwangi dengan ini menerangkan bahwa:
       <table class="table">
-        <tr><td>Nama</td><td>: Riska Naira</td></tr>
-        <tr><td>Tempat/Tanggal Lahir</td><td>: Meunjee, 05-10-2005</td></tr>
-        <tr><td>Jenis Kelamin</td><td>: Perempuan</td></tr>
+        <tr><td>Nama</td><td>: {{ $data->nama_lengkap }}</td></tr>
+        <tr><td>Tempat/Tanggal Lahir</td><td>: {{ $data->tempat_tanggal_lahir }}</td></tr>
+        <tr><td>Jenis Kelamin</td><td>: {{ $data->jenis_kelamin }}</td></tr>
         <tr><td>Status</td><td>: Siswa</td></tr>
-        <tr><td>Agama</td><td>: Islam</td></tr>
-        <tr><td>Alamat</td><td>: Gampong Meunjee Kecamatan Glumpang Tiga Kabupaten Pidie</td></tr>
+        <tr><td>Agama</td><td>: {{ $data->agama }}</td></tr>
+        <tr><td>Alamat</td><td>: {{ $data->alamat }}</td></tr>
       </table>
       <p style="text-align: justify;">
         Benar yang namanya tersebut diatas adalah Penduduk Desa Kalipait Kecamatan Tegaldlimo Kabupaten Banyuwangi, dan menurut amatan kami benar yang bersangkutan berasal dari keluarga miskin.
@@ -125,10 +125,10 @@
     </div>
 
     <div class="ttd">
-      Kalipait, 30 April 2018<br>
+      Kalipait, {{ $data->updated }}<br>
       Kepala Desa Kalipait<br><br><br><br>
       <b><u>Supriyono</u></b>
     </div>
   </div>
 </body>
-</html>
+</html> 

@@ -9,52 +9,40 @@
     <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+</head>     
 
-</head>
+    <body>
 
-<body>
-
-    <section class="header-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="logo-container d-flex align-items-center">
-                        <img src="{{ asset('storage/logo/logo.png') }}" alt="Logo Desa" class="logo-img">
-                        <div class="logo-text ms-3">
-                            <h4 class="mb-0">Desa Kalipait</h4>
-                            <small>Kabupaten Banyuwangi</small>
-                        </div>
-                    </div>
-                </div>
-                                
-                <div class="col-lg-6">
-               <div class="menu">
-    <ul>
-        <li>
-            <a href="#hero-section" class="nav-link ">Beranda</a>
-        </li>
-        <li>
-            <a href="#service-section" class="nav-link">Layanan</a>
-         </li>
-        <li>
-           <a href="#profile-section" class="nav-link">Perangkat</a>
-        </li>
-        <li>
-            <a href="#berita-section" class="nav-link">Berita</a>
-        </li>
-        <li>
-            <a href="#footer-section" class="nav-link">Tentang Kami</a>
-        </li>
-        <li>
-            <a href="{{ route('login.index') }}" class="nav-link">Login</a>
-        </li>
-    </ul>
+        <section class="header-section">
+    <div class="container">
+        <div class="row">
+           <div class="col-lg-6 d-flex align-items-center justify-content-between">
+    <div class="logo-container d-flex align-items-center">
+        <img src="{{ asset('storage/logo/logo.png') }}" alt="Logo Desa" class="logo-img">
+        <div class="logo-text ms-3">
+            <h4 class="mb-0">Desa Kalipait</h4>
+            <small>Kabupaten Banyuwangi</small>
+        </div>
+    </div>
+    <button class="menu-toggle d-md-none" onclick="toggleMenu()">☰</button>
 </div>
 
-                </div>
+                  <div class="col-lg-6">
+               <nav class="menu d-none d-md-block">
+                   <ul class="d-flex flex-column flex-md-row">
+                      <li><a href="#hero-section">Beranda</a></li>
+                      <li><a href="#section-1-first">Layanan</a></li>
+                      <li><a href="#profile-section">Profile</a></li>
+                       <li><a href="#berita-section">Berita</a></li>
+                       <li><a href="#footer-section">Tentang Kami</a></li>
+                     <li><a href="{{ route('login.index') }}" class="nav-link">Login</a></li>
+                    </ul>
+               </nav>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <section class="hero-section" id="hero-section">
         <div class="container">
             <div class="row align-items-center">
@@ -71,10 +59,10 @@
                     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{ asset('storage/coroseul/1.png') }}" alt="Slide 1">
+                                <img src="{{ asset('image/coroseul/flash1.png') }}" alt="Slide 1">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('storage/coroseul/2.png') }}" alt="Slide 2">
+                                <img src="{{ asset('image/coroseul/flash2.png') }}" alt="Slide 2">
                             </div>
                         </div>
     
@@ -98,14 +86,12 @@
         </div>
     </section>
     
-    
-    
     <section class="service-section" id="service-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                    <div class="inner">
-                        <img src="{{ asset('image/1.png') }}" alt="">
+                        <img src="{{ asset('image/service/1.png') }}" alt="">
                         <div class="service">
                             <h1>Website</h1>
                             <p>
@@ -116,7 +102,7 @@
                 </div>
                 <div class="col-lg-3">
                      <div class="inner">
-                         <img src="{{ asset('image/2.png') }}" alt="">
+                         <img src="{{ asset('image/service/2.png') }}" alt="">
                          <div class="service">
                              <h1>Pengajuan Surat</h1>
                              <p>
@@ -127,7 +113,7 @@
                   </div>
                   <div class="col-lg-3">
                      <div class="inner">
-                         <img src="{{ asset('image/3.png') }}" alt="">
+                         <img src="{{ asset('image/service/3.png') }}" alt="">
                          <div class="service">
                              <h1>Berita</h1>
                              <p>
@@ -138,7 +124,7 @@
                   </div>
                   <div class="col-lg-3">
                      <div class="inner">
-                         <img src="{{ asset('image/4.png') }}" alt="">
+                         <img src="{{ asset('image/service/4.png') }}" alt="">
                          <div class="service">
                              <h1>Aplikasi Mobile </h1>
                              <p>
@@ -212,9 +198,6 @@
         </div>
     </section>
     
-    
-      
-    
     <section class="profile-section" id="profile-section">
         <h2>Perangkat Desa</h2>
         <p>Perangkat Desa Kalipait periode tahun 2025–2029</p>
@@ -222,7 +205,7 @@
         {{-- Kepala Desa --}}
         <div class="kepala-desa">
           <div class="card">
-            <img src="{{ asset('storage/profile/kepaladesa.jpg') }}" alt="Kepala Desa">
+            <img src="{{ asset('image/profile/kepaladesa.jpg') }}" alt="Kepala Desa">
             <h4>Supriyono.</h4>
             <p>Kepala Desa Kalipait 2025–2029</p>
           </div>
@@ -231,42 +214,42 @@
         {{-- 8 perangkat lain --}}
         <div class="container perangkat-desa">
           <div class="card">
-            <img src="{{ asset('storage/profile/ADI.jpg') }}" alt="Wakil">
+            <img src="{{ asset('image/profile/ADI.jpg') }}" alt="Wakil">
             <h4>Adi Jatman,S.H</h4>
             <p>Kepala Dusun Purworejo  </p>
           </div>
           <div class="card">
-            <img src="{{ asset('storage/profile/misyadi.jpg') }}" alt="Sekretaris">
+            <img src="{{ asset('image/profile/misyadi.jpg') }}" alt="Sekretaris">
             <h4>Misyadi</h4>
             <p> Kepala Dusun Kutorejo </p>
           </div>
           <div class="card">
-            <img src="{{ asset('storage/profile/abal.jpg') }}" alt="Bendahara">
+            <img src="{{ asset('image/profile/abal.jpg') }}" alt="Bendahara">
             <h4>Abal Mudlofar,S.Pd</h4>
             <p>Sekretaris Desa Kalipait</p>
           </div>
           <div class="card">
-            <img src="{{ asset('storage/profile/luluk.jpg') }}" alt="Pemerintahan">
+            <img src="{{ asset('image/profile/luluk.jpg') }}" alt="Pemerintahan">
             <h4>Luluk Uswatun Hasanah</h4>
             <p>Kepala Seksi Kesejahteraan Rakyat</p>
           </div>
           <div class="card">
-            <img src="{{ asset('storage/profile/sumarji.jpg') }}" alt="Kesejahteraan">
+            <img src="{{ asset('image/profile/sumarji.jpg') }}" alt="Kesejahteraan">
             <h4>Sumarji</h4>
             <p>Kepala Seksi Pemerintahan</p>
           </div>
           <div class="card">
-            <img src="{{ asset('storage/profile/yustika.jpg') }}" alt="Pelayanan">
+            <img src="{{ asset('image/profile/yustika.jpg') }}" alt="Pelayanan">
             <h4>Yustika Nova Anggraini</h4>
             <p>Kepala Urusan Umum</p>
           </div>
           <div class="card">
-            <img src="{{ asset('storage/profile/melin.jpg') }}" alt="Umum">
+            <img src="{{ asset('image/profile/melin.jpg') }}" alt="Umum">
             <h4>Melin Efraini</h4>
             <p>Kepala Urusan Keuangan</p>
           </div>
           <div class="card">
-            <img src="{{ asset('storage/profile/abd.jpg') }}" alt="Keuangan">
+            <img src="{{ asset('image/profile/abd.jpg') }}" alt="Keuangan">
             <h4>M. Abdul Ghofur</h4>
             <p>Kepala Urusan Perencanaan</p>
           </div>
@@ -297,7 +280,6 @@
         </div>
     </section>
     
-    
     <footer class="footer-section" id="footer-section">
         <div class="container">
             <div class="row">
@@ -311,13 +293,13 @@
                     <hr style="width: 50px; border: 1px solid #fff; margin: 10px auto;">
                     <div class="social-icons">
                         <a href="https://www.instagram.com/desakalipait/" class="social-icon" target="_blank">
-                            <img src="{{ asset('storage/icons/instagram.png') }}" alt="Instagram">
+                            <img src="{{ asset('image/icons/instagram.png') }}" alt="Instagram">
                         </a>
                         <a href="mailto:desa.kalipait@gmail.com" class="social-icon">
-                            <img src="{{ asset('storage/icons/email.png') }}" alt="Email">
+                            <img src="{{ asset('image/icons/email.png') }}" alt="Email">
                         </a>
                         <a href="https://wa.me/6289526432934" class="social-icon" target="_blank">
-                            <img src="{{ asset('storage/icons/whatsapp.png') }}" alt="WhatsApp">
+                            <img src="{{ asset('image/icons/whatsapp.png') }}" alt="WhatsApp">
                         </a>
                     </div>
                 </div>
@@ -340,11 +322,32 @@
         </div>
     </footer>
     
+       <script>
+    function toggleMenu() {
+        const menu = document.querySelector('.menu');
+        menu.classList.toggle('d-none');
+        menu.classList.toggle('mobile-menu-open');
+    }
 
+    // Tutup menu jika klik di luar area menu (opsional tapi direkomendasikan)
+    document.addEventListener('click', function (e) {
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+
+        if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+            if (!menu.classList.contains('d-none')) {
+                menu.classList.add('d-none');
+                menu.classList.remove('mobile-menu-open');
+            }
+        }
+    });
+</script>
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('js/landingpage.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+ 
     
 </body>
 </html>

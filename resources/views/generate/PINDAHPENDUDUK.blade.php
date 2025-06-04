@@ -101,21 +101,21 @@
 
     <p>Memberi Keterangan Bahwa :</p>
     <table class="field-table">
-      <tr><td>Nama</td><td>: Patiuna Womakil</td></tr>
-      <tr><td>Tempat / Tanggal Lahir</td><td>: Padang Alang, 11 November 1993</td></tr>
-      <tr><td>Jenis Kelamin</td><td>: Perempuan</td></tr>
-      <tr><td>Alamat</td><td>: RT.10 / RW.05, DUSUN III, Desa Padang Alang, Kecamatan Alor Selatan</td></tr>
-      <tr><td>Pekerjaan</td><td>: Tani / Peladang</td></tr>
+      <tr><td>Nama</td><td>: {{ $data->nama_lengkap }}</td></tr>
+      <tr><td>Tempat / Tanggal Lahir</td><td>: {{ $data->tempat_tanggal_lahir }}</td></tr>
+      <tr><td>Jenis Kelamin</td><td>: {{ $data->jenis_kelamin }}</td></tr>
+      <tr><td>Alamat</td><td>: {{ $data->alamat }}</td></tr>
+      <tr><td>Pekerjaan</td><td>: {{ $data->pekerjaan }}</td></tr>
     </table>
 
     <p style="text-align: justify;">
-      Adalah benar Penduduk Desa Kalipait, Kecamatan Tegaldlimo karena atas permintaan sendiri kepadanya diberikan Surat Keterangan Pindah ke Desa Air Kenari, RT.003 / RW.001 Kecamatan Teluk Mutiara dengan alasan Mengikuti Keluarganya.<br><br>
+      Adalah benar Penduduk Desa Kalipait, Kecamatan Tegaldlimo karena atas permintaan sendiri kepadanya diberikan Surat Keterangan Pindah ke Desa Kalipait, Kecamatan Tegal Dlimo,Kabupaten Banyuwangi dengan alasan {{ $data->keperluan }}<br><br>
       Demikian Surat Keterangan Pindah ini dibuat dan diberikan kepada yang bersangkutan untuk dipergunakan seperlunya.
     </p>
 
     <div class="footer">
       <div class="ttd">
-       Kalipait, 20 Juni 2020<br>
+       Kalipait, {{ $data->updatedd }}<br>
        Kepala Desa Kalipait<br><br><br><br>
         <b><u>Supriyono</u></b>
       </div>

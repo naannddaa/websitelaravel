@@ -17,41 +17,39 @@ class LoginController extends Controller
         return view('auth.login'); 
     }
 
-    public function login(Request $request)
+ public function login(Request $request)
 {
-    // Validasi inputan
     $request->validate([
         'nik' => 'required|string|size:16',
         'password' => 'required|string',
     ]);
 
-    // Cari user di master_akun berdasarkan NIK
     $user = master_akun::where('nik', $request->nik)->first();
 
-    if ($user) {
-        // Cek apakah password benar
-        if (Hash::check($request->password, $user->password)) {
-            
-            // Login user
-            Auth::login($user);
- 
-            // Cari nama lengkap dari master_penduduks
-            $penduduk = DB::table('master_penduduks')->where('nik', $user->nik)->first();
-            $nama = $penduduk ? $penduduk->nama_lengkap : $user->nik;
+    if ($user && Hash::check($request->password, $user->password)) {
+        Auth::login($user);
 
-            // Simpan nama lengkap ke session
-            session(['nama' => $nama]);
+        $penduduk = DB::table('master_penduduks')->where('nik', $user->nik)->first();
+        $nama = $penduduk ? $penduduk->nama_lengkap : $user->nik;
+        session(['nama' => $nama]);
 
-            // Redirect ke dashboard
-            return redirect()->route('dashboard')->with('success', 'Login berhasil!');
-        } else {
-            return back()->with('error', 'Password salah');
+        // 🔀 Redirect berdasarkan level akun
+        switch ($user->level) {
+            case 1:
+                return redirect()->route('dashboard')->with('success', 'Login sebagai Admin');
+            case 2:
+                return redirect()->route('rw.dashboard')->with('success', 'Login sebagai RW');
+            case 3:
+                return redirect()->route('dashboard.rt')->with('success', 'Login sebagai RT');
+            default:
+                Auth::logout();
+                return redirect()->route('login.index')->with('error', 'Level tidak dikenali');
         }
+
     } else {
-        return back()->with('error', 'NIK tidak ditemukan');
+        return back()->with('error', 'NIK atau Password salah');
     }
 }
-
     public function logout(Request $request)
     {
         Auth::logout();

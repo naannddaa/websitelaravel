@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\landing_page;
+use App\Models\master_berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; 
-use App\Models\HeroImage;
 use App\Models\MasterBerita;
 
 
@@ -24,10 +24,9 @@ class landing_pageController extends Controller
 
     public function tampil() {
         $data = landing_page::first();
-        $heroimages = HeroImage::all(); 
-        $beritas = MasterBerita::all();
+        $beritas = master_berita::all();
 
-        return view('landing_page.index', compact('data', 'heroimages', 'beritas'));
+        return view('landing_page.index', compact('data', 'beritas'));
 
 }
 

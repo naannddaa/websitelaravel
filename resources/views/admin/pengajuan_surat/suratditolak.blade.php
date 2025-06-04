@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($datapengajuan as $a)
+                        @forelse ($datapengajuan as $a)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$a->nik}}</td>
@@ -131,7 +131,11 @@
                             </div>
 
                         {{-- End Modal --}}
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Belum ada data</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

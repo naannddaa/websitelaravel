@@ -61,8 +61,10 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'database',
-            'table' => 'master_akun',  
+            // 'driver' => 'database',
+            // 'table' => 'master_akun',  
+            'driver' => 'eloquent',
+        'model' => App\Models\master_akun::class,  
         ],
 
         // 'users' => [

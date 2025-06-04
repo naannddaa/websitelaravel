@@ -113,14 +113,14 @@
       Yang bertanda tangan di bawah ini Kepala Desa Kalipait Kecamatan Tegaldlimo Kabupaten Banyuwangi, menerangkan bahwa:
       <br><br>
       <table class="table">
-        <tr><td>Nama</td><td>: </td></tr>
-        <tr><td>Tempat/Tanggal Lahir</td><td>: </td></tr>
-        <tr><td>Agama</td><td>: </td></tr>
-        <tr><td>Pekerjaan</td><td>: </td></tr>
-        <tr><td>Kewarganegaraan</td><td>: </td></tr>
-        <tr><td>No. KTP</td><td>: </td></tr>
-        <tr><td>Alamat</td><td>: </td></tr>
-        <tr><td>Nama Orang Tua</td><td>: </td></tr>
+        <tr><td>Nama</td><td>: {{ $data->nama_lengkap }}</td></tr>
+        <tr><td>Tempat/Tanggal Lahir</td><td>:  {{ $data->tempat_tanggal_lahir }}</td></tr>
+        <tr><td>Agama</td><td>: {{ $data->agama }}</td></tr>
+        <tr><td>Pekerjaan</td><td>: {{ $data->pekerjaan }}</td></tr>
+        <tr><td>Kewarganegaraan</td><td>: {{ $data->kewarganegaraan }}</td></tr>
+        <tr><td>No. KTP</td><td>: {{ $data->nik }}</td></tr>
+        <tr><td>Alamat</td><td>: {{ $data->alamat }}</td></tr>
+        <tr><td>Nama Orang Tua</td><td>: {{ $data->nama_ibu }}</td></tr>
       </table>
 
       Adalah anggota masyarakat Desa Kalipait dengan status <b>Belum Menikah</b>. Surat pengantar ini dipergunakan untuk mengurus Administrasi Pernikahan.
@@ -130,9 +130,9 @@
 
     <div class="footer">
       <div class="ttd">
-        Kalipait, 30 April 2018<br>
+        Kalipait,  {{ $data->updated }}<br>
         Kepala Desa Kalipait<br><br><br><br>
-        <b><u>Supriyono/u></b>
+        <b><u>Supriyono</u></b>
       </div>
       <div class="clear"></div>
     </div>

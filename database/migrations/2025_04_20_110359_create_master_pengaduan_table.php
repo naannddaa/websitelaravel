@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_pengaduan', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('nik', 16); 
             $table->text('ulasan');
             $table->string('foto1', 100);
+            $table->text('feedback')->nullable();
+            $table->string('kategori', 25);
             $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
             $table->timestamps();
         });

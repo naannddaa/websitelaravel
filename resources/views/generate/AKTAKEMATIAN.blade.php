@@ -134,15 +134,15 @@
 <div class="content" style="text-align: justify;">
     Saya yang bertanda tangan di bawah ini:
     <table class="table-info">
-        <tr><td>Nama</td><td>: KRISTINA MAGDALENA SAHAAN</td></tr>
-        <tr><td>Tempat, Tanggal Lahir</td><td>: Pematangsiantar, 27 Oktober 1983</td></tr>
-        <tr><td>NIK</td><td>: 1272046710080002</td></tr>
-        <tr><td>Jenis Kelamin</td><td>: Perempuan</td></tr>
-        <tr><td>Pekerjaan</td><td>: Wiraswasta</td></tr>
-        <tr><td>Alamat</td><td>: Jln. Raya Tegaldlimo RW 02 / RT 04 Desa Kalipait, Kecamatan Tegaldlimio</td></tr>
+        <tr><td>Nama</td><td>: {{ $data->nama_lengkap }}</td></tr>
+        <tr><td>Tempat, Tanggal Lahir</td><td>: {{ $data->tempat_tanggal_lahir }}</td></tr>
+        <tr><td>NIK</td><td>: {{ $data->nik }}</td></tr>
+        <tr><td>Jenis Kelamin</td><td>: {{ $data->jenis_kelamin }}</td></tr>
+        <tr><td>Pekerjaan</td><td>: {{ $data->pekerjaan }}</td></tr>
+        <tr><td>Alamat</td><td>: {{ $data->alamat }}</td></tr>
     </table>
 
-    <p>Dengan ini menyatakan bahwa saya benar ingin mengurus Surat Keterangan Kematian abang saya yang bernama: <span class="gray-box">(alm) DARWIN MANGAPUL HASUDUNGAN SAHAAN.</span></p>
+    <p>Dengan ini menyatakan bahwa saya benar ingin mengurus Surat Keterangan Kematian abang saya yang bernama: <span class="gray-box">(alm) {{ $data->keperluan }}.</span></p>
 
     <p>Surat Pernyataan ini saya buat dengan sesungguhnya tanpa ada unsur paksaan dari pihak manapun. Bilamana surat pernyataan ini tidak benar, maka saya bersedia dituntut sesuai dengan peraturan yang berlaku.</p>
 
@@ -151,12 +151,12 @@
 
   <div class="footer">
     <div class="ttd">
-      KETUA RT 002<br><br><br>
-      <div class="signature"><u>Bambang Paryoco</u></div>
+      Ketua Rt {{ $data->rt_rtrw }}<br><br><br>
+      <div class="signature"><u> {{ $data->nama_rt }}</u></div>
     </div>
     <div class="ttd-right">
-      Kalipait, 01 Juni 2022<br>
-      KETUA Desa Kalipait<br><br>  
+      Kalipait, {{ $data->updated }}<br>
+      Kepala Desa Kalipait<br><br>  
       <div class="signature"><u>Supriyono</u></div>
     </div>
     <div class="clear"></div>

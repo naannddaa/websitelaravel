@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('foto6', 100)->nullable();
             $table->string('foto7', 100)->nullable();
             $table->string('foto8', 100)->nullable();
+            $table->string('foto9', 100)->nullable();
+            $table->string('file_pdf', 100)->nullable();
             $table->timestamps();
 
             $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');

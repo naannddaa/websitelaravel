@@ -2,6 +2,13 @@
 @section('title', 'Dashboard')
 @section('konten')
 <link href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body, h1, h2, h3, h4, h5, h6, p, .card, .btn, .text-muted {
+        font-family: 'Poppins', sans-serif !important;
+    }
+</style>
 
 <div class="container-scroller">
     <div class="row">
@@ -29,103 +36,40 @@
                 </div>
             </div>
         </div>
-    
+
         <!-- 6 CARD -->
         <div class="col-md-8 d-flex flex-wrap">
-            <!-- Card Item -->
-            <div class="col-md-6 mb-3 d-flex align-items-stretch">
-                <div class="card w-100 text-center p-3">
-                    <div class="mb-2">
-                        <i class="mdi mdi-account-group" style="font-size: 24px; color: #4b49ac;"></i>
+                    @php
+                $cards = [
+                    ['icon' => 'mdi-account-group', 'value' => $jumlahPenduduk, 'label' => 'Jumlah Penduduk'],
+                    ['icon' => 'mdi-card-account-details', 'value' => $jumlahKK, 'label' => 'Jumlah KK'],
+                    ['icon' => 'mdi-gender-female', 'value' => $jumlahPerempuan, 'label' => 'Penduduk Wanita', 'color' => '#e91e63'],
+                    ['icon' => 'mdi-gender-male', 'value' => $jumlahLaki, 'label' => 'Penduduk Pria', 'color' => '#2196f3'],
+                    ['icon' => 'mdi-home-group', 'value' => $jumlahRT, 'label' => 'Total RT', 'color' => '#00c292'],
+                    ['icon' => 'mdi-home-group', 'value' => $jumlahRW, 'label' => 'Total RW', 'color' => '#e74c3c']
+                         ];
+                    @endphp
+
+                        @foreach($cards as $card)
+                <div class="col-md-6 mb-3 d-flex align-items-stretch">
+                    <div class="card w-100 text-center p-3">
+                        <div class="mb-2">
+                            <i class="mdi {{ $card['icon'] }}" style="font-size: 24px; color: {{ $card['color'] ?? '#4b49ac' }};"></i>
+                        </div>
+                        <h4 class="fw-bold mb-0">{{ $card['value'] }}</h4>
+                        <small class="text-muted">{{ $card['label'] }}</small>
                     </div>
-                    <h4 class="fw-bold mb-0">1,200</h4>
-                    <small class="text-muted">Jumlah Penduduk</small>
                 </div>
-            </div>
-    
-            <div class="col-md-6 mb-3 d-flex align-items-stretch">
-                <div class="card w-100 text-center p-3">
-                    <div class="mb-2">
-                        <i class="mdi mdi-card-account-details" style="font-size: 24px; color: #4b49ac;"></i>
-                    </div>
-                    <h4 class="fw-bold mb-0">350</h4>
-                    <small class="text-muted">Jumlah KK</small>
-                </div>
-            </div>
-    
-            <div class="col-md-6 mb-3 d-flex align-items-stretch">
-                <div class="card w-100 text-center p-3">
-                    <div class="mb-2">
-                        <i class="mdi mdi-gender-female" style="font-size: 24px; color: #e91e63;"></i>
-                    </div>
-                    <h4 class="fw-bold mb-0">620</h4>
-                    <small class="text-muted">Penduduk Wanita</small>
-                </div>
-            </div>
-    
-            <div class="col-md-6 mb-3 d-flex align-items-stretch">
-                <div class="card w-100 text-center p-3">
-                    <div class="mb-2">
-                        <i class="mdi mdi-gender-male" style="font-size: 24px; color: #2196f3;"></i>
-                    </div>
-                    <h4 class="fw-bold mb-0">580</h4>
-                    <small class="text-muted">Penduduk Pria</small>
-                </div>
-            </div>
-    
-            <div class="col-md-6 mb-3 d-flex align-items-stretch">
-                <div class="card w-100 text-center p-3">
-                    <div class="mb-2">
-                        <i class="mdi mdi-home-group" style="font-size: 24px; color: #00c292;"></i>
-                    </div>
-                    <h4 class="fw-bold mb-0">12</h4>
-                    <small class="text-muted">Total RT</small>
-                </div>
-            </div>
-    
-            <div class="col-md-6 mb-3 d-flex align-items-stretch">
-                <div class="card w-100 text-center p-3">
-                    <div class="mb-2">
-                        <i class="mdi mdi-home-group" style="font-size: 24px; color: #e74c3c;"></i>
-                    </div>
-                    <h4 class="fw-bold mb-0">8</h4>
-                    <small class="text-muted">Total RW</small>
-                </div>
-            </div>
+                @endforeach
         </div>
     </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Library Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Script Chart Gender -->
-<script>
-    const ctx = document.getElementById('genderChart').getContext('2d');
-    const genderChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Pria', 'Wanita'],
-            datasets: [{
-                data: [580, 620],
-                backgroundColor: ['#36A2EB', '#FF6384'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom'
-                }
-            }
-        }
-    });
-</script>
+
+
+
 
 <!-- Script Bawaan -->
 <script src="vendors/js/vendor.bundle.base.js"></script>

@@ -1,6 +1,14 @@
 @extends('admin.layout.main')
 @section('title', 'Edit Landingpage')
 @section('konten')
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body, input, textarea, button, .form-control, .col-form-label, h1, h2, h3, h4, h5, h6, p {
+        font-family: 'Poppins', sans-serif !important;
+    }
+    
+</style>
 
 <!-- START FORM -->
 
@@ -8,10 +16,7 @@
     @csrf
     <div class="my-3 p-3 bg-body rounded shadow-sm">
 
-        {{-- <a href="{{ url('/') }}" class="btn btn-outline-primary">
-            <i class="bi bi-arrow-left-circle-fill"></i> Kembali ke Homepage
-        </a> --}}
-        <h4 class="text-start mb-4">Edit Landingpage</h4>
+        <h4 class="text-start mb-4 fw-bold">Edit Landingpage</h4>
         <div class="mb-3 row mt-5">
             <label class="col-sm-2 col-form-label">Judul</label>
             <div class="col-sm-10">

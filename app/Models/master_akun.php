@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\master_penduduk;
 
-class master_akun extends Authenticatable
+class master_akun extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, HasFactory;
+    use Notifiable, HasApiTokens, HasFactory, CanResetPasswordTrait;
 
-    protected $table = 'master_akun'; // Nama tabel
-    protected $primaryKey = 'id'; // Primary key
-    public $timestamps = false; // Tidak pakai created_at/updated_at
+    protected $table = 'master_akun';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
 
     protected $fillable = [
         'id',
@@ -24,6 +26,4 @@ class master_akun extends Authenticatable
         'level',
         'password',
     ];
-
-   
 }

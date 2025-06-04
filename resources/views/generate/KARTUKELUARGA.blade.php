@@ -106,7 +106,8 @@
   
     <div class="header-wrapper">
         <div class="logo-kiri">
-            <img src="{{ public_path('storage/logo/logo.png') }}" alt="Logo Desa" class="logo">
+           <img src="{{ public_path('storage/logo/logo.png') }}" alt="Logo Desa" class="logo">
+
         </div>
         <div class="header-text">
             <h3>PEMERINTAH KABUPATEN BANYUWANGI</h3>
@@ -117,8 +118,8 @@
     </div>
     <hr>    
         
-        <div class="title">SURAT KETERANGAN MISKIN</div>
-        <div class="number">Nomor: ___ / ___ / 2020</div>
+        <div class="title">SURAT PENGAJUAN PEMBUATAN KARTU KELUARGA</div>
+        <div class="number">Nomor: ___ / ___ / 2025</div>
 
   <div class="info">
     Yang bertanda tangan di bawah ini:
@@ -131,15 +132,15 @@
     <p>Dengan ini menerangkan bahwa:</p>
 
     <table class="table-info">
-      <tr><td>Nama lengkap</td><td>: Fery Sawilan</td></tr>
-      <tr><td>Jenis kelamin</td><td>: Laki - Laki</td></tr>
-      <tr><td>Agama</td><td>: Islam</td></tr>
-      <tr><td>Status</td><td>: Kawin</td></tr>
-      <tr><td>No KTP/NIK</td><td>: 7110032020190001</td></tr>
-      <tr><td>Tempat / Tanggal lahir</td><td>: Motongkad, 20 Februari 1991</td></tr>
-      <tr><td>Pekerjaan</td><td>: Wiraswasta</td></tr>
-      <tr><td>Alamat</td><td>: Jl. Raya Tegaldlimo No 14 </td></tr>
-      <tr><td>Keperluan</td><td>: Melengkapi persyaratan Pembuatan Kartu Keluarga</td></tr>
+      <tr><td>Nama lengkap</td><td>: {{ $data->nama_lengkap }}</td></tr>
+      <tr><td>Jenis kelamin</td><td>:  {{ $data->jenis_kelamin }}</td></tr>
+      <tr><td>Agama</td><td>:  {{ $data->agama }}</td></tr>
+      <tr><td>Status</td><td>:   {{ $data->status_perkawinan }}</td></tr>
+      <tr><td>No KTP/NIK</td><td>:  {{ $data->nik }}</td></tr>
+      <tr><td>Tempat / Tanggal lahir</td><td>:  {{ $data->tempat_tanggal_lahir }}</td></tr>
+      <tr><td>Pekerjaan</td><td>: {{ $data->pekerjaan }}</td></tr>
+      <tr><td>Alamat</td><td>: {{ $data->alamat }}</ </td></tr>
+      <tr><td>Keperluan</td><td>: {{ $data->keperluan }}</</td></tr>
       <tr><td>Keterangan lain-lain</td><td>: Keterangan secara lengkap terlampir</td></tr>
     </table>
 
@@ -147,7 +148,7 @@
   </div>
 
   <div class="ttd">
-    Kalipait, 30 April 2018<br>
+    Kalipait,{{ $data->updated }}</<br>
     Kepala Desa Kalipait<br><br><br><br>
     <b><u>Supriyono</u></b>
   </div>

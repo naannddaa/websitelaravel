@@ -69,6 +69,7 @@
             <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#master-akun" aria-expanded="false" aria-controls="master-akun" id="toggle-master-akun">
                  <i class="bi bi-person-fill me-3"></i>
                 <span class="menu-title">Master Akun</span>
+                   <i class="menu-arrow"></i>
             </a>
             <ul id="master-akun" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="nav-item">
@@ -91,6 +92,13 @@
             <a class="nav-link" href="{{ url('admin/berita') }}">
                 <i class="bi bi-newspaper me-3"></i>
                 <span class="menu-title">Berita</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/pengaduan') }}">
+                <i class="bi bi-megaphone me-3"></i>
+                <span class="menu-title">Pengaduan Masyarakat</span>
             </a>
         </li>
         <li class="nav-item">
@@ -142,3 +150,4 @@ $(document).ready(function() {
 
 
 </script>
+

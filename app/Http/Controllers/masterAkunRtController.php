@@ -11,54 +11,55 @@ class masterAkunRtController extends Controller
     public $id_rtrw;
 
     public function index(Request $request)
-    {
-        $katakunci = $request->katakunci ?? '';
-        $jumlahbaris = 10; // Ubah ke jumlah baris realistik, contoh 10 per halaman
-    
-        $query = master_rt::query();
-    
-        if (!empty($katakunci)) {
-            $query->where(function ($q) use ($katakunci) {
-                $q->where('id_rtrw', 'like', "%$katakunci%")
-                  ->orWhere('nama', 'like', "%$katakunci%")
-                  ->orWhere('nik', 'like', "%$katakunci%")
-                  ->orWhere('rt', 'like', "%$katakunci%");
-            });
-        }
-    
-        $dataakunrt = master_rt::whereNotNull('rt')
+{
+    $katakunci = $request->katakunci ?? '';
+    $jumlahbaris = 10;
+
+    $query = master_rt::query();
+
+    if (!empty($katakunci)) {
+        $query->where(function ($q) use ($katakunci) {
+            $q->where('id_rtrw', 'like', "%$katakunci%")
+              ->orWhere('nama', 'like', "%$katakunci%")
+              ->orWhere('nik', 'like', "%$katakunci%")
+              ->orWhere('rt', 'like', "%$katakunci%")
+              ->orWhere('rw', 'like', "%$katakunci%");
+        });
+    }
+
+    $dataakunrt = $query
+        ->whereNotNull('rt')
         ->orderBy('id_rtrw', 'desc')
         ->paginate($jumlahbaris);
-    
 
-        // Generate ID otomatis
-        $currentDate = now();
-        $tahun = $currentDate->format('Y');
-        $prefix = "R{$tahun}-";
+    // Generate ID otomatis
+    $currentDate = now();
+    $tahun = $currentDate->format('Y');
+    $prefix = "R{$tahun}-";
 
-        $lastAkunRt = master_rt::where('id_rtrw', 'like', "$prefix%")
-            ->orderBy('id_rtrw', 'desc')
-            ->first();
+    $lastAkunRt = master_rt::where('id_rtrw', 'like', "$prefix%")
+        ->orderBy('id_rtrw', 'desc')
+        ->first();
 
-        $newIncrement = $lastAkunRt
-            ? (int)substr($lastAkunRt->id_rtrw, strlen($prefix)) + 1
-            : 1;
+    $newIncrement = $lastAkunRt
+        ? (int)substr($lastAkunRt->id_rtrw, strlen($prefix)) + 1
+        : 1;
 
-        $formattedIncrement = str_pad($newIncrement, 3, '0', STR_PAD_LEFT);
-        $id_rtrw = $prefix . $formattedIncrement;
+    $formattedIncrement = str_pad($newIncrement, 3, '0', STR_PAD_LEFT);
+    $id_rtrw = $prefix . $formattedIncrement;
 
-        // Ambil data penduduk yang Kepala Keluarga
-        $data = master_penduduk::join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
-            ->select(
-                'master_penduduks.nama_lengkap',
-                'master_penduduks.nik',
-                'master_kartukeluargas.rt',
-                'master_kartukeluargas.rw'
-            )
-            ->get();
+    // Ambil data penduduk
+    $data = master_penduduk::join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
+        ->select(
+            'master_penduduks.nama_lengkap',
+            'master_penduduks.nik',
+            'master_kartukeluargas.rt',
+            'master_kartukeluargas.rw'
+        )
+        ->get();
 
-        return view('admin.MasterAkun.akun_rt', compact('dataakunrt', 'id_rtrw', 'data'));
-    }
+    return view('admin.MasterAkun.akun_rt', compact('dataakunrt', 'id_rtrw', 'data'));
+}
 
     public function create()
     {
@@ -99,21 +100,14 @@ class masterAkunRtController extends Controller
             'no_hp' => $request->no_hp,
             'rt' => $request->rt,
             'rw' => $request->rw,
+            
         ];
 
         master_rt::create($dataakunrt);
         return redirect()->route('akunrt')->with('success', 'Data Berhasil Disimpan');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
+  
 
     public function update(Request $request, $id)
 {

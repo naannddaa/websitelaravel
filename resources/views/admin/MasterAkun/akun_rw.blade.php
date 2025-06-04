@@ -13,8 +13,12 @@
 
             {{-- form search --}}
             <div class="pb-3">
-                <form class="d-flex" action="{{ url('akunrw') }}" method="get">
-                    <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Cari" aria-label="Search">
+                   <form id="searchForm" class="d-flex" action="{{ route('akunrw') }}" method="get">
+                    <input class="form-control me-1" type="search" name="katakunci"
+                    id="searchInput"
+                    value="{{ Request::get('katakunci') }}"
+                    placeholder="Cari" aria-label="Search"
+                    autocomplete="off">
                     <button class="btn btn-outline-primary" type="submit">Cari</button>
                 </form>
             </div>
@@ -161,7 +165,20 @@
                     z-index: 1056 !important; /* lebih tinggi dari modal */
                 }
             </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
 
+    let timeout = null;
+    searchInput.addEventListener('input', function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            searchForm.submit();
+        }, 500); // Delay 500ms agar tidak submit terlalu sering
+    });
+});
+</script>
 
 
         </div>

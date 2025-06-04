@@ -128,31 +128,31 @@
       Yang bertanda tangan di bawah ini menerangkan bahwa:
       <br><br>
       <table class="table">
-        <tr><td>Nama</td><td>: ARBI GAMA JUNEISA</td></tr>
-        <tr><td>Tempat / Tanggal Lahir</td><td>: JAKARTA, 20 JUNI 2005</td></tr>
-        <tr><td>Jenis Kelamin</td><td>: LAKI-LAKI</td></tr>
-        <tr><td>No KTP / KK / Nopen</td><td>: 3603112006050002</td></tr>
-        <tr><td>Kewarganegaraan</td><td>: WNI</td></tr>
-        <tr><td>Agama</td><td>: ISLAM</td></tr>
-        <tr><td>Pekerjaan</td><td>: PELAJAR</td></tr>
+        <tr><td>Nama</td><td>: {{ $data->nama_lengkap }}</</td></tr>
+        <tr><td>Tempat / Tanggal Lahir</td><td>: {{ $data->tempat_tanggal_lahir }}</td></tr>
+        <tr><td>Jenis Kelamin</td><td>: {{ $data->jenis_kelamin }}</td></tr>
+        <tr><td>No KTP / KK / Nopen</td><td>: {{ $data->nik }}</td></tr>
+        <tr><td>Kewarganegaraan</td><td>: {{ $data->kewarganegaraan }}</td></tr>
+        <tr><td>Agama</td><td>: {{ $data->agama }}</td></tr>
+        <tr><td>Pekerjaan</td><td>: {{ $data->pekerjaan }}</td></tr>
         <tr><td>Status Perkawinan</td><td>: BELUM KAWIN</td></tr>
-        <tr><td>Alamat</td><td>: PERUM PURI MEKAR BLOK C NO 06 RT 001 RW 008</td></tr>
+        <tr><td>Alamat</td><td>: {{ $data->alamat }}</td></tr>
       </table>
       <p style="text-align: justify;">
-        Nama tersebut di atas saat ini bertempat tinggal di lingkungan kami RT 001 RW 008. Selanjutnya surat pengantar/keterangan ini diberikan kepada yang bersangkutan untuk keperluan: <strong>Permohonan Pembuatan KTP</strong>.
+        Nama tersebut di atas saat ini bertempat tinggal di lingkungan kami RT {{ $data->rt }}RW {{ $data->rw }}. Selanjutnya surat pengantar/keterangan ini diberikan kepada yang bersangkutan untuk keperluan: <strong>{{ $data->keperluan }}</strong>.
         <br><br>
         Demikian surat pengantar ini kami buat dengan sebenarnya untuk dapat dipergunakan sebagaimana mestinya.
       </p>
     </div>
     <div class="footer">
       <div class="ttd">
-        KETUA RW 008<br><br><br><br>
-        <div class="signature"><u>Bambang Paryoco</u></div>
+        KETUA RW {{ $data->rw }}<br><br><br><br>
+        <div class="signature"><u>{{ $data->nama_rw }}</u></div>
       </div>
       <div class="ttd-right">
-        Perum Puri Mekar, 01/06/2022<br>
-        KETUA RT 001<br><br>  
-        <div class="signature"><u>Isnaini Akbar, Amd</u></div>
+        Desa Kalipait,{{ $data->updated }} <br>
+        KETUA RT {{ $data->rt }}<br><br>  
+        <div class="signature"><u>{{ $data->nama_rt }}</u></div>
       </div>
       <div class="clear"></div>
     </div>

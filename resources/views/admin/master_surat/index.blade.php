@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 @section('konten')
 @section('title', 'Master Surat')
-
+    
 <!doctype html>
 <html lang="en">
 
@@ -13,9 +13,13 @@
             </div>
 
             <div class="pb-3">
-                <form class="d-flex" action="{{ url('mastersurat.index') }}" method="get">
-                    <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Cari" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Cari</button>
+              <form id="searchForm" class="d-flex" action="{{ route('mastersurat.index') }}" method="get">
+                  <input class="form-control me-1" type="search" name="katakunci"
+                    id="searchInput"
+                    value="{{ Request::get('katakunci') }}"
+                    placeholder="Cari" aria-label="Search"
+                    autocomplete="off">
+                <button class="btn btn-outline-primary" type="submit">Cari</button>
                 </form>
             </div>
 
@@ -32,7 +36,6 @@
                             <th>No</th>
                             <th>ID Surat</th>
                             <th>Nama Surat</th>
-                            <th>Gambar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -42,17 +45,16 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{ $item->id_surat }}</td>
-                                <td>{{ $item->nama_surat}}</td>
-                                <td>
+                                <td>{{ $item->nama_surat}}</td> 
+                                {{-- <td>
                                     <img src="{{ asset('storage/surat/' . $item->image) }}" width="100">
-                                </td>
+                                </td> --}}
 
                     <td>
                         <button type="button" class="btn btn-warning btn-sm btnEditSurat"
                             data-action="{{ route('mastersurat.update', $item->id_surat) }}"
                             data-id="{{ $item->id_surat }}"
-                            data-nama="{{ $item->nama_surat }}"
-                            data-gambar="{{ $item->image }}">
+                            data-nama="{{ $item->nama_surat }}"\>
                             <i class="bi bi-pencil-square"></i>
                         </button>
 
@@ -119,6 +121,19 @@
 
 {{-- JS Form Handler --}}
 <script src="{{ asset('js/mastersurat.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
 
+    let timeout = null;
+    searchInput.addEventListener('input', function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            searchForm.submit();
+        }, 500); // Delay 500ms agar tidak submit terlalu sering
+    });
+});
+</script>
 </body>
 @endsection

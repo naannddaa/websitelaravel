@@ -38,12 +38,11 @@
             margin: 2px;
         }
 
-        .header-text h2 {
-          font-size: 18px;
+       .header-text h2 {
+            font-size: 20px;
         }
-
         .header-text h3 {
-        font-size: 16px;
+            font-size: 18px;
         }
     
         .judul {
@@ -112,10 +111,10 @@
             <p>Jl Purwo Indah - Kalipait - Banyuwangi 68484</p>
         </div>
     </div>
-    <hr>    
+    <hr> 
 
     <div class="judul">SURAT KETERANGAN TIDAK MAMPU</div>
-    <div class="nomor">Nomor: 470/ /427.95.05/2023</div>
+    <div class="nomor">Nomor: 470/ ____ /2025</div>
 
     <div class="isi">
         Yang bertanda tangan di bawah ini Kepala Desa Kalipait Kecamatan Tegakdlimo Kabupaten Banyuwangi menerangkan dengan sebenarnya bahwa:
@@ -123,39 +122,39 @@
         <table style="margin-left: 30px;">
             <tr>
                 <td style="width: 180px;">Nama lengkap</td>
-                <td>: {{ $nama }}</td>
+                <td>: {{ $data->nama_lengkap }}</td>
             </tr>
             <tr>
                 <td>NIK</td>
-                <td>: {{ $nik }}</td>
+                <td>: {{ $data->nik }}</td>
             </tr>
             <tr>
                 <td>Tempat & Tgl. Lahir</td>
-                <td>: {{ $ttl }}</td>
+                <td>: {{ $data->tempat_tanggal_lahir }}</td>
             </tr>
             <tr>
                 <td>Jenis Kelamin</td>
-                <td>: Laki-Laki</td>
+                <td>: {{ $data->jenis_kelamin }}</td>
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td>: {{ $alamat }}</td>
+                <td>: {{ $data->alamat }}</td>
             </tr>
             <tr>
                 <td>Status Perkawinan</td>
-                <td>: Belum Kawin</td>
+                <td>:  {{ $data->status_perkawinan }}</td>
             </tr>
             <tr>
                 <td>Agama</td>
-                <td>: {{ $agama }}</td>
+                <td>: {{ $data->agama }}</td>
             </tr>
             <tr>
                 <td>Pekerjaan</td>
-                <td>: {{ $pekerjaan }}</td>
+                <td>: {{ $data->pekerjaan }}</td>
             </tr>
             <tr>
-                <td>Kebangsaan</td>
-                <td>: Indonesia</td>
+                <td>Kewarganegaraan</td>
+                <td>: {{ $data->kewarganegaraan }}</td>
             </tr>
         </table>
         
@@ -167,9 +166,9 @@
 
     <div class="ttd">
         <div class="kanan">
-            {{ $tanggal_surat }}<br>
+            Kalipait, {{ $data->updated }}<br>
             Kepala Desa Kalipait<br><br><br><br>
-            <b><u>{{ $kepala_desa }}</u></b>
+            <b><u>Supriyono</u></b>
         </div>
         <div class="clear"></div>
     </div>

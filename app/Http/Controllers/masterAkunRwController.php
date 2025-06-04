@@ -12,59 +12,56 @@ class masterAkunRwController extends Controller
 {
     public $id_rtrw;
 
-    public function index(Request $request)
-    {
-        $katakunci = $request->katakunci ?? '';
-        $jumlahbaris = 10;
-        
-        $dataakunrw = master_rw::whereNull('rt');
+  public function index(Request $request)
+{
+    $katakunci = $request->katakunci ?? '';
+    $jumlahbaris = 10;
 
-        if (strlen($katakunci)) {
-            $dataakunrw = master_rw::whereNull('rt')
-                ->where(function($query) use ($katakunci) {
-                    $query->where('id_rtrw', 'like', "%$katakunci%")
-                        ->orWhere('nama', 'like', "%$katakunci%")
-                        ->orWhere('nik', 'like', "%$katakunci%")
-                        ->orWhere('rw', 'like', "%$katakunci%");
-                })
-                ->orderBy('id_rtrw', 'desc')
-                ->paginate($jumlahbaris);
-        } else {
-            $dataakunrw = master_rw::whereNull('rt')
-                ->orderBy('id_rtrw', 'desc')
-                ->paginate($jumlahbaris);
-        }
-        
+    // Mulai query dasar
+    $dataakunrw = master_rw::whereNull('rt');
 
+    // Tambahkan pencarian jika kata kunci ada
+    if (strlen($katakunci)) {
+        $dataakunrw = $dataakunrw->where(function ($query) use ($katakunci) {
+            $query->where('id_rtrw', 'like', "%$katakunci%")
+                ->orWhere('nama', 'like', "%$katakunci%")
+                ->orWhere('nik', 'like', "%$katakunci%")
+                ->orWhere('rw', 'like', "%$katakunci%");
+        });
+    }
 
-        // membuat id autoincrement
-        $currentDate = now();
-        $tahun = $currentDate->format('Y');
-        $prefix = "R{$tahun}-";
+    // Tambahkan urutan dan pagination
+    $dataakunrw = $dataakunrw->orderBy('id_rtrw', 'desc')->paginate($jumlahbaris);
 
-        $lastAkunRw = master_rw::where('id_rtrw', 'like', "$prefix%")
+    // Membuat ID autoincrement
+    $currentDate = now();
+    $tahun = $currentDate->format('Y');
+    $prefix = "R{$tahun}-";
+
+    $lastAkunRw = master_rw::where('id_rtrw', 'like', "$prefix%")
         ->orderBy('id_rtrw', 'desc')
         ->first();
 
-        // mencari id terakhir yang sudah ada pada database, jika ada maka tambah 1
-        $newIncrement = $lastAkunRw
+    $newIncrement = $lastAkunRw
         ? (int)substr($lastAkunRw->id_rtrw, strlen($prefix)) + 1
         : 1;
 
-        $formattedIncrement = str_pad($newIncrement, 3, '0', STR_PAD_LEFT);
-        $id_rtrw = $prefix . $formattedIncrement;
+    $formattedIncrement = str_pad($newIncrement, 3, '0', STR_PAD_LEFT);
+    $id_rtrw = $prefix . $formattedIncrement;
 
-        // mengambil data penduduk yang berstatus kepala keluarga dan join master penduduk
-        $data = master_penduduk::join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
+    // Mengambil data penduduk kepala keluarga
+    $data = master_penduduk::join('master_kartukeluargas', 'master_penduduks.no_kk', '=', 'master_kartukeluargas.no_kk')
         ->select(
             'master_penduduks.nama_lengkap',
             'master_penduduks.nik',
             'master_kartukeluargas.rw'
         )
         ->get();
-        // kirim ke view
-        return view('admin.MasterAkun.akun_rw', compact('dataakunrw', 'id_rtrw', 'data'));
-    }
+
+    // Kirim ke view
+    return view('admin.MasterAkun.akun_rw', compact('dataakunrw', 'id_rtrw', 'data'));
+}
+
 
     public function create()
     {
@@ -181,5 +178,3 @@ class masterAkunRwController extends Controller
         }
         }
     }
-
-

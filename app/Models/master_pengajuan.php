@@ -23,9 +23,13 @@ class master_pengajuan extends Model
                             'foto5',
                             'foto6',
                             'foto7',
-                            'foto8'];
+                            'foto8',
+                            'foto9',
+                            'file_pdf'];
     protected $table = 'master_pengajuan';
-    public $timestamps = false;
+    protected $guarded = ['created_at'];
+
+    public $timestamps = true;
 
     // relasi ke table master_surat
     public function surat() {

@@ -14,7 +14,7 @@ class SuratmasukController extends Controller
     $katakunci = $request->katakunci;
 
     if (strlen($katakunci)) {
-        $datapengajuan = ViewDataPengajuan::where('status', 'Diajukan') // Tambahkan ini
+        $datapengajuan = ViewDataPengajuan::where('status', 'Disetujui RW') 
             ->where(function($query) use ($katakunci) {
                 $query->where('nik', 'like', "%$katakunci%")
                     ->orWhere('nama_lengkap', 'like', "%$katakunci%")
@@ -23,7 +23,7 @@ class SuratmasukController extends Controller
             ->orderBy('id_pengajuan', 'desc')
             ->paginate($jumlahbaris);
     } else {
-        $datapengajuan = ViewDataPengajuan::where('status', 'Diajukan') // Tambahkan ini juga
+        $datapengajuan = ViewDataPengajuan::where('status', 'Disetujui RW') 
             ->orderBy('id_pengajuan', 'desc')
             ->paginate($jumlahbaris);
     }
@@ -31,15 +31,18 @@ class SuratmasukController extends Controller
     return view('admin.pengajuan_surat.suratmasuk', compact('datapengajuan'));
 }
 
-    public function setuju(Request $request, $id_pengajuan) {
+   public function setuju(Request $request, $id_pengajuan)
+{
+    $pengajuan = ViewDataPengajuan::findOrFail($id_pengajuan);
+    $pengajuan->status = 'Selesai';
+    $pengajuan->save();
 
-        $pengajuan = ViewDataPengajuan::findOrFail($id_pengajuan);
+    return response()->json([
+        'success' => true,
+        'message' => 'Pengajuan berhasil disetujui.'
+    ]);
+}
 
-        $pengajuan->status = 'Disetujui';
-        $pengajuan->save();
-
-        return redirect()->back()->with('success', 'Pengajuan berhasil disetujui.');
-    }
 
 
     public function tolak(Request $request, $id_pengajuan)    {

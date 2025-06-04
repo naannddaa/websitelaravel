@@ -44,7 +44,7 @@
                         {{-- untuk nomor agar langsung otomatis array --}}
                         <?php $i = $databerita->firstItem() ?>
                         {{-- foreach mengulagi databerita --}}
-                        @foreach ($databerita as $item)
+                        @forelse ($databerita as $item)
                         <tr>
                             <td style="vertical-align: top;" class="text-center">{{ $i }}</td>
 
@@ -93,7 +93,11 @@
                             </td>
                         </tr>
                         <?php $i++ ?>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center">Belum ada data</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <style>

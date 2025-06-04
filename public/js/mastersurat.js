@@ -57,7 +57,7 @@ $(document).ready(function () {
             text: 'Data surat "' + nama + '" akan dihapus!',
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
+            confirmButtonColor: "#3085d6", 
             cancelButtonColor: "#d33",
             confirmButtonText: "Ya, hapus!",
             cancelButtonText: "Batal",

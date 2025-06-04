@@ -3,7 +3,10 @@
 @section('title', 'Surat Masuk')
 <!doctype html>
 <html lang="en">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+    <head>
+       <meta name="csrf-token" content="{{ csrf_token() }}">
+ 
+    </head>
 
 <body class="bg-light">
     <div class="container-scroller">
@@ -35,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($datapengajuan as $a)
+                        @forelse ($datapengajuan as $a)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$a->nik}}</td>
@@ -54,9 +57,9 @@
                                         <i class="bi bi-trash-fill" ></i>
                                     </button>
                                 </form>
-                                <a href="{{ url('admin/suratmasuk/'.$a->id_pengajuan.'/cetak') }}" target="_blank" class="btn btn-primary btn-sm">
-                                    <i class="bi bi-printer-fill"></i>
-                                </a>
+                                <!--<a href="{{ url('admin/suratmasuk/'.$a->id_pengajuan.'/cetak') }}" target="_blank" class="btn btn-primary btn-sm">-->
+                                <!--    <i class="bi bi-printer-fill"></i>-->
+                                <!--</a>-->
                             </td>
                         </tr>
 
@@ -123,7 +126,7 @@
                                                     @if (!empty($a->$foto))
                                                         <div class="col-12 mb-2">
                                                             <label class="form-label">Bukti{{ $i }}</label><br>
-                                                            <img src="{{ asset('storage/surat/' . $a->$foto) }}" width="100%">
+                                                            <img src="{{ asset( $a->$foto) }}" width="100%">
                                                         </div>
                                                     @endif
                                                 @endfor
@@ -133,7 +136,7 @@
                                         <div class="modal-footer d-flex justify-content-end gap-2">
                                             <button type="button" class="btn btn-danger" onclick="bukaModalPenolakan(event, {{ $a->id_pengajuan }})" data-route="{{ route('pengajuan.tolak', $a->id_pengajuan) }}">Tolak</button>
 
-                                            <button type="button" class="btn btn-primary"
+                                             <button type="button" class="btn btn-primary"
                                                 onclick="setujuiPengajuan(event, {{ $a->id_pengajuan }})"
                                                 data-route="{{ route('pengajuan.setuju', $a->id_pengajuan) }}">
                                                 Setujui
@@ -144,7 +147,11 @@
                             </div>
 
                         {{-- End Modal --}}
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Belum ada data</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -181,10 +188,81 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="{{ asset('js/suratmasuk.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script src="{{ asset('js/suratmasuk.js') }}"></script>
+<script>
+   
+function setujuiPengajuan(event, id_pengajuan) {
+    event.preventDefault();
+    console.log("Fungsi setujuiPengajuan terpanggil untuk id:", id_pengajuan);
+
+    const button = event.currentTarget;
+    const urlSetuju = button.getAttribute('data-route');
+    const cetakUrl = `/admin/suratmasuk/${id_pengajuan}/cetak`;
+
+    // Langkah 1: Generate PDF di backend
+    fetch(cetakUrl, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Gagal generate PDF.");
+        return response.json();
+    })
+    .then(data => {
+        if (!data.success) throw new Error("Gagal generate PDF.");
+
+        // Langkah 2: Kirim permintaan persetujuan
+        return fetch(urlSetuju, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json'
+            }
+        });
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Gagal menyetujui pengajuan.");
+        return response.json();
+    })
+    .then(() => {
+        // Tutup modal
+        const modalElement = document.getElementById("modalDetail-" + id_pengajuan);
+        const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+        if (bootstrapModal) {
+            bootstrapModal.hide();
+        }
+
+        // Tampilkan SweetAlert otomatis hilang dalam 3 detik
+        Swal.fire({
+            title: "Berhasil!",
+            text: "Surat berhasil dicetak dan pengajuan disetujui.",
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false
+        }).then(() => {
+            window.location.reload();
+        });
+
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        Swal.fire({
+            title: "Gagal",
+            text: error.message || "Terjadi kesalahan saat memproses pengajuan.",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
+    });
+}
+
+
+
+</script>
     
 </body>
 </html>
-@endsection
+@end

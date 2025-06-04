@@ -57,6 +57,7 @@ class beritaController extends Controller
 
     public function store(Request $request)
     {
+      
         // melakukan validasi
         $request->validate([
             'id_berita' => 'required',
@@ -72,7 +73,6 @@ class beritaController extends Controller
             // mengambil file yg di upload dan menyimpan di variabl file
             $file = $request->file('image');
             $this->filename = date('YmdHi') . '-' . $file->getClientOriginalName();
-            // $file->move(public_path('images'), $this->filename);
 
             // menyimpan file pada storage/image
             $data['image'] = $file->storeAs('public/imageberita', $this->filename);
@@ -113,13 +113,11 @@ class beritaController extends Controller
             'tanggal' => 'required|date',
         ]);
 
-       $databerita = master_berita::where('id_berita', $id)->firstOrFail(); // Ambil data lama
+       $databerita = master_berita::where('id_berita', $id)->firstOrFail(); 
 
-        // hashfile untuk memberi nama file agar random sehingga namanya beda
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $this->filename = time() . '.' . $file->getClientOriginalExtension();
-            // $file->move(public_path('images'), $this->filename);
             $data['image'] = $file->storeAs('public/imageberita', $this->filename);
 
         } else {

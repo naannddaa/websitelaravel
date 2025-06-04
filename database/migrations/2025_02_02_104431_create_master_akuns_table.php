@@ -14,18 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_akun', function (Blueprint $table) {
-            $table->integer('id');
-            $table->primary('id');
+            $table->id(); // Auto increment primary key
             $table->string('nik', 16);
             $table->string('no_hp', 15);
-            $table->string('email', 50);
+            $table->string('email', 50)->unique();
             $table->string('foto_profil')->nullable();
-            $table->integer('level');
+            $table->integer('level')->nullable(); // Boleh tambahkan default/null sesuai kebutuhan
             $table->string('password', 100);
             $table->string('remember_token', 100)->nullable();
             $table->foreign('nik')->references('nik')->on('master_penduduks')->onDelete('cascade');
             $table->timestamps();
         });
+        
     }
 
     /**
